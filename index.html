@@ -1,0 +1,2748 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="函君 & Ayson 的加拿大洛磯山脈 12 日自駕行程手冊 — Banff / Yoho / Jasper / Kootenay，2026 落葉松季">
+<style>html{color-scheme:light dark}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>落葉松季自駕手冊</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+<style>
+/* ══════════════ TOKENS ══════════════ */
+:root{
+  /* 亮色：石灰岩紙面 + 雲杉綠結構 + 落葉松金重點 */
+  --ground:#f3f3ef;
+  --card:#ffffff;
+  --sunken:#eceee8;
+  --ink:#17211d;
+  --ink-2:#4a5a53;
+  --ink-3:#7c8a84;
+  --line:#dfe2da;
+  --line-soft:#ebede6;
+
+  --spruce:#1f4a3d;      /* 雲杉綠 — 主結構色 */
+  --spruce-2:#2f6b57;
+  --spruce-ink:#123027;
+  --larch:#c8891f;       /* 落葉松金 — 主重點色 */
+  --larch-2:#e8b04a;
+  --larch-wash:#fbf3e0;
+  --glacier:#2b8a9b;     /* 冰河水 — 次要重點 */
+  --glacier-wash:#e6f2f4;
+  --alert:#a63f28;       /* 楓紅 — 警示 */
+  --alert-wash:#fbeee9;
+  --nav-blue:#1a68c4;    /* 導航按鈕 */
+
+  --radius:10px;
+  --shadow:0 1px 2px rgba(23,33,29,.05), 0 4px 14px rgba(23,33,29,.05);
+  --shadow-lift:0 2px 6px rgba(23,33,29,.08), 0 12px 28px rgba(23,33,29,.10);
+
+  --font-display:'Bitter', 'Noto Serif TC', Georgia, serif;
+  --font-body:'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', system-ui, sans-serif;
+  --font-mono:'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#11150f;
+    --card:#1a201b;
+    --sunken:#141a15;
+    --ink:#e8ebe3;
+    --ink-2:#a9b5ac;
+    --ink-3:#7c8a80;
+    --line:#2c352d;
+    --line-soft:#232b24;
+    --spruce:#8fd0b4;
+    --spruce-2:#6fb999;
+    --spruce-ink:#c9e7d8;
+    --larch:#e8b04a;
+    --larch-2:#f2c877;
+    --larch-wash:#2a2417;
+    --glacier:#6ec6d4;
+    --glacier-wash:#16262a;
+    --alert:#e0836a;
+    --alert-wash:#2c1a15;
+    --nav-blue:#4d94ee;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 4px 14px rgba(0,0,0,.3);
+    --shadow-lift:0 2px 6px rgba(0,0,0,.5), 0 12px 28px rgba(0,0,0,.4);
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#11150f;
+  --card:#1a201b;
+  --sunken:#141a15;
+  --ink:#e8ebe3;
+  --ink-2:#a9b5ac;
+  --ink-3:#7c8a80;
+  --line:#2c352d;
+  --line-soft:#232b24;
+  --spruce:#8fd0b4;
+  --spruce-2:#6fb999;
+  --spruce-ink:#c9e7d8;
+  --larch:#e8b04a;
+  --larch-2:#f2c877;
+  --larch-wash:#2a2417;
+  --glacier:#6ec6d4;
+  --glacier-wash:#16262a;
+  --alert:#e0836a;
+  --alert-wash:#2c1a15;
+  --nav-blue:#4d94ee;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 4px 14px rgba(0,0,0,.3);
+  --shadow-lift:0 2px 6px rgba(0,0,0,.5), 0 12px 28px rgba(0,0,0,.4);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--font-body);
+  background:var(--ground);
+  color:var(--ink);
+  line-height:1.7;
+  font-size:15px;
+  overflow-x:hidden;
+}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--larch);outline-offset:2px;border-radius:4px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+/* ══════════════ HERO ══════════════ */
+.hero{
+  position:relative;
+  background:linear-gradient(168deg,#123027 0%,#1f4a3d 46%,#2f6b57 100%);
+  color:#f3f3ef;
+  padding:52px 20px 40px;
+  overflow:hidden;
+  border-bottom:3px solid var(--larch);
+}
+.hero::after{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(120% 90% at 88% -10%, rgba(232,176,74,.30) 0%, transparent 58%),
+    radial-gradient(90% 70% at 6% 108%, rgba(43,138,155,.34) 0%, transparent 60%);
+}
+.hero-inner{position:relative;max-width:1080px;margin:0 auto}
+.hero-eyebrow{
+  font-family:var(--font-mono);font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--larch-2);margin-bottom:14px;
+}
+.hero h1{
+  font-family:var(--font-display);font-weight:800;
+  font-size:clamp(30px,6.2vw,54px);line-height:1.1;letter-spacing:-.01em;
+  text-wrap:balance;margin-bottom:6px;
+}
+.hero h1 em{font-style:normal;color:var(--larch-2)}
+.hero-sub{font-size:14px;color:rgba(243,243,239,.72);letter-spacing:.04em;margin-bottom:26px}
+.hero-stats{display:flex;flex-wrap:wrap;gap:1px;background:rgba(243,243,239,.18);border:1px solid rgba(243,243,239,.18);border-radius:var(--radius);overflow:hidden}
+.hero-stat{flex:1 1 122px;background:rgba(18,48,39,.62);padding:12px 14px;backdrop-filter:blur(6px)}
+.hero-stat .k{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(243,243,239,.6);font-family:var(--font-mono)}
+.hero-stat .v{font-family:var(--font-display);font-weight:700;font-size:19px;line-height:1.35;margin-top:2px}
+.hero-stat .v small{font-size:12px;font-weight:500;opacity:.75;font-family:var(--font-body)}
+
+/* ══════════════ TAB RAIL ══════════════ */
+.rail{
+  position:sticky;top:0;z-index:60;
+  background:color-mix(in srgb, var(--card) 92%, transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+  box-shadow:0 1px 0 rgba(0,0,0,.02);
+}
+.rail-scroll{display:flex;gap:2px;max-width:1080px;margin:0 auto;padding:0 12px;overflow-x:auto;scrollbar-width:none}
+.rail-scroll::-webkit-scrollbar{display:none}
+.tab{
+  flex:0 0 auto;border:0;background:none;cursor:pointer;
+  font-family:var(--font-body);font-size:12.5px;font-weight:700;color:var(--ink-3);
+  padding:13px 11px 10px;border-bottom:3px solid transparent;white-space:nowrap;
+  transition:color .15s,border-color .15s;
+}
+.tab .num{font-family:var(--font-mono);font-size:10px;display:block;letter-spacing:.1em;opacity:.7;font-weight:500}
+.tab:hover{color:var(--spruce-2)}
+.tab.on{color:var(--spruce);border-bottom-color:var(--larch)}
+.tab.util.on{border-bottom-color:var(--glacier)}
+
+/* ══════════════ LAYOUT ══════════════ */
+.wrap{max-width:1080px;margin:0 auto;padding:28px 18px 72px}
+.pane{display:none}
+.pane.on{display:block;animation:fade .28s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+/* ── day header ── */
+.dayhead{display:flex;gap:16px;align-items:flex-start;margin-bottom:18px}
+.daynum{
+  flex:0 0 auto;background:var(--spruce);color:var(--ground);
+  border-radius:var(--radius);padding:9px 13px 10px;text-align:center;min-width:70px;
+}
+:root[data-theme="dark"] .daynum, :root:not([data-theme="light"]) .daynum{color:var(--ground)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .daynum{background:var(--spruce);color:#11150f}}
+.daynum .lbl{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;opacity:.8}
+.daynum .n{font-family:var(--font-display);font-weight:800;font-size:29px;line-height:1}
+.dayhead h2{font-family:var(--font-display);font-weight:700;font-size:clamp(19px,3.4vw,27px);line-height:1.25;text-wrap:balance;color:var(--spruce)}
+.dayhead .meta{font-size:13px;color:var(--ink-3);margin-top:3px}
+.dayhead .meta b{color:var(--ink-2);font-weight:500}
+
+/* ── route strip（自駕路線條）── */
+.route{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:14px 16px;margin-bottom:22px;box-shadow:var(--shadow);
+  border-left:4px solid var(--glacier);
+}
+.route-top{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px;margin-bottom:10px}
+.route-title{font-family:var(--font-display);font-weight:700;font-size:15px;color:var(--ink)}
+.route-figs{display:flex;gap:14px;flex-wrap:wrap;margin-left:auto;font-family:var(--font-mono);font-size:12.5px;font-variant-numeric:tabular-nums}
+.route-figs span{color:var(--ink-3)}
+.route-figs b{color:var(--glacier);font-weight:600}
+.legs{display:flex;flex-wrap:wrap;align-items:center;gap:5px;font-size:12.5px;color:var(--ink-2);line-height:1.5}
+.legs .pt{background:var(--sunken);border:1px solid var(--line-soft);border-radius:20px;padding:2px 10px;font-weight:500;white-space:nowrap}
+.legs .seg{font-family:var(--font-mono);font-size:11px;color:var(--ink-3);white-space:nowrap}
+.legs .seg::before{content:'──▸ '}
+
+/* ── timeline ── */
+.tl{position:relative;padding-left:26px}
+.tl::before{content:'';position:absolute;left:7px;top:10px;bottom:10px;width:2px;background:linear-gradient(var(--larch),var(--line));border-radius:2px}
+.stop{position:relative;margin-bottom:16px}
+.stop::before{
+  content:'';position:absolute;left:-24px;top:19px;width:12px;height:12px;border-radius:50%;
+  background:var(--card);border:3px solid var(--larch);
+}
+.stop.is-drive::before{border-color:var(--glacier)}
+.stop.is-stay::before{border-color:var(--spruce-2)}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:15px 17px;box-shadow:var(--shadow);transition:box-shadow .2s,transform .2s;
+}
+.card:hover{box-shadow:var(--shadow-lift)}
+.card-top{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-bottom:4px}
+.chip{
+  font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  padding:3px 8px;border-radius:5px;white-space:nowrap;
+}
+.chip.drive{background:var(--glacier-wash);color:var(--glacier)}
+.chip.hike{background:var(--larch-wash);color:var(--larch)}
+.chip.sight{background:var(--sunken);color:var(--ink-2)}
+.chip.food{background:var(--alert-wash);color:var(--alert)}
+.chip.stay{background:rgba(47,107,87,.12);color:var(--spruce-2)}
+.chip.fly{background:var(--glacier-wash);color:var(--glacier)}
+.chip.rec{background:linear-gradient(90deg,var(--larch),var(--larch-2));color:#2a1f08;font-weight:700}
+:root[data-theme="dark"] .chip.rec{color:#1a1204}
+.card h3{font-family:var(--font-display);font-weight:700;font-size:15.5px;line-height:1.4;flex:1 1 220px;min-width:0}
+.clock{font-family:var(--font-mono);font-size:12.5px;font-weight:600;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.card p.desc{font-size:13.5px;color:var(--ink-2);margin-top:5px}
+
+/* ── nav + stats ── */
+.actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:11px}
+.navbtn{
+  display:inline-flex;align-items:center;gap:6px;text-decoration:none;
+  background:var(--nav-blue);color:#fff;border-radius:8px;padding:7px 13px;
+  font-size:12.5px;font-weight:700;box-shadow:0 1px 3px rgba(26,104,196,.3);
+  transition:filter .15s,transform .15s;
+}
+.navbtn:hover{filter:brightness(1.1);transform:translateY(-1px)}
+.navbtn.ghost{background:transparent;color:var(--nav-blue);border:1.5px solid var(--nav-blue);box-shadow:none}
+.navbtn.link{background:var(--sunken);color:var(--ink-2);border:1px solid var(--line);box-shadow:none;font-weight:600}
+.stats{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}
+.stat{
+  font-family:var(--font-mono);font-size:11.5px;font-variant-numeric:tabular-nums;
+  background:var(--sunken);border:1px solid var(--line-soft);border-radius:6px;padding:3px 9px;color:var(--ink-2);
+}
+.stat b{color:var(--ink);font-weight:600}
+.stat.hard{background:var(--alert-wash);border-color:transparent;color:var(--alert)}
+.stat.easy{background:rgba(47,107,87,.1);border-color:transparent;color:var(--spruce-2)}
+.stat.mid{background:var(--larch-wash);border-color:transparent;color:var(--larch)}
+
+/* ── per-stop 必備 / 注意 ── */
+.stopmeta{margin-top:12px;border-top:1px dashed var(--line);padding-top:10px;display:grid;gap:7px}
+.mrow{display:flex;gap:9px;font-size:12.5px;line-height:1.65;align-items:flex-start}
+.mrow .mk{
+  flex:0 0 auto;font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:.08em;
+  padding:2px 7px;border-radius:5px;margin-top:2px;
+}
+.mrow.gear .mk{background:rgba(47,107,87,.12);color:var(--spruce-2)}
+.mrow.warn .mk{background:var(--alert-wash);color:var(--alert)}
+.mrow.park .mk{background:var(--glacier-wash);color:var(--glacier)}
+.mrow .mv{color:var(--ink-2);min-width:0}
+.mrow .mv b{color:var(--ink);font-weight:600}
+
+/* ── day-level boxes ── */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+@media (max-width:720px){.duo{grid-template-columns:1fr}}
+.box{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
+.box.gear{border-top:3px solid var(--spruce-2)}
+.box.warn{border-top:3px solid var(--alert)}
+.box h4{font-family:var(--font-display);font-weight:700;font-size:14px;margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.box.gear h4{color:var(--spruce-2)}
+.box.warn h4{color:var(--alert)}
+.gearlist{display:flex;flex-wrap:wrap;gap:6px}
+.gearlist span{font-size:12.5px;background:var(--sunken);border:1px solid var(--line-soft);border-radius:20px;padding:3px 11px;color:var(--ink-2)}
+.gearlist span.must{background:var(--larch-wash);border-color:transparent;color:var(--larch);font-weight:600}
+.box ul{list-style:none;display:grid;gap:7px}
+.box ul li{font-size:13px;color:var(--ink-2);padding-left:18px;position:relative;line-height:1.65}
+.box ul li::before{content:'';position:absolute;left:3px;top:9px;width:5px;height:5px;border-radius:50%;background:var(--larch)}
+.box.warn ul li::before{background:var(--alert)}
+.box ul li b{color:var(--ink);font-weight:600}
+
+/* ── travel guide ── */
+.guide{margin-top:26px}
+.guide-head{display:flex;align-items:center;gap:10px;padding-bottom:11px;margin-bottom:16px;border-bottom:2px solid var(--line)}
+.guide-head .g-ic{font-size:20px}
+.guide-head h3{font-family:var(--font-display);font-weight:700;font-size:16px;color:var(--spruce)}
+.guide-head span{font-size:12px;color:var(--ink-3)}
+.gcards{display:grid;gap:13px}
+.gcard{background:var(--card);border:1px solid var(--line);border-left:3px solid var(--larch);border-radius:var(--radius);padding:16px 18px;box-shadow:var(--shadow)}
+.gcard h4{font-family:var(--font-display);font-weight:700;font-size:14.5px;color:var(--ink);margin-bottom:8px}
+.gcard p{font-size:13.5px;color:var(--ink-2);margin-bottom:8px}
+.gcard p:last-child{margin-bottom:0}
+.gcard ul{list-style:none;display:grid;gap:6px;margin-top:8px}
+.gcard ul li{font-size:13px;color:var(--ink-2);padding-left:16px;position:relative;line-height:1.7}
+.gcard ul li::before{content:'▸';position:absolute;left:0;top:0;color:var(--larch);font-size:11px}
+.gcard ul li b{color:var(--ink);font-weight:600}
+.tag{display:inline-block;font-family:var(--font-mono);font-size:10px;font-weight:600;letter-spacing:.06em;background:var(--spruce);color:var(--ground);border-radius:4px;padding:1px 7px;margin-right:5px;vertical-align:1px}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .tag{color:#11150f}}
+:root[data-theme="dark"] .tag{color:#11150f}
+.tag.gold{background:var(--larch);color:#2a1f08}
+.tag.blue{background:var(--glacier);color:#06232a}
+.pull{background:var(--glacier-wash);border-radius:8px;padding:11px 13px;font-size:13px;color:var(--ink-2);margin-top:10px}
+.pull b{color:var(--glacier)}
+
+/* ── stay card ── */
+.stay{
+  margin-top:22px;background:linear-gradient(135deg,var(--larch-wash),var(--card) 62%);
+  border:1px solid var(--line);border-left:3px solid var(--larch);border-radius:var(--radius);
+  padding:16px 18px;display:flex;gap:14px;align-items:flex-start;
+}
+.stay .ic{font-size:26px;flex:0 0 auto;line-height:1.2}
+.stay h4{font-family:var(--font-display);font-weight:700;font-size:14px;color:var(--larch);margin-bottom:3px}
+.stay p{font-size:13px;color:var(--ink-2)}
+.stay p b{color:var(--ink)}
+
+/* ── overview / utility panes ── */
+.sec{margin-bottom:32px}
+.sec > h3{
+  font-family:var(--font-display);font-weight:700;font-size:17px;color:var(--spruce);
+  padding-bottom:9px;border-bottom:2px solid var(--line);margin-bottom:16px;
+  display:flex;align-items:center;gap:8px;
+}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:13px}
+.flight{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:15px 17px;box-shadow:var(--shadow)}
+.flight .al{font-family:var(--font-mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:5px}
+.flight .rt{font-family:var(--font-display);font-weight:800;font-size:21px;letter-spacing:.06em;color:var(--spruce)}
+.flight .tm{font-family:var(--font-mono);font-size:15px;font-weight:600;margin:6px 0;font-variant-numeric:tabular-nums;display:flex;align-items:center;gap:9px}
+.flight .tm .ar{color:var(--larch)}
+.flight .dt{font-size:12.5px;color:var(--ink-2);line-height:1.7}
+.kv{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow)}
+.kv-row{display:grid;grid-template-columns:minmax(88px,150px) 1fr;gap:0;border-bottom:1px solid var(--line-soft)}
+.kv-row:last-child{border-bottom:0}
+.kv-row .k{background:var(--sunken);padding:11px 14px;font-size:12.5px;font-weight:700;color:var(--ink-2);display:flex;align-items:center;gap:6px}
+.kv-row .v{padding:11px 14px;font-size:13px;color:var(--ink-2);line-height:1.7}
+.kv-row .v b{color:var(--ink);font-weight:600}
+.kv-row .v code{font-family:var(--font-mono);font-size:12px;background:var(--sunken);padding:1px 6px;border-radius:4px;color:var(--ink)}
+.callout{
+  background:var(--alert-wash);border:1px solid color-mix(in srgb,var(--alert) 26%,transparent);
+  border-left:4px solid var(--alert);border-radius:var(--radius);padding:15px 18px;margin-bottom:18px;
+}
+.callout h4{font-family:var(--font-display);font-weight:700;font-size:14.5px;color:var(--alert);margin-bottom:7px}
+.callout p,.callout li{font-size:13.5px;color:var(--ink-2);line-height:1.75}
+.callout ul{list-style:none;display:grid;gap:6px;margin-top:7px}
+.callout ul li{padding-left:16px;position:relative}
+.callout ul li::before{content:'!';position:absolute;left:2px;top:0;color:var(--alert);font-weight:800;font-family:var(--font-mono);font-size:12px}
+.callout b{color:var(--ink)}
+.note{
+  background:var(--glacier-wash);border-left:4px solid var(--glacier);border-radius:var(--radius);
+  padding:15px 18px;margin-bottom:18px;
+}
+.note h4{font-family:var(--font-display);font-weight:700;font-size:14.5px;color:var(--glacier);margin-bottom:7px}
+.note p,.note li{font-size:13.5px;color:var(--ink-2);line-height:1.75}
+.note ul{list-style:none;display:grid;gap:6px;margin-top:7px}
+.note ul li{padding-left:16px;position:relative}
+.note ul li::before{content:'▸';position:absolute;left:2px;top:0;color:var(--glacier)}
+.note b{color:var(--ink)}
+
+/* packing */
+.packgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:13px}
+.packcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:15px 17px;box-shadow:var(--shadow)}
+.packcard h4{font-family:var(--font-display);font-weight:700;font-size:14px;color:var(--spruce);margin-bottom:10px;display:flex;align-items:center;gap:7px}
+.packcard ul{list-style:none;display:grid;gap:5px}
+.packcard li{font-size:13px;color:var(--ink-2);padding-left:22px;position:relative;line-height:1.6}
+.packcard li::before{content:'';position:absolute;left:0;top:5px;width:12px;height:12px;border:1.5px solid var(--line);border-radius:3px;background:var(--sunken)}
+.packcard li.key{color:var(--ink);font-weight:600}
+.packcard li.key::before{border-color:var(--larch);background:var(--larch-wash)}
+.packcard li small{display:block;font-size:11.5px;color:var(--ink-3);font-weight:400}
+
+/* table */
+.tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--card);box-shadow:var(--shadow)}
+table{border-collapse:collapse;width:100%;min-width:560px}
+th,td{padding:10px 13px;text-align:left;font-size:12.5px;border-bottom:1px solid var(--line-soft)}
+th{background:var(--sunken);font-weight:700;color:var(--ink-2);font-size:11.5px;letter-spacing:.03em;white-space:nowrap}
+td{color:var(--ink-2)}
+td b{color:var(--ink)}
+tr:last-child td{border-bottom:0}
+td.num,th.num{font-family:var(--font-mono);font-variant-numeric:tabular-nums;text-align:right}
+
+/* footer */
+footer{background:var(--spruce-ink);color:rgba(243,243,239,.62);padding:28px 20px;text-align:center;font-size:12.5px;border-top:3px solid var(--larch)}
+footer b{color:#f3f3ef;font-family:var(--font-display);font-size:14px;display:block;margin-bottom:5px}
+footer .fnote{font-family:var(--font-mono);font-size:11px;letter-spacing:.05em;margin-top:9px;opacity:.7}
+
+/* misc */
+.slot{border:2px dashed var(--larch);background:var(--larch-wash);border-radius:var(--radius);padding:15px 18px;margin-top:16px}
+.slot h4{font-family:var(--font-display);font-weight:700;color:var(--larch);font-size:14px;margin-bottom:5px}
+.slot p{font-size:13px;color:var(--ink-2)}
+@media (max-width:560px){
+  .wrap{padding:22px 14px 60px}
+  .dayhead{gap:11px}
+  .daynum{min-width:58px;padding:8px 10px}
+  .daynum .n{font-size:24px}
+  .tl{padding-left:20px}
+  .stop::before{left:-19px}
+  .route-figs{margin-left:0;width:100%}
+}
+</style>
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<header class="hero">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Canadian Rockies · Self-Drive · Larch Season 2026</p>
+    <h1>函君 &amp; Ayson 的<br><em>落葉松季</em>洛磯山脈自駕</h1>
+    <p class="hero-sub">Banff · Yoho · Icefields Parkway · Jasper · Kootenay ｜ 2026 / 09 / 24 – 10 / 08</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="k">Days</div><div class="v">12<small> 天在地</small></div></div>
+      <div class="hero-stat"><div class="k">Drive</div><div class="v">~1,750<small> km</small></div></div>
+      <div class="hero-stat"><div class="k">Parks</div><div class="v">4<small> 座國家公園</small></div></div>
+      <div class="hero-stat"><div class="k">Base</div><div class="v">Canmore<small> / Hinton</small></div></div>
+      <div class="hero-stat"><div class="k">Season</div><div class="v">落葉松<small> 金黃期</small></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══════════════ TABS ═══════════════ -->
+<nav class="rail">
+  <div class="rail-scroll" id="rail">
+    <button class="tab util on" data-pane="p-drive"><span class="num">Info</span>🚗 自駕總覽</button>
+    <button class="tab util" data-pane="p-pack"><span class="num">Info</span>🎒 打包清單</button>
+    <button class="tab" data-pane="p-d1"><span class="num">09/25</span>D1 抵達・坎莫爾</button>
+    <button class="tab" data-pane="p-d2"><span class="num">09/26</span>D2 班夫鎮</button>
+    <button class="tab" data-pane="p-d3"><span class="num">09/27</span>D3 夢蓮湖</button>
+    <button class="tab" data-pane="p-d4"><span class="num">09/28</span>D4 優鶴</button>
+    <button class="tab" data-pane="p-d5"><span class="num">09/29</span>D5 路易斯湖</button>
+    <button class="tab" data-pane="p-d6"><span class="num">09/30</span>D6 冰原大道南</button>
+    <button class="tab" data-pane="p-d7"><span class="num">10/01</span>D7 哥倫比亞冰原</button>
+    <button class="tab" data-pane="p-d8"><span class="num">10/02</span>D8 賈斯珀</button>
+    <button class="tab" data-pane="p-d9"><span class="num">10/03</span>D9 米耶特溫泉</button>
+    <button class="tab" data-pane="p-d10"><span class="num">10/04</span>D10 冰原大道北</button>
+    <button class="tab" data-pane="p-d11"><span class="num">10/05</span>D11 庫特尼</button>
+    <button class="tab" data-pane="p-d12"><span class="num">10/06</span>D12 返程</button>
+  </div>
+</nav>
+
+<main class="wrap">
+<!-- ════════════ 自駕總覽 ════════════ -->
+<section class="pane on" id="p-drive">
+
+  <div class="callout">
+    <h4>🚨 出發前必讀：2026 賈斯珀有兩條路全季封閉</h4>
+    <p>2024 年賈斯珀大火後的邊坡整治尚未完成，Parks Canada 公告以下區域 <b>2026 全季不開放</b>，原訂 Day 8 / Day 9 行程已改：</p>
+    <ul>
+      <li><b>Cavell Road</b>（天使冰川 Mt. Edith Cavell、Cavell Meadows、Path of the Glacier）→ 封閉</li>
+      <li><b>Maligne Canyon + Maligne Lake Road</b>（瑪琳峽谷、瑪琳湖、精靈島遊船、Bald Hills）→ 封閉</li>
+      <li>好消息：<b>五湖谷 Valley of the Five Lakes 已於 2026 夏季整修完重新開放</b>；冰原大道、Athabasca Falls、Sunwapta Falls 一切正常</li>
+    </ul>
+    <p style="margin-top:9px">👉 替代方案：Day 8 走五湖谷＋Old Fort Point＋金字塔湖；Day 9 走 <b>Miette Hot Springs + Sulphur Skyline</b>（賈斯珀最強展望步道，且從 Hinton 住宿出發更近）。</p>
+  </div>
+
+  <div class="sec">
+    <h3>✈️ 航班</h3>
+    <div class="grid2">
+      <div class="flight">
+        <div class="al">去程 Outbound · 9/24 – 9/25</div>
+        <div class="rt">TPE → YYC</div>
+        <div class="tm"><span>23:40</span><span class="ar">→</span><span>09:40<sup style="font-size:11px">+1</sup></span></div>
+        <div class="dt"><b>BR 28 / WS 1501</b>（長榮訂位，WestJet 實際承運）<br>9/24（四）23:40 桃園出發 → 9/25（五）09:40 抵達 Calgary<br>總行程時間約 24 小時（含轉機）</div>
+        <div class="stats"><span class="stat">白天上班・晚上出發</span><span class="stat mid">中秋連假起飛</span></div>
+      </div>
+      <div class="flight">
+        <div class="al">回程 Return · 10/6 – 10/8</div>
+        <div class="rt">YYC → TPE</div>
+        <div class="tm"><span>17:50</span><span class="ar">→</span><span>04:20<sup style="font-size:11px">+2</sup></span></div>
+        <div class="dt"><b>WS 1552 / BR 23</b>（WestJet 承運）<br>10/6（二）17:50 Calgary 出發 → 10/8（四）04:20 抵達桃園<br>建議 <b>15:00 前</b>完成還車，15:30 進航廈</div>
+        <div class="stats"><span class="stat easy">還車 → 航廈接駁約 15 分</span></div>
+      </div>
+    </div>
+    <div class="note" style="margin-top:14px">
+      <h4>🧳 托運行李的三個小動作（IG 筆記⑪）</h4>
+      <ul>
+        <li><b>拍照留底</b>：行李外觀、行李條、托運時的磅秤畫面都拍下來，讓「行李＋標籤＋重量」都有紀錄</li>
+        <li><b>收好行李存根</b>：航空公司給的行李收據不要隨手丟，至少留到行李安全領回</li>
+        <li><b>放 AirTag</b>：行李裡塞一顆定位器，隨時知道行李在哪</li>
+      </ul>
+      <p style="margin-top:8px">原因：近年加拿大機場曾發生行李標籤遭調換、涉及走私的案件，不知情旅客也被調查過。幾秒鐘的動作，替自己多留一份證明。</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h3>🚙 租車 · 這趟最重要的一件事</h3>
+    <div class="callout">
+      <h4>雪胎（M+S / 3PMSF）不是建議，是法規</h4>
+      <p>Day 6 之後你們會北上行駛<b>冰原大道 Hwy 93N</b>，並在賈斯珀跑高山景點。10/1–3/31 期間，該路段依法輪胎必須具備 <b>M+S</b>（泥雪胎）字樣，最好是 <b>3PMSF 三峰雪花標記</b>（山裡有雪花的圖案）。</p>
+      <ul>
+        <li><b>訂車時</b>：在 Special Requests / Notes 欄用英文註明「Traveling to Banff/Jasper National Parks in October, Winter Tires or M+S tires are legally required and strictly requested.」</li>
+        <li><b>出發前一週</b>：打電話或 email 給 YYC 機場該租車營業所，確認需求已標註在檔案上</li>
+        <li><b>取車現場</b>：別急著開走，蹲下來看輪胎側邊。沒有 M+S 或 3PMSF，<b>立刻回櫃檯要求換車，態度堅定</b></li>
+      </ul>
+    </div>
+    <div class="kv">
+      <div class="kv-row"><div class="k">🪪 駕照</div><div class="v">台灣駕照正本 ＋ <b>國際駕照 IDP</b> ＋ 護照，三樣缺一不可，隨身帶著</div></div>
+      <div class="kv-row"><div class="k">🚗 車型建議</div><div class="v">Intermediate SUV 以上。冰原大道路肩碎石多，底盤高一點比較安心</div></div>
+      <div class="kv-row"><div class="k">🛡 保險</div><div class="v">建議加購全險（CDW/LDW + 第三責任）。石頭擊中擋風玻璃在冰原大道很常見</div></div>
+      <div class="kv-row"><div class="k">⛽ 油箱</div><div class="v">取車先確認取／還油量政策；<b>Full to Full</b> 最划算</div></div>
+      <div class="kv-row"><div class="k">📸 交車</div><div class="v">取車與還車都繞車拍一圈影片，含輪胎側邊、擋風玻璃、四角保險桿</div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h3>🎫 國家公園通行證</h3>
+    <div class="note">
+      <h4>直接買 Discovery Pass 年票，最划算</h4>
+      <ul>
+        <li>單日團體票（最多 7 人一車）約 <b>CAD 24.50 / 天</b> × 12 天 ≈ <b>CAD 294</b></li>
+        <li>Discovery Pass 家庭／團體年票 約 <b>CAD 167.50</b> → 直接省下約 <b>CAD 126</b></li>
+        <li>通行 Banff、Jasper、Yoho、Kootenay <b>四座公園都適用</b>，這趟全部會經過</li>
+        <li>可線上先買寄到府，或在 YYC 出關後、Banff 東大門收費站、各遊客中心現場買</li>
+        <li><b>掛在後照鏡上或放擋風玻璃內側</b>，停車場常有巡查，沒掛會開罰單</li>
+      </ul>
+      <p style="margin-top:8px"><b>不包含：</b>Lake Louise 湖畔停車費、班夫纜車、溫泉、冰原車、遊船。這些都要另外付。</p>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h3>🛣 路況與行車規則</h3>
+    <div class="kv">
+      <div class="kv-row"><div class="k">📱 每天早上</div><div class="v"><b>511 Alberta</b>（Alberta 境內：Banff / Jasper / 冰原大道）＋ <b>DriveBC</b>（BC 境內：Yoho 優鶴 / Kootenay 庫特尼）。出發前一定要下載並在每天早上開車前查一次</div></div>
+      <div class="kv-row"><div class="k">🚦 速限</div><div class="v">Hwy 1 國家公園段 <b>90 km/h</b>｜冰原大道 Hwy 93N <b>90 km/h</b>｜弓谷景觀道 Bow Valley Pkwy (1A) <b>60 km/h</b>｜鎮內 30–50 km/h。測速相機不少，罰單會寄到租車公司再加手續費</div></div>
+      <div class="kv-row"><div class="k">⛽ 加油</div><div class="v">冰原大道 Lake Louise → Jasper 之間 <b>230 km 只有 Saskatchewan River Crossing 一個加油站（貴且可能關門）</b>。<b>鐵律：離開 Lake Louise / Jasper 前一定加滿油</b></div></div>
+      <div class="kv-row"><div class="k">📶 訊號</div><div class="v">冰原大道全線幾乎沒訊號，優鶴、庫特尼也常斷訊。<b>務必先在 Google Maps 下載離線地圖</b>（範圍：Calgary–Banff–Jasper 整條走廊）</div></div>
+      <div class="kv-row"><div class="k">🦌 野生動物</div><div class="v">清晨與黃昏是動物出沒高峰，也是撞車高峰。看到前車減速就跟著減速；<b>絕不下車靠近動物</b>；車內不留食物、垃圾；停車場的垃圾桶都是防熊設計，要用力壓開</div></div>
+      <div class="kv-row"><div class="k">🅿️ 停車</div><div class="v">熱門停車場（Lake Louise、Moraine、Emerald Lake、Johnston Canyon）<b>早上 8 點前基本就滿了</b>。路邊紅線與「No Stopping」標誌拖吊很認真</div></div>
+      <div class="kv-row"><div class="k">❄️ 降雪</div><div class="v">10 月初高海拔隨時可能下雪。<b>Yoho Valley Road（Takakkaw Falls）遇雪即封</b>；冰原大道遇雪封路不預警。行程要有「B 方案」的心理準備</div></div>
+      <div class="kv-row"><div class="k">🕐 時差</div><div class="v">Mountain Daylight Time（UTC−6），<b>台北比當地快 14 小時</b>。台北中午 12:00 = 當地前一天 22:00</div></div>
+      <div class="kv-row"><div class="k">🆘 緊急</div><div class="v">報警／救護 <code>911</code>｜Parks Canada 24 小時派遣（山難／野生動物）<code>403-762-1470</code>｜Banff Mineral Springs Hospital <code>403-762-2222</code>｜Hinton Healthcare Centre <code>780-865-3333</code></div></div>
+    </div>
+  </div>
+
+  <div class="sec">
+    <h3>🌅 日出日落與天氣（作息基準）</h3>
+    <div class="tblwrap">
+      <table>
+        <thead><tr><th>日期</th><th>區域</th><th class="num">日出</th><th class="num">日落</th><th>白天氣溫</th><th>高山步道</th></tr></thead>
+        <tbody>
+          <tr><td>9/26–9/29</td><td>Banff / Lake Louise</td><td class="num">07:22–07:27</td><td class="num">19:05–18:57</td><td>8–14°C</td><td>2,000m 以上可能 −5°C＋強風</td></tr>
+          <tr><td>9/30–10/3</td><td>冰原大道 / Jasper</td><td class="num">07:36–07:42</td><td class="num">19:02–18:56</td><td>5–12°C</td><td>冰原體感常在 0°C 以下</td></tr>
+          <tr><td>10/4–10/6</td><td>Kootenay / Canmore</td><td class="num">07:44–07:47</td><td class="num">18:54–18:47</td><td>7–13°C</td><td>Parker Ridge 稜線風極大</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12.5px;color:var(--ink-3);margin-top:9px">夜間普遍 −3 ~ 2°C，車窗會結霜。<b>每天回住宿前先把車頭朝東停</b>，隔天早上省掉刮霜時間。</p>
+  </div>
+
+  <div class="sec">
+    <h3>🍁 這趟的推薦來源</h3>
+    <div class="gcards">
+      <div class="gcard">
+        <h4>Allen（在 Banff 打工度假過）的 4 個私房點</h4>
+        <ul>
+          <li><span class="tag gold">Day 2</span><b>Banff View Point</b> — Norquay Road 上的鎮景觀景台，看整個班夫鎮＋弓河谷</li>
+          <li><span class="tag gold">Day 2</span><b>Bow Falls Viewpoint</b> — 班夫鎮邊的弓河瀑布，5 分鐘就到，秋天水量還不錯</li>
+          <li><span class="tag gold">Day 5</span><b>Fairview Lookout</b> — 路易斯湖對岸的小觀景台，2 km 就能俯瞰整個湖與城堡飯店</li>
+          <li><span class="tag gold">Day 10</span><b>Castle Cliff Viewpoint</b> — 弓谷景觀道上的城堡山斷崖，秋天光線最好</li>
+        </ul>
+      </div>
+      <div class="gcard">
+        <h4>Instagram 遊記筆記 ⑦–⑪（已拆進各日行程與打包清單）</h4>
+        <ul>
+          <li><span class="tag blue">Day 7</span>筆記⑦ 哥倫比亞冰原活動：Ice Explorer 冰原車 ／ Athabasca Glacier IceWalks 冰川健行，<b>務必提前線上刷卡訂位</b></li>
+          <li><span class="tag blue">打包</span>筆記⑧ 防曬：冷不代表不會曬，雪面湖面反射很強</li>
+          <li><span class="tag blue">打包</span>筆記⑨ 乾燥：嘴唇乾裂、鼻腔流血、乾眼都會發生</li>
+          <li><span class="tag blue">打包</span>筆記⑩ 山區住宿：室內拖鞋、吹風機、快煮鍋、洗衣劑自己帶</li>
+          <li><span class="tag blue">航班</span>筆記⑪ 托運行李三動作：拍照、留存根、放 AirTag</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ 打包清單 ════════════ -->
+<section class="pane" id="p-pack">
+  <div class="dayhead">
+    <div class="daynum"><div class="lbl">Pack</div><div class="n">🎒</div></div>
+    <div>
+      <h2>打包清單</h2>
+      <p class="meta">9 月底 – 10 月初的洛磯山脈：<b>白天 10°C、夜間 −3°C、高山步道會下雪</b>。核心是洋蔥式穿搭＋防水＋防曬保濕</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h4>不能忘的四樣（忘了會直接影響行程）</h4>
+    <ul>
+      <li><b>冰爪／防滑鞋套（microspikes）</b> — Sentinel Pass、Wilcox Pass、Parker Ridge 這種 2,000m 以上的路段，10 月初結冰是常態。迪卡儂就有，出發前買好</li>
+      <li><b>國際駕照 IDP ＋ 台灣駕照正本</b> — 少一樣租不到車</li>
+      <li><b>加拿大 eTA</b>（電子旅行證）— 線上申請，出發前務必確認核發。若轉機經美國另需 <b>美國 ESTA</b></li>
+      <li><b>防水外套＋防水登山鞋</b> — 冰原上有融雪積水，一濕整天都毀了</li>
+    </ul>
+  </div>
+
+  <div class="packgrid">
+    <div class="packcard">
+      <h4>🧥 衣物（洋蔥式三層）</h4>
+      <ul>
+        <li class="key">防水防風外套（硬殼）<small>Gore-Tex 等級最保險</small></li>
+        <li class="key">羽絨／化纖中層外套<small>停下來拍照時就靠它</small></li>
+        <li>排汗底層上衣 ×3–4<small>羊毛或化纖，別穿棉</small></li>
+        <li>刷毛中層 ×1</li>
+        <li>登山長褲 ×2（其中一件防潑水）</li>
+        <li>保暖褲／發熱褲 ×1<small>高山步道與冰原上會用到</small></li>
+        <li>毛帽、脖圍、防風手套</li>
+        <li>厚羊毛襪 ×4－5<small>IG 筆記⑦：多帶一雙備用襪放背包</small></li>
+        <li>鎮上休閒服＋泡溫泉的泳衣</li>
+      </ul>
+    </div>
+
+    <div class="packcard">
+      <h4>🥾 鞋與雪地裝備</h4>
+      <ul>
+        <li class="key">防水中筒登山鞋<small>Day 3/5/7/11 都是碎石＋可能積雪</small></li>
+        <li class="key">冰爪／microspikes ×2 副<small>迪卡儂購入，重量輕、體積小</small></li>
+        <li>登山杖 ×2 對<small>Sentinel Pass 下坡救膝蓋</small></li>
+        <li>鞋套 gaiters（選配）</li>
+        <li>室內拖鞋<small>IG 筆記⑩：山區住宿都不提供</small></li>
+        <li>備用鞋墊 ／ 快乾毛巾</li>
+      </ul>
+    </div>
+
+    <div class="packcard">
+      <h4>☀️ 防曬（IG 筆記⑧）</h4>
+      <ul>
+        <li class="key">防曬乳 SPF50+ / PA++++<small>要補擦，別只擦一次</small></li>
+        <li class="key">太陽眼鏡<small>雪地與湖面反光很強，眼睛容易疲勞</small></li>
+        <li>帽子（有帽簷）<small>減少臉部與頸部曝曬</small></li>
+        <li>有防曬係數的護唇膏</li>
+      </ul>
+      <p style="font-size:12.5px;color:var(--ink-3);margin-top:9px">冷不代表不會曬。洛磯山脈海拔高、空氣乾，加上雪面冰面湖面反射，實際曝曬比想像高得多。</p>
+    </div>
+
+    <div class="packcard">
+      <h4>💧 抗乾燥（IG 筆記⑨）</h4>
+      <ul>
+        <li class="key">滋潤型乳霜<small>臉部＋身體各一，比乳液更有效</small></li>
+        <li class="key">護唇膏（隨身，勤補擦）</li>
+        <li>凡士林<small>鼻腔乾燥結痂流血時擦鼻孔內緣</small></li>
+        <li>人工淚液／乾眼凝膠<small>戴隱形眼鏡或乾眼症的人一定要帶</small></li>
+        <li>保濕面膜（住宿夜間用）</li>
+      </ul>
+    </div>
+
+    <div class="packcard">
+      <h4>🏡 山區住宿自備（IG 筆記⑩）</h4>
+      <ul>
+        <li class="key">快煮鍋／保溫瓶<small>山區餐廳選擇少、用餐時間受限，自己煮很方便</small></li>
+        <li class="key">個人盥洗用品<small>牙刷牙膏等一次性備品現在多數不提供</small></li>
+        <li>小瓶洗衣劑<small>遇到有自助洗衣設備就順手洗</small></li>
+        <li>習慣的吹風機<small>部分木屋吹風機很陽春，長髮特別有感</small></li>
+        <li>環保餐具／保鮮盒<small>Day 1 在大統華買的食材帶著走</small></li>
+      </ul>
+    </div>
+
+    <div class="packcard">
+      <h4>🚗 車上與 3C</h4>
+      <ul>
+        <li class="key">手機車架 ＋ 車充（雙孔）</li>
+        <li class="key">離線地圖<small>Google Maps 下載 Calgary–Banff–Jasper 全區</small></li>
+        <li>行動電源 ×2（低溫掉電很快）</li>
+        <li>加拿大 eSIM／漫遊<small>山區沒訊號，別依賴</small></li>
+        <li>轉接頭（加拿大＝美規 A/B 型，110V）</li>
+        <li>頭燈 ×2<small>5:30 出發搶停車位、傍晚回程都用得到</small></li>
+        <li>保溫瓶＋行動糧<small>茶坊可能提早打烊</small></li>
+        <li>大垃圾袋<small>髒鞋濕衣分裝，別弄髒租來的車</small></li>
+      </ul>
+    </div>
+
+    <div class="packcard">
+      <h4>💊 醫藥與證件</h4>
+      <ul>
+        <li class="key">護照＋加拿大 eTA（＋美國 ESTA 如轉機經美）</li>
+        <li class="key">國際駕照 IDP ＋ 台灣駕照正本</li>
+        <li>旅平險／不便險保單（電子檔存手機）</li>
+        <li>常備藥：止痛、腸胃、感冒、暈車</li>
+        <li>OK 繃／水泡貼／肌貼</li>
+        <li>電子檔備份：護照、駕照、訂房、租車、班機（存 Google Drive 與離線）</li>
+      </ul>
+    </div>
+
+    <div class="packcard">
+      <h4>🛒 落地後在當地買</h4>
+      <ul>
+        <li class="key">熊噴霧 Bear Spray<small>不可托運也不可手提，一定要在當地買。Canmore / Banff 的 MEC、Atmosphere、Canadian Tire 都有，約 CAD 45–55；<b>離開時不能帶上飛機，送給下一位旅人或丟指定回收</b></small></li>
+        <li>飲用水（山泉水不要生飲）</li>
+        <li>行動糧、水果、即食料理<small>Day 1 在 Calgary 大統華 T&amp;T 一次買齊</small></li>
+        <li>擋風玻璃刮霜刮片<small>租車若沒附，Canadian Tire 幾塊錢</small></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ DAY 1 ════════════ -->
+<section class="pane" id="p-d1">
+  <div class="dayhead">
+    <div class="daynum"><div class="lbl">Day</div><div class="n">01</div></div>
+    <div>
+      <h2>落地卡加利 · 取車西行進山</h2>
+      <p class="meta">9/25（五）・<b>Calgary YYC → Canmore</b>・中秋連假</p>
+    </div>
+  </div>
+
+  <div class="route">
+    <div class="route-top">
+      <span class="route-title">🚗 今日路線</span>
+      <span class="route-figs"><span>總里程 <b>約 125 km</b></span><span>純開車 <b>約 1 小時 40 分</b></span><span>路況 <b>全程高速好走</b></span></span>
+    </div>
+    <div class="legs">
+      <span class="pt">YYC 機場</span><span class="seg">12 min · 8 km</span>
+      <span class="pt">大統華 T&amp;T</span><span class="seg">1 h 20 · 115 km · Hwy 1 W</span>
+      <span class="pt">Canmore 住宿</span>
+    </div>
+  </div>
+
+  <div class="tl">
+    <div class="stop is-drive">
+      <div class="card">
+        <div class="card-top"><span class="chip fly">Arrive</span><h3>09:40 抵達 Calgary International Airport (YYC)</h3><span class="clock">09:40</span></div>
+        <p class="desc">加拿大自助通關：先在 <b>PIK 自助機</b>掃護照與 eTA、拍照，列印憑條交給海關人員，再領行李。填 <b>入境申報</b> 時食品要據實申報（泡麵、肉乾都算）。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Calgary+International+Airport,+Calgary,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到 YYC</a></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv">護照、<b>加拿大 eTA</b>、回程機票電子檔、住宿地址（海關會問）</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">時差 −14 小時，落地是當地早上但身體是台北深夜。<b>今天不要排任何健行</b>，把體力留給明天。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop is-drive">
+      <div class="card">
+        <div class="card-top"><span class="chip drive">Car</span><h3>租車取車 — 這趟最關鍵的 15 分鐘</h3><span class="clock">10:30</span></div>
+        <p class="desc">YYC 租車櫃檯在航廈停車樓內，出關後跟著「Car Rental」指標走。</p>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv">台灣駕照正本 ＋ <b>國際駕照 IDP</b> ＋ 護照 ＋ 訂車人本人的信用卡</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv"><b>蹲下來檢查四條輪胎側邊</b>，要看到「M+S」字樣或「三峰雪花 3PMSF」圖案。沒有就回櫃檯要求換車。接著繞車拍一圈影片存證，並確認雨刷、除霜、備胎位置。</span></div>
+          <div class="mrow park"><span class="mk">設定</span><span class="mv">上路前先把手機架好、藍牙配對、把今天的導航設好。<b>加拿大右駕、靠右行駛</b>，紅燈可右轉（除非標示 No Right Turn on Red）。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip food">Shop</span><h3>大統華 T&amp;T Supermarket — 一次買齊 12 天的糧</h3><span class="clock">11:00</span></div>
+        <p class="desc">進山之後物價會明顯上升，選擇也少。在這裡把行動糧、早餐、即食料理、水果、泡麵一次買足。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=T%26T+Supermarket,+999+36+St+NE,+Calgary,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到大統華</a></div>
+        <div class="stats"><span class="stat">停留 <b>60–75 分</b></span><span class="stat easy">停車免費</span></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv">保冷袋／保鮮盒、環保購物袋（加拿大塑膠袋要收費）、<b>快煮鍋</b>（住宿廚房不一定齊全）</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">車上食物<b>絕對不能留在車內過夜</b>，也不能放在停車場的車上——洛磯山脈的熊會為食物破窗。買完直接放後車廂，到住宿就拿進屋。</span></div>
+          <div class="mrow park"><span class="mk">順路</span><span class="mv">同一區還有 Canadian Tire（買刮霜片、保溫瓶）與 MEC / Atmosphere（<b>熊噴霧 Bear Spray 約 CAD 45–55</b>，台灣帶不過來，一定要在這裡或 Canmore 買）</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop is-drive">
+      <div class="card">
+        <div class="card-top"><span class="chip drive">Drive</span><h3>Hwy 1 西行 · 洛磯山脈第一眼</h3><span class="clock">12:30</span></div>
+        <p class="desc">出了 Calgary 大約 40 分鐘，整片洛磯山脈會突然從草原盡頭升起來——這是整趟最戲劇性的一個瞬間，副駕記得準備相機。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=302+Old+Canmore+Road,+Canmore,+AB+T1W+2X2&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到 Canmore 住宿</a></div>
+        <div class="stats"><span class="stat">115 km</span><span class="stat">約 <b>1 h 20</b></span><span class="stat">速限 110 → 90 km/h</span></div>
+        <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">Hwy 1 進入國家公園後速限降為 90，<b>沿線有測速</b>。另外從這天起，看到路邊有車停成一排通常是有動物——減速但不要跟著停在路肩。</span></div>
+          <div class="mrow park"><span class="mk">補給</span><span class="mv">若還沒買國家公園證，可在 <b>Banff 東大門收費站</b>或 Canmore 遊客中心購買 Discovery Pass。今天先不用進 Banff 也沒關係，Canmore 在公園界外。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop is-stay">
+      <div class="card">
+        <div class="card-top"><span class="chip stay">Check-in</span><h3>Canmore 住宿 Check-in ＋ 鎮上晚餐</h3><span class="clock">14:00</span></div>
+        <p class="desc">放好行李、把食物冰起來，去 Canmore 主街 Main Street 走走，吃第一頓晚餐、看夕陽打在三姊妹峰上。</p>
+        <div class="actions">
+          <a class="navbtn ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Main+Street,+Canmore,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 Canmore 主街</a>
+          <a class="navbtn link" href="https://www.google.com/maps/dir/?api=1&amp;destination=Save-On-Foods,+Canmore,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🛒 Save-On-Foods 補貨</a>
+        </div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">推薦</span><span class="mv"><b>The Grizzly Paw Brewing Company</b>（Canmore 最有名的自釀啤酒餐廳）／ <b>Rocky Mountain Flatbread</b>（柴燒披薩）／ <b>Communitea Café</b>（輕食）</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">今晚務必<b>早睡調時差</b>。明天開始每天都要早起，Day 3 和 Day 5 更是天沒亮就要出門。睡前把車頭朝東停好，隔天省刮霜時間。</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="duo">
+    <div class="box gear">
+      <h4>🎒 今日必備</h4>
+      <div class="gearlist">
+        <span class="must">護照 ＋ eTA</span><span class="must">國際駕照 IDP</span><span class="must">台灣駕照正本</span><span>信用卡（訂車人本人）</span><span>手機車架＋車充</span><span>離線地圖</span><span>保冷袋</span><span>環保購物袋</span><span>外套（機場冷）</span>
+      </div>
+    </div>
+    <div class="box warn">
+      <h4>⚠️ 今日注意事項</h4>
+      <ul>
+        <li><b>驗雪胎</b>：取車第一件事，看輪胎側邊的 M+S / 3PMSF 標記</li>
+        <li><b>不要排健行</b>：時差 14 小時，判斷力與體力都在低點</li>
+        <li><b>食物不留車上</b>：熊會為食物破窗，罰款也很重</li>
+        <li><b>熊噴霧當天買</b>：Calgary 或 Canmore 都有，之後上山才不會沒得買</li>
+        <li><b>下載離線地圖</b>：今晚在 Wi-Fi 環境下載完 Calgary–Banff–Jasper 全區</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="guide">
+    <div class="guide-head"><span class="g-ic">📖</span><div><h3>今日景點介紹</h3><span>坎莫爾 Canmore ── 你們接下來六個晚上的家</span></div></div>
+    <div class="gcards">
+      <div class="gcard">
+        <h4>Canmore — 從煤礦鎮變成登山者的首都</h4>
+        <p>Canmore 就在 Banff 國家公園東界外 5 分鐘車程，1883 年因為橫貫加拿大鐵路而生，是個燒了近一百年的煤礦鎮，礦坑 1979 年才關閉。之後 1988 年卡加利冬季奧運把北歐滑雪項目辦在這裡，整個鎮才轉型成戶外運動基地。</p>
+        <ul>
+          <li><span class="tag">地利</span>住在 Canmore 而不是 Banff 鎮上，<b>省下的是國家公園裡的高房價與停車惡夢</b>，代價是每天多開 20 分鐘</li>
+          <li><span class="tag">地標</span>抬頭就能看到 <b>Three Sisters 三姊妹峰</b>（信心 Faith、希望 Hope、慈善 Charity）和 <b>Ha Ling Peak</b>——Ha Ling 是 1896 年一位華人廚師，為了 50 元賭注在 10 小時內單攻登頂並插旗，這座山就以他為名</li>
+          <li><span class="tag gold">在地</span>Grizzly Paw 是加拿大少數自己做汽水的釀酒廠，他們的手工薑汁汽水 Ginger Beer 在洛磯山脈超市都買得到</li>
+        </ul>
+      </div>
+      <div class="gcard">
+        <h4>為什麼落葉松季這麼特別？</h4>
+        <p>你們挑的 9 月底到 10 月初，是洛磯山脈一年只有<b>兩到三週</b>的「金色窗口」。這裡的高山落葉松（Alpine Larch, <em>Larix lyallii</em>）是全世界極少數會落葉的針葉樹——秋天松針會從綠轉成飽和的金黃，然後掉光。</p>
+        <ul>
+          <li><span class="tag gold">分布</span>只長在海拔 <b>1,800–2,400 公尺</b>的樹線帶，所以要走上去才看得到，開車看不到</li>
+          <li><span class="tag gold">時機</span>通常 <b>9 月 18 日 – 10 月 5 日</b>之間最金，你們 9/27 的 Larch Valley 正中靶心</li>
+          <li><span class="tag">壽命</span>有些落葉松超過 1,000 歲，是加拿大最長壽的樹種之一</li>
+          <li>一旦下第一場大雪或刮強風，金針會在幾天內掉光——所以這個季節<b>天氣好就衝，不要拖</b></li>
+        </ul>
+        <div class="pull"><b>🪟 開車時看什麼？</b> 從 Canmore 往西，注意山坡上樹線附近那一圈明顯偏黃的樹帶——那就是落葉松林。海拔越高的山，黃得越明顯。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stay">
+    <div class="ic">🏡</div>
+    <div>
+      <h4>今晚起連住五晚 · Canmore</h4>
+      <p><b>201-302 Old Canmore Road, Canmore, AB T1W 2X2</b></p>
+      <p>Day 1 – Day 5 都住這裡，行李可以完全攤開不用每天收。</p>
+      <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=302+Old+Canmore+Road,+Canmore,+AB+T1W+2X2&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航回住宿</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ DAY 2 ════════════ -->
+<section class="pane" id="p-d2">
+  <div class="dayhead">
+    <div class="daynum"><div class="lbl">Day</div><div class="n">02</div></div>
+    <div>
+      <h2>班夫鎮熱身 · 三個觀景台與一池溫泉</h2>
+      <p class="meta">9/26（六）・<b>Canmore ⇄ Banff</b>・熱身日｜含 Allen 推薦 2 處</p>
+    </div>
+  </div>
+
+  <div class="route">
+    <div class="route-top">
+      <span class="route-title">🚗 今日路線</span>
+      <span class="route-figs"><span>總里程 <b>約 70 km</b>（含強斯頓峽谷 +55 km）</span><span>純開車 <b>約 1 小時</b></span></span>
+    </div>
+    <div class="legs">
+      <span class="pt">Canmore</span><span class="seg">22 min · 25 km</span>
+      <span class="pt">Tunnel Mountain 步道口</span><span class="seg">8 min</span>
+      <span class="pt">班夫鎮中心</span><span class="seg">5 min</span>
+      <span class="pt">Bow Falls</span><span class="seg">10 min</span>
+      <span class="pt">Banff View Point</span><span class="seg">12 min</span>
+      <span class="pt">Upper Hot Springs</span><span class="seg">30 min</span>
+      <span class="pt">Canmore</span>
+    </div>
+  </div>
+
+  <div class="tl">
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip hike">Hike</span><h3>Tunnel Mountain 隧道山 — 全北美最短的「一座山」</h3><span class="clock">08:30</span></div>
+        <p class="desc">站在班夫鎮正中央的一塊小山頭，之字形步道穩定爬升，山頂 360 度看整個弓河谷、Rundle 山與班夫溫泉城堡飯店。第一天進山的完美熱身。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Tunnel+Mountain+Trailhead,+St+Julien+Rd,+Banff,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到步道口</a></div>
+        <div class="stats"><span class="stat">來回 <b>4.6 km</b></span><span class="stat">爬升 <b>+260 m</b></span><span class="stat">約 <b>1.5–2 小時</b></span><span class="stat easy">難度 輕鬆</span></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv">登山鞋、1L 水、薄外套（稜線有風）、防曬乳＋太陽眼鏡</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">步道口在 St Julien Road 邊，<b>停車位只有十幾個</b>，9 點後容易滿。滿的話停到 Banff 鎮上再走 10 分鐘上來。</span></div>
+          <div class="mrow park"><span class="mk">停車</span><span class="mv">路邊免費，但要看清楚有沒有畫線。Banff 鎮中心停車場<b>全部免費</b>（Bear Street 停車場最大）</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip food">Town</span><h3>班夫鎮中心 Banff Avenue · 午餐與補給</h3><span class="clock">11:00</span></div>
+        <p class="desc">Banff Ave 是整個國家公園唯一的商業街。順便在這裡把熊噴霧、行動糧補齊。</p>
+        <div class="actions"><a class="navbtn ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Banff+Avenue,+Banff,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 Banff Avenue</a></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">推薦</span><span class="mv"><b>Park Distillery</b>（篝火風味料理＋自釀琴酒）／ <b>Eddie Burger Bar</b>／ <b>Wild Flour Bakery</b>（早午餐與麵包，早上就要去）／ <b>Banff Ave Brewing</b></span></div>
+          <div class="mrow park"><span class="mk">停車</span><span class="mv">Bear Street Parkade <b>免費</b>但常滿；週末建議停 Train Station 停車場（免費）再走 8 分鐘進鎮</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">加拿大標價<b>不含稅</b>，Alberta 加 5% GST。餐廳小費 15–18% 是慣例，刷卡機會直接跳選項。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip rec">🍁 Allen 推薦</span><h3>Bow Falls Viewpoint 弓河瀑布觀景台</h3><span class="clock">13:00</span></div>
+        <p class="desc">寬闊而低矮的簾狀瀑布，就在班夫鎮邊。停好車走 3 分鐘就到，秋天水量仍然充沛，是拍城堡飯店＋瀑布同框的最佳角度。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=5C8Q%2B7X+Banff,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到 Bow Falls Viewpoint</a></div>
+        <div class="stats"><span class="stat">停留 <b>20–30 分</b></span><span class="stat easy">步行 3 分鐘</span></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv">相機／廣角鏡、防滑鞋（觀景平台的木棧道早上會結霜）</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">河岸岩石常年濕滑，<b>不要跨越護欄下到河床</b>。這裡水流看似平緩但底下是強勁的暗流。</span></div>
+          <div class="mrow park"><span class="mk">停車</span><span class="mv">Bow Falls 有專屬停車場，免費，位子多。走幾步就能接到 <b>Fairmont Banff Springs 城堡飯店</b>的步道</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip rec">🍁 Allen 推薦</span><h3>Banff View Point — Norquay Road 上的鎮景陽台</h3><span class="clock">14:00</span></div>
+        <p class="desc">往 Mt. Norquay 滑雪場的盤山公路半途，有一個突出的觀景平台，整個班夫鎮、弓河、Rundle 山與 Sulphur Mountain 一次入鏡。當地人帶朋友來看班夫全景都是來這裡，而不是花錢搭纜車。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=5CW6%2BRM+Banff,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到 Banff View Point</a></div>
+        <div class="stats"><span class="stat">停留 <b>20 分</b></span><span class="stat">觀景台就在路邊</span><span class="stat easy">免費</span></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv">長焦鏡頭（壓縮鎮景與後方山壁）、防風外套（這裡風很大）</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">Norquay Road 是<b>連續髮夾彎</b>，下坡請用低檔位控速，不要一路踩煞車。清晨與傍晚常有<b>大角羊 Bighorn Sheep</b> 站在路中央。</span></div>
+          <div class="mrow park"><span class="mk">停車</span><span class="mv">觀景台有小型停車彎，約 10 個位子。停不下就往上開到滑雪場停車場再折返</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip sight">彈性</span><h3>【可選】Johnston Canyon 強斯頓峽谷</h3><span class="clock">15:00</span></div>
+        <p class="desc">若體力還夠、天氣好，可以往西開 30 分鐘走這條懸空棧道峽谷。<b>Day 10 南下時也會經過這裡</b>，兩天挑一天走就好。</p>
+        <div class="actions"><a class="navbtn ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Johnston+Canyon+Trailhead,+Bow+Valley+Parkway,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到強斯頓峽谷</a></div>
+        <div class="stats"><span class="stat">來回 <b>5.4 km</b>（上下瀑布）</span><span class="stat">爬升 <b>+120 m</b></span><span class="stat easy">難度 輕鬆</span><span class="stat">單程車程 30 分</span></div>
+        <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">棧道<b>是鑿在岩壁上的鐵架</b>，早晚結霜非常滑。走弓谷景觀道 Bow Valley Parkway 速限只有 60，且是野生動物廊道。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip sight">Soak</span><h3>Banff Upper Hot Springs 硫磺山溫泉</h3><span class="clock">17:00</span></div>
+        <p class="desc">海拔 1,585 公尺，加拿大最高的營運溫泉。露天池水溫 37–40°C，泡在裡面正對 Mt. Rundle 的山壁。天冷時水氣蒸騰，是整趟最放鬆的一小時。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Banff+Upper+Hot+Springs,+Mountain+Ave,+Banff,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到硫磺山溫泉</a></div>
+        <div class="stats"><span class="stat">約 <b>CAD 17 / 人</b></span><span class="stat">停留 <b>1–1.5 小時</b></span><span class="stat">海拔 1,585 m</span></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv"><b>泳衣</b>（現場可租但不便宜）、<b>快乾毛巾</b>、拖鞋、防水袋、更衣後保暖的帽子（頭髮濕著出來很冷）</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">泡完<b>不要馬上開車下山</b>，先在休息區待 15 分鐘讓血壓回穩。溫泉會加速脫水，泡前泡後都要補水。貴重物品鎖置物櫃（自備硬幣或用零錢）。</span></div>
+          <div class="mrow park"><span class="mk">停車</span><span class="mv">與班夫纜車共用停車場，位子多但傍晚仍會滿。從停車場走到入口約 2 分鐘</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="duo">
+    <div class="box gear">
+      <h4>🎒 今日必備</h4>
+      <div class="gearlist">
+        <span class="must">泳衣＋快乾毛巾</span><span class="must">登山鞋</span><span>防曬 SPF50+</span><span>太陽眼鏡</span><span>薄羽絨（山頂風大）</span><span>1L 水</span><span>行動糧</span><span>國家公園證（掛後照鏡）</span><span>零錢（置物櫃）</span><span>拖鞋</span>
+      </div>
+    </div>
+    <div class="box warn">
+      <h4>⚠️ 今日注意事項</h4>
+      <ul>
+        <li><b>今天是熱身日</b>：Tunnel Mountain 是用來測試時差恢復程度的，走起來吃力就要調整後面幾天的期待</li>
+        <li><b>國家公園證要掛出來</b>：Banff 所有停車場都會巡查</li>
+        <li><b>Norquay Road 髮夾彎</b>：下坡用低檔位，注意路中的大角羊</li>
+        <li><b>木棧道與觀景台會結霜</b>：早上 10 點前特別滑</li>
+        <li><b>泡完溫泉不要立刻開車</b>：血壓與注意力都會下降，休息 15 分鐘再上路</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="guide">
+    <div class="guide-head"><span class="g-ic">📖</span><div><h3>今日景點介紹</h3><span>班夫鎮 ── 加拿大國家公園制度的起點</span></div></div>
+    <div class="gcards">
+      <div class="gcard">
+        <h4>Banff — 一場礦工的爭執，催生了加拿大第一座國家公園</h4>
+        <p>1883 年，三名鐵路工人在 Sulphur Mountain 山腳偶然發現一個冒著硫磺味熱氣的洞穴溫泉。他們想私自占有並開發，爭執鬧到聯邦政府，加拿大政府乾脆在 1885 年把周圍 26 平方公里劃為保留地——這就是<b>加拿大第一座國家公園</b>，也是全世界第三座。</p>
+        <ul>
+          <li><span class="tag">名字</span>「Banff」來自蘇格蘭的 Banffshire，是當年太平洋鐵路兩位金主的故鄉</li>
+          <li><span class="tag">洞穴</span>當年那個發現地就是現在的 <b>Cave and Basin National Historic Site</b>，走路可到，門票便宜</li>
+          <li><span class="tag gold">今天泡的溫泉</span>Upper Hot Springs 的水從 Sulphur Mountain 的斷層湧出，含硫酸鹽、鈣、碳酸氫鹽與微量鐳，天然湧出溫度 <b>47°C</b>，注入池中降到 37–40°C</li>
+          <li><span class="tag red">冷知識</span>Banff 鎮是全加拿大唯一<b>限制人口的城鎮</b>——想在這裡買房，你必須證明自己在公園內工作</li>
+        </ul>
+      </div>
+      <div class="gcard">
+        <h4>Tunnel Mountain — 一座從來沒有隧道的「隧道山」</h4>
+        <p>海拔只有 1,690 公尺，是洛磯山脈裡最矮的山之一。名字來自 1882 年鐵路工程師原本打算<b>鑿穿它建隧道</b>的計畫；後來工頭發現只要沿著弓河繞過去就好，隧道從沒開挖，名字卻留了下來。</p>
+        <ul>
+          <li><span class="tag">原名</span>當地 Stoney Nakoda 原住民稱它 <b>Sacred Buffalo Guardian Mountain</b>（睡野牛山）——從側面看確實像一頭趴著的野牛</li>
+          <li><span class="tag gold">山頂看什麼</span>東邊 Bow River 的 U 型冰河谷、南邊 Mt. Rundle 的傾斜岩層、西邊班夫鎮的棋盤街道</li>
+          <li>山頂有一根經幡柱，是後來登山者陸續掛上去的</li>
+        </ul>
+      </div>
+      <div class="gcard">
+        <h4>Bow Falls 與那座城堡</h4>
+        <p>Bow Falls 落差只有 9 公尺，但寬度很大，是弓河切穿一層堅硬石灰岩形成的。1953 年瑪麗蓮夢露主演的《大江東去》（River of No Return）就在這裡取景。</p>
+        <ul>
+          <li><span class="tag">城堡</span>後方的 <b>Fairmont Banff Springs</b> 建於 1888 年，仿蘇格蘭男爵式城堡，被稱為「洛磯山脈的城堡」。非住客也可以進大廳與中庭參觀</li>
+          <li><span class="tag blue">河名由來</span>「Bow」來自原住民語，指河岸生長的一種<b>適合做弓的柳樹</b></li>
+          <li><span class="tag gold">最佳拍點</span>從 Bow Falls 停車場往上游走 200 公尺的 <b>Surprise Corner Viewpoint</b>，能把瀑布與城堡疊在同一個畫面</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="stay">
+    <div class="ic">🏡</div>
+    <div>
+      <h4>今晚住宿 · Canmore（第 2 晚）</h4>
+      <p><b>201-302 Old Canmore Road, Canmore, AB T1W 2X2</b></p>
+      <p>回程車程約 25 分鐘。今晚早睡——明天 Larch Valley 是整趟第一場硬仗。</p>
+      <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=302+Old+Canmore+Road,+Canmore,+AB+T1W+2X2&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航回住宿</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ DAY 3 ════════════ -->
+<section class="pane" id="p-d3">
+  <div class="dayhead">
+    <div class="daynum"><div class="lbl">Day</div><div class="n">03</div></div>
+    <div>
+      <h2>夢蓮湖 · 落葉松谷與哨兵隘口</h2>
+      <p class="meta">9/27（日）・<b>Canmore → Lake Louise 接駁站 → Moraine Lake</b>・<b>本趟第一場硬仗</b></p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h4>今天不能開車進夢蓮湖 — 只能搭接駁</h4>
+    <p>Moraine Lake Road 自 2023 年起<b>全年禁止私家車進入</b>，你們已預約的私營接駁車（Moraine Lake Bus Company）從 <b>Lake Louise Ski Resort 的 Park &amp; Ride</b> 出發。把車停在那裡，別導航到夢蓮湖，會被路口人員擋下來。</p>
+    <ul>
+      <li>Moraine Lake Road <b>10 月中就會季節性封路</b>到隔年 6 月，你們 9/27 卡在尾聲，是對的時間</li>
+      <li>接駁車票<b>不能現場買、不接受候補</b>，訂位證明（QR Code）先截圖存離線</li>
+      <li><b>回程班次一定要記住時間</b>，錯過最後一班就得走 12.5 km 公路下山</li>
+    </ul>
+  </div>
+
+  <div class="route">
+    <div class="route-top">
+      <span class="route-title">🚗 今日路線</span>
+      <span class="route-figs"><span>自駕來回 <b>約 172 km</b></span><span>純開車 <b>約 1 小時 50 分</b></span><span>＋接駁 <b>單程 20 分</b></span></span>
+    </div>
+    <div class="legs">
+      <span class="pt">Canmore 05:45</span><span class="seg">55 min · 86 km · Hwy 1 W</span>
+      <span class="pt">Lake Louise Ski Resort P&amp;R</span><span class="seg">接駁 20 min</span>
+      <span class="pt">Moraine Lake</span><span class="seg">接駁 20 min</span>
+      <span class="pt">P&amp;R</span><span class="seg">55 min</span>
+      <span class="pt">Canmore</span>
+    </div>
+  </div>
+
+  <div class="tl">
+    <div class="stop is-drive">
+      <div class="card">
+        <div class="card-top"><span class="chip drive">Drive</span><h3>05:45 摸黑出發 · 前往 Lake Louise 接駁站</h3><span class="clock">05:45</span></div>
+        <p class="desc">日出約 07:24，出發時天還全黑。這段 Hwy 1 是野生動物活動最高峰的時段，請把速度壓在速限以下。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Lake+Louise+Ski+Resort+Park+and+Ride,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到接駁站 Park &amp; Ride</a></div>
+        <div class="stats"><span class="stat">86 km</span><span class="stat">約 <b>55 分</b></span><span class="stat mid">出發時 −2 ~ 2°C</span></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv"><b>頭燈</b>（停車場沒燈）、擋風玻璃刮霜片、熱飲保溫瓶、接駁車 QR Code 截圖</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">車窗一定會結霜，<b>刮霜要抓 10 分鐘</b>，別把時間算得剛剛好。天黑時 Hwy 1 上麋鹿 elk 與鹿很多，開遠燈但遇對向車要切近燈。</span></div>
+          <div class="mrow park"><span class="mk">停車</span><span class="mv">Park &amp; Ride 在滑雪場，<b>免費且位子很多</b>。停好後車內不要留任何食物與塑膠袋</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip sight">View</span><h3>Rockpile 岩堆觀景台 — 那個「20 元加幣」畫面</h3><span class="clock">07:45</span></div>
+        <p class="desc">下接駁車後，先花 10 分鐘爬上湖邊那堆巨石。十峰谷（Valley of the Ten Peaks）在晨光下由灰轉粉紅再轉金，湖水是不真實的藍綠色。<b>先拍這裡，再去走步道。</b></p>
+        <div class="stats"><span class="stat">來回 <b>0.6 km</b></span><span class="stat">爬升 <b>+30 m</b></span><span class="stat easy">10 分鐘</span></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv">手套（岩石冰冷刺骨）、防風外套、相機（<b>換電池前先在懷裡回溫</b>，低溫掉電極快）</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">巨石堆<b>清晨結霜非常滑</b>，一定走既有階梯，不要為了角度爬到護欄外側。這裡每年都有人滑倒受傷。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip hike">Hike</span><h3>Larch Valley 落葉松谷 → Sentinel Pass 哨兵隘口</h3><span class="clock">08:15</span></div>
+        <p class="desc">整趟旅程的招牌。之字形穿過雲杉林爬升約 45 分鐘後，樹種突然換成金黃色的高山落葉松——那一刻通常會讓人停下來說不出話。續走到 Minnestimma 雙湖，最後之字形攻上 2,611 公尺的 Sentinel Pass，回望整條落葉松谷與十峰。</p>
+        <div class="actions"><a class="navbtn ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Moraine+Lake,+Improvement+District+No.+9,+AB&amp;travelmode=driving" target="_blank" rel="noopener">📍 Moraine Lake 位置（僅供定位，禁止開車進入）</a></div>
+        <div class="stats"><span class="stat">來回 <b>11.6 km</b></span><span class="stat">爬升 <b>+725 m</b></span><span class="stat">最高點 <b>2,611 m</b></span><span class="stat">約 <b>5–6 小時</b></span><span class="stat hard">難度 中偏難</span></div>
+        <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">最重要</span><span class="mv"><b>灰熊「四人成團」管制</b>：Larch Valley / Sentinel Pass / Eiffel Lake 這一區在莓果季常實施「必須 4 人以上緊密同行」的強制規定，違者可開罰。你們只有 2 人，<b>抵達步道口先看告示牌</b>；若管制中，就在步道口等候並與其他登山者組隊（現場很常見，大家都在等湊人）。</span></div>
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv"><b>冰爪／microspikes</b>（Sentinel Pass 最後 300 m 之字碎石坡 10 月初常結冰）、<b>登山杖</b>（下坡救膝蓋）、<b>熊噴霧</b>（掛腰帶不要放背包裡）、2L 水、行動糧＋熱食、手套、毛帽、防風外套、頭燈</span></div>
+          <div class="mrow park"><span class="mk">補給</span><span class="mv">步道上<b>完全沒有水源與廁所</b>。Moraine Lake Lodge 的咖啡店 10 月初可能已收，<b>所有食物與水都要自己帶上去</b></span></div>
+          <div class="mrow warn"><span class="mk">撤退線</span><span class="mv">若 Larch Valley（4.3 km 處）就已經下雪或起霧，<b>放棄 Sentinel Pass</b>——金色落葉松本來就在 Larch Valley 這段，隘口是加分不是必要。務必留 <b>2.5 小時</b>下山，並確保能趕上最後一班接駁。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip sight">Lake</span><h3>湖畔漫步 Moraine Lakeshore Trail</h3><span class="clock">14:30</span></div>
+        <p class="desc">下山後如果還有時間，沿湖走一段平緩的湖岸步道。下午光線從西邊打進來，湖水顏色比早上更飽和。</p>
+        <div class="stats"><span class="stat">來回 <b>2.4 km</b></span><span class="stat easy">全平</span><span class="stat">約 40 分</span></div>
+        <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">10 月初獨木舟出租多半已收攤。抓好時間到接駁站候車區，<b>提早 15 分鐘到</b>。</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="duo">
+    <div class="box gear">
+      <h4>🎒 今日必備</h4>
+      <div class="gearlist">
+        <span class="must">冰爪 microspikes</span><span class="must">熊噴霧（掛腰）</span><span class="must">登山杖</span><span class="must">頭燈</span><span class="must">接駁 QR Code 截圖</span><span>2L 水</span><span>行動糧＋熱食</span><span>手套＋毛帽</span><span>防風防水外套</span><span>羽絨中層</span><span>防曬＋太陽眼鏡</span><span>刮霜片</span><span>備用襪</span>
+      </div>
+    </div>
+    <div class="box warn">
+      <h4>⚠️ 今日注意事項</h4>
+      <ul>
+        <li><b>四人成團管制</b>：抵達步道口先看告示牌，需要就現場找人組隊</li>
+        <li><b>接駁末班車時間</b>：上車就記下來，寫在手上都可以</li>
+        <li><b>2,611 m 高度</b>：隘口氣溫比湖邊低 8–10°C，風極大，要有能立刻穿上的外層</li>
+        <li><b>沒有訊號</b>：Moraine Lake 一帶手機幾乎無訊號，別指望能求救或查地圖</li>
+        <li><b>吃飽再上山</b>：全線無補給，且落葉松季常有人低估時間而在天黑前趕不下來</li>
+        <li><b>下山後別急著開車</b>：走完 11.6 km 再開 55 分鐘回家，中途在 Lake Louise Village 停 20 分鐘喝杯咖啡再上路</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="guide">
+    <div class="guide-head"><span class="g-ic">📖</span><div><h3>今日景點介紹</h3><span>夢蓮湖與十峰谷 ── 為什麼這片水是這個顏色</span></div></div>
+    <div class="gcards">
+      <div class="gcard">
+        <h4>Moraine Lake — 曾經印在加幣鈔票上的湖</h4>
+        <p>海拔 1,885 公尺，由 Wenkchemna 冰河的融水匯集而成，湖水面積只有 0.5 平方公里，卻是全世界被拍最多次的高山湖之一。1969–1979 年間，加拿大 20 元紙鈔背面印的就是從 Rockpile 看出去的這個角度，所以這個景被稱作 <b>Twenty Dollar View</b>。</p>
+        <ul>
+          <li><span class="tag blue">湖色</span>那個藍綠色不是藻類也不是礦物染色，是<b>冰河磨出的岩粉（rock flour）</b>——比麵粉還細的岩石顆粒懸浮在水中，把藍綠光散射回你眼裡</li>
+          <li><span class="tag">水位</span>湖水靠融雪補給，<b>6 月最低、9 月最滿</b>。你們來的時間顏色最飽和</li>
+          <li><span class="tag">名字</span>「Moraine」是冰磧石。有趣的是，湖邊那堆 Rockpile 其實不是冰磧，而是山崩落石堆——命名者當年搞錯了，錯誤沿用至今</li>
+          <li><span class="tag gold">十峰</span>Valley of the Ten Peaks 的十座山峰原本用 Stoney 語的數字一到十命名（Heejee、Nom、Yamnee…），現在多數已改成人名，只有幾座保留原名</li>
+        </ul>
+      </div>
+      <div class="gcard">
+        <h4>Sentinel Pass — 洛磯山脈最高的健行隘口之一</h4>
+        <p>2,611 公尺，是 Banff 國家公園裡步道可及的最高隘口之一。站在隘口一邊是金色的 Larch Valley 與十峰，另一邊直落 Paradise Valley。</p>
+        <ul>
+          <li><span class="tag red">地形</span>隘口兩側是尖銳的岩塔，其中最有名的是 <b>Grand Sentinel</b>——一根高 30 公尺的獨立岩柱，是北美著名的攀岩路線</li>
+          <li><span class="tag">氣候</span>這個高度已經在<b>樹線之上</b>，沒有任何遮蔽。10 月初隨時可能有新雪，體感溫度常在 −10°C 以下</li>
+          <li><span class="tag gold">Minnestimma Lakes</span>途中那兩個小湖，名字是 Stoney 語的「沉睡之水」，10 月初表面常已結薄冰</li>
+        </ul>
+        <div class="pull"><b>🐻 為什麼這一區管制特別嚴？</b> Larch Valley 一帶的水牛莓（buffaloberry）是灰熊入秋前增重的主要食物，一頭熊一天可以吃掉 20 萬顆。人少的隊伍容易在轉彎處與正在進食的熊近距離遭遇，這就是「四人成團」規定的由來——研究顯示 4 人以上緊密同行從未發生過致命熊攻擊。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stay">
+    <div class="ic">🏡</div>
+    <div>
+      <h4>今晚住宿 · Canmore（第 3 晚）</h4>
+      <p><b>201-302 Old Canmore Road, Canmore, AB T1W 2X2</b></p>
+      <p>明天是恢復日，可以睡晚一點。今晚把濕掉的襪子與鞋墊拿出來烘乾。</p>
+      <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=302+Old+Canmore+Road,+Canmore,+AB+T1W+2X2&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航回住宿</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ DAY 4 ════════════ -->
+<section class="pane" id="p-d4">
+  <div class="dayhead">
+    <div class="daynum"><div class="lbl">Day</div><div class="n">04</div></div>
+    <div>
+      <h2>優鶴國家公園 · 瀑布、翡翠湖與天然橋</h2>
+      <p class="meta">9/28（一）・<b>Canmore ⇄ Yoho（BC 省）</b>・恢復日｜教師節</p>
+    </div>
+  </div>
+
+  <div class="note">
+    <h4>今天會跨省，但不用調時鐘</h4>
+    <p>優鶴 Yoho 在 <b>BC 卑詩省</b>，但 Field、Golden 一帶使用與 Alberta 相同的<b>山區時間（Mountain Time）</b>，時鐘不用動。差別在於<b>路況要改查 DriveBC</b>，不是 511 Alberta。</p>
+  </div>
+
+  <div class="route">
+    <div class="route-top">
+      <span class="route-title">🚗 今日路線</span>
+      <span class="route-figs"><span>總里程 <b>約 270 km</b></span><span>純開車 <b>約 3 小時</b></span><span>跨省 <b>AB → BC</b></span></span>
+    </div>
+    <div class="legs">
+      <span class="pt">Canmore 07:30</span><span class="seg">1 h 10 · 100 km</span>
+      <span class="pt">螺旋隧道觀景台</span><span class="seg">35 min · 30 km</span>
+      <span class="pt">塔卡考瀑布</span><span class="seg">30 min</span>
+      <span class="pt">Field 午餐</span><span class="seg">6 min</span>
+      <span class="pt">天然橋</span><span class="seg">10 min</span>
+      <span class="pt">翡翠湖</span><span class="seg">1 h 20 · 112 km</span>
+      <span class="pt">Canmore</span>
+    </div>
+  </div>
+
+  <div class="tl">
+    <div class="stop is-drive">
+      <div class="card">
+        <div class="card-top"><span class="chip drive">Fuel</span><h3>07:30 出發前先在 Canmore 加滿油</h3><span class="clock">07:30</span></div>
+        <p class="desc"><b>Field 小鎮沒有加油站</b>，優鶴園區內也沒有。今天油要在 Canmore 或 Lake Louise Village 加滿。</p>
+        <div class="actions"><a class="navbtn link" href="https://www.google.com/maps/dir/?api=1&amp;destination=Gas+Station,+Canmore,+AB&amp;travelmode=driving" target="_blank" rel="noopener">⛽ Canmore 加油站</a></div>
+        <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">出發前先查 <b>DriveBC</b>：<b>Yoho Valley Road（往塔卡考瀑布）一遇降雪就會封閉</b>，且通常 10 月中永久關閉到隔年。封了就直接跳過，把時間給翡翠湖。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip sight">View</span><h3>Spiral Tunnels 螺旋隧道觀景台</h3><span class="clock">08:45</span></div>
+        <p class="desc">路邊就能停的免費觀景台，看的是一項瘋狂的鐵路工程：火車在山腹裡繞兩個 8 字形螺旋來降低坡度。運氣好會看到<b>同一列火車的車頭已經出隧道、車尾還在入口</b>。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Lower+Spiral+Tunnel+Viewpoint,+Yoho+National+Park,+BC&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到螺旋隧道觀景台</a></div>
+        <div class="stats"><span class="stat">停留 <b>15–20 分</b></span><span class="stat easy">免費・路邊停車</span></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv">長焦鏡頭、熱飲（清晨這裡很冷）</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">觀景台入口就在 Hwy 1 上，<b>右轉進出時視線受限</b>，離開時務必看清楚後方來車速度（時速 90）。火車班次隨機，不要為了等火車耗掉太多時間。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip sight">Falls</span><h3>Takakkaw Falls 塔卡考瀑布 — 加拿大第二高</h3><span class="clock">09:30</span></div>
+        <p class="desc">落差 <b>373 公尺</b>（自由落體段 254 公尺），水源直接來自 Daly 冰河的融水。從停車場走 10 分鐘就能站到瀑布腳下，水花會噴到臉上。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Takakkaw+Falls,+Yoho+National+Park,+BC&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到塔卡考瀑布</a></div>
+        <div class="stats"><span class="stat">停車場→瀑布 <b>1.3 km 來回</b></span><span class="stat easy">全平・鋪面</span><span class="stat">停留 <b>45 分</b></span></div>
+        <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">開車注意</span><span class="mv">Yoho Valley Road 全長 13 km，中段有一組<b>需要倒車才能轉過去的髮夾彎（switchback）</b>——大型車必須倒車一次，一般轎車/SUV 可以直接過但要放慢、鳴喇叭。<b>路窄無護欄，禁止拖車與大型 RV。</b></span></div>
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv">防水外套（瀑布水霧很強）、防滑鞋、鏡頭布（鏡片一定會濕）</span></div>
+          <div class="mrow park"><span class="mk">停車</span><span class="mv">終點大型停車場免費。<b>有廁所</b>，這是今天上午唯一的廁所點</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip hike">彈性</span><h3>【可選】Iceline Trail 冰線步道 一小段</h3><span class="clock">10:30</span></div>
+        <p class="desc">從 Whiskey Jack Hostel 起登，爬升約 45 分鐘就能上到<b>裸露的冰河刻痕岩盤</b>，正對塔卡考瀑布全景與 Daly 冰河。不必走完全程，走到第一個開闊點折返就非常值得。</p>
+        <div class="stats"><span class="stat">建議來回 <b>5 km</b></span><span class="stat">爬升 <b>+300 m</b></span><span class="stat mid">約 2 小時</span></div>
+        <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">上到岩盤後<b>完全沒有遮蔽</b>，起風時體感很低。岩盤在下雨或結霜時極滑。<b>昨天走完 11.6 km，今天如果腿還很酸就直接跳過</b>——今天的定位是恢復日。</span></div>
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv">登山鞋、防風層、熊噴霧、1L 水</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip food">Lunch</span><h3>Field, BC — 人口 169 人的鐵路小鎮</h3><span class="clock">12:30</span></div>
+        <p class="desc">夾在兩座山壁之間的迷你小鎮，整個鎮只有幾條街。<b>Truffle Pigs Bistro</b> 是這裡唯一的正式餐廳，也是意外地好吃（10 月初營業時間會縮短，建議先打電話）。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Field,+BC&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到 Field</a></div>
+        <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv"><b>Field 沒有加油站、沒有超市</b>。若餐廳客滿或沒開，就直接吃車上帶的行動糧，別耗時間。這裡有遊客中心可以問路況與廁所。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip sight">Stop</span><h3>Natural Bridge 天然橋</h3><span class="clock">13:30</span></div>
+        <p class="desc">Kicking Horse River 硬生生在石灰岩層中鑽出一個洞穿流而過，形成一座天然石橋。停車走 2 分鐘就到，是整趟 CP 值最高的免費景點之一。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Natural+Bridge,+Yoho+National+Park,+BC&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到天然橋</a></div>
+        <div class="stats"><span class="stat">停留 <b>20 分</b></span><span class="stat easy">步行 2 分</span><span class="stat easy">免費</span></div>
+        <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">岩石常年被水霧打濕，<b>每年都有人為了拍照踩上岩橋滑落</b>。請待在觀景平台上，不要越過欄杆。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip hike">Lake</span><h3>Emerald Lake Circuit 翡翠湖環湖</h3><span class="clock">14:00</span></div>
+        <p class="desc">優鶴最大的湖，名字就是它的顏色。環湖步道平緩好走，一半是森林、一半是開闊的湖岸與沖積扇。走到湖的西北側時，President 山群會整片倒映在水面上。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Emerald+Lake,+Field,+BC&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到翡翠湖</a></div>
+        <div class="stats"><span class="stat">環湖 <b>5.2 km</b></span><span class="stat">爬升 <b>+50 m</b></span><span class="stat">約 <b>1.5 小時</b></span><span class="stat easy">難度 輕鬆</span></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv">防水鞋（湖的西側有幾段泥濘與跨溪）、防蚊液（秋天少但沖積扇還是有）、保溫瓶</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">環湖步道<b>逆時針走</b>（先走森林側），最後回程時湖景與光線最好。10 月初獨木舟已收攤。<b>湖邊的 Emerald Lake Lodge 大廳可以進去取暖與上廁所</b>。</span></div>
+          <div class="mrow park"><span class="mk">停車</span><span class="mv">湖前有大型停車場，免費。夏天 10 點就滿，10 月初通常還有空位。<b>停車場到湖畔要走過一座木橋約 5 分鐘</b></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="duo">
+    <div class="box gear">
+      <h4>🎒 今日必備</h4>
+      <div class="gearlist">
+        <span class="must">防水外套（瀑布水霧）</span><span class="must">防水登山鞋</span><span>鏡頭布</span><span>長焦鏡頭</span><span>熊噴霧</span><span>1.5L 水</span><span>行動糧</span><span>保溫瓶熱飲</span><span>防曬＋太陽眼鏡</span><span>國家公園證</span>
+      </div>
+    </div>
+    <div class="box warn">
+      <h4>⚠️ 今日注意事項</h4>
+      <ul>
+        <li><b>查 DriveBC 不是 511</b>：Yoho 在 BC 省境內</li>
+        <li><b>Yoho Valley Road 遇雪即封</b>：出發前查，封了就把時間全給翡翠湖</li>
+        <li><b>那個要倒車的髮夾彎</b>：放慢、鳴喇叭、確認對向沒車再過</li>
+        <li><b>Field 沒有加油站</b>：油在 Canmore 或 Lake Louise Village 就要加滿</li>
+        <li><b>今天是恢復日</b>：Iceline 是加分題，腿酸就直接放棄，不要硬撐</li>
+        <li><b>回程 112 km</b>：傍晚 Hwy 1 東行會正對夕陽，準備太陽眼鏡</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="guide">
+    <div class="guide-head"><span class="g-ic">📖</span><div><h3>今日景點介紹</h3><span>優鶴 Yoho ── 一個表示「哇！」的名字</span></div></div>
+    <div class="gcards">
+      <div class="gcard">
+        <h4>Yoho — 名字本身就是一聲驚嘆</h4>
+        <p>「Yoho」來自 Cree 克里族語，是表達<b>敬畏與驚嘆的感嘆詞</b>，大致就是中文的「哇！」。1886 年設立，是加拿大第二座國家公園，面積只有 Banff 的六分之一，卻塞進了 28 座 3,000 公尺以上的山峰。</p>
+        <ul>
+          <li><span class="tag">位置</span>在 Banff 正西邊、翻過 Kicking Horse Pass 就到。這個隘口名字來自 1858 年一位探險隊醫生 James Hector <b>被自己的馬踢中胸口昏迷</b>的意外</li>
+          <li><span class="tag red">世界遺產</span>優鶴擁有 <b>Burgess Shale 伯吉斯頁岩</b>——保存 5.08 億年前寒武紀大爆發軟體動物化石的地層，是古生物學史上最重要的發現之一，也讓這裡被列入 UNESCO 世界遺產</li>
+          <li><span class="tag gold">遊客量</span>優鶴的遊客只有 Banff 的十分之一，卻有同等級的景色——這是內行人才知道的事</li>
+        </ul>
+      </div>
+      <div class="gcard">
+        <h4>Takakkaw Falls 與那條瘋狂的鐵路</h4>
+        <p>Takakkaw 是 Cree 語的「太壯觀了」。它的水源是 Daly Glacier，所以<b>水量隨當天氣溫變化</b>——大晴天的午後最猛，清晨與寒流時明顯變小。</p>
+        <ul>
+          <li><span class="tag blue">高度</span>總落差 <b>373 m</b>，其中連續自由落體 254 m，是加拿大第二高瀑布</li>
+          <li><span class="tag">季節</span>冬天完全凍結，是知名的冰攀路線；Yoho Valley Road 每年 <b>6 月中才開、10 月中就封</b></li>
+        </ul>
+        <p style="margin-top:10px">而你們上午看的<b>螺旋隧道</b>，解決的是「大坡道 The Big Hill」的百年難題：1884 年鐵路直接以 <b>4.5% 的坡度</b>翻越 Kicking Horse Pass，是安全標準的兩倍多。通車第一天就有工程列車失控翻覆，之後二十多年不斷發生事故。1909 年工程師改用瑞士的螺旋隧道概念，在兩座山裡各鑿一個 8 字形，把坡度降到 2.2%。</p>
+        <div class="pull"><b>🚂 看什麼？</b> 加拿大太平洋鐵路的貨運列車常超過 <b>2 公里長</b>。當它夠長時，你會同時看到火車的三個部分出現在山壁的不同高度上——這是全世界少見的畫面。</div>
+      </div>
+      <div class="gcard">
+        <h4>Emerald Lake — 一位嚮導追著馬找到的湖</h4>
+        <p>1882 年，傳奇嚮導 Tom Wilson 在找走失的馬時誤打誤撞發現這座湖。他也是<b>第一位見到路易斯湖的非原住民</b>——同樣是在找馬。</p>
+        <ul>
+          <li><span class="tag blue">顏色</span>翡翠色同樣來自冰河岩粉。翡翠湖比夢蓮湖偏綠，因為它較淺、周圍森林的反射也更多</li>
+          <li><span class="tag">微氣候</span>湖被 President Range 包圍，形成特殊的暖濕微氣候，這裡的森林比周圍茂密得多</li>
+          <li><span class="tag gold">Lodge</span>湖畔的 Emerald Lake Lodge 是 1902 年鐵路公司蓋的木屋旅館，現在仍在營業。大廳有壁爐，非住客也可以進去坐一下</li>
+          <li>沖積扇（湖的東北角那片碎石地）是每年春天融雪從山上帶下來的，也是這座湖正在慢慢變小的原因</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="stay">
+    <div class="ic">🏡</div>
+    <div>
+      <h4>今晚住宿 · Canmore（第 4 晚）</h4>
+      <p><b>201-302 Old Canmore Road, Canmore, AB T1W 2X2</b></p>
+      <p><b>今晚務必早睡：明天 05:00 出發搶 Lake Louise 停車位，是整趟最硬的一天。</b>睡前把裝備、早餐、行動糧全部打包好放車上。</p>
+      <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=302+Old+Canmore+Road,+Canmore,+AB+T1W+2X2&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航回住宿</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ DAY 5 ════════════ -->
+<section class="pane" id="p-d5">
+  <div class="dayhead">
+    <div class="daynum"><div class="lbl">Day</div><div class="n">05</div></div>
+    <div>
+      <h2>路易斯湖大滿貫 · 兩間山中茶坊</h2>
+      <p class="meta">9/29（二）・<b>Canmore ⇄ Lake Louise</b>・<b>最高強度日</b>｜含 Allen 推薦 1 處</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h4>05:00 出發 — 停車位就是今天的勝負關鍵</h4>
+    <p>Lake Louise 湖畔停車場 <b>約 CAD 36.75–42／日</b>（現場繳費機或線上預繳），是全公園最貴也最搶手的停車場。<b>5:30–6:00 抵達</b>幾乎可確保有位；7 點後就要碰運氣，8 點後基本客滿並被引導到 Park &amp; Ride 轉接駁。</p>
+    <ul>
+      <li>備案：<b>Lake Louise Ski Resort Park &amp; Ride</b>（免費停車）＋ 接駁車上湖，但班次會吃掉你們一小時</li>
+      <li><b>Lake Agnes 茶坊官方季節是「6/4 – 10 月第一週」</b>，你們 9/29 在尾聲，開的機率高但要有心理準備。<b>行動糧一定要自己帶足</b></li>
+      <li>兩間茶坊都<b>沒有電、沒有 Wi-Fi，多數只收現金</b>（物資靠人力與直升機運補）。帶足加幣小鈔</li>
+    </ul>
+  </div>
+
+  <div class="route">
+    <div class="route-top">
+      <span class="route-title">🚗 今日路線</span>
+      <span class="route-figs"><span>自駕來回 <b>約 160 km</b></span><span>純開車 <b>約 1 小時 45 分</b></span><span>步行 <b>約 18–20 km</b></span></span>
+    </div>
+    <div class="legs">
+      <span class="pt">Canmore 05:00</span><span class="seg">50 min · 80 km</span>
+      <span class="pt">Lake Louise 湖畔停車場</span><span class="seg">全日步行</span>
+      <span class="pt">Lake Louise Village 加油／晚餐</span><span class="seg">55 min · 85 km</span>
+      <span class="pt">Canmore</span>
+    </div>
+  </div>
+
+  <div class="tl">
+    <div class="stop is-drive">
+      <div class="card">
+        <div class="card-top"><span class="chip drive">Drive</span><h3>05:00 出發 · 摸黑上路搶停車位</h3><span class="clock">05:00</span></div>
+        <p class="desc">日出 07:27，抵達時天還是黑的。停好車先在車上吃早餐、穿裝備，等天微亮再起登。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Lake+Louise+Lakeshore+Parking+Lot,+Lake+Louise,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到湖畔停車場</a>
+        <a class="navbtn ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Lake+Louise+Ski+Resort+Park+and+Ride,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🅿️ 備案：免費 Park &amp; Ride</a></div>
+        <div class="stats"><span class="stat">80 km</span><span class="stat">約 <b>50 分</b></span><span class="stat hard">停車 CAD 36.75–42</span></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv"><b>頭燈</b>、刮霜片、信用卡＋加幣現金（繳費機與茶坊）、早餐、熱飲</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">繳費機在停車場入口處，<b>停好車第一件事就去繳費並把票放擋風玻璃上</b>。這裡的巡查很勤，沒票就是罰單。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip hike">Hike 1</span><h3>Lake Agnes 阿格尼絲湖茶坊 — 空中的湖</h3><span class="clock">06:30</span></div>
+        <p class="desc">從城堡飯店右側起登，之字形穿過雲杉林，經過 Mirror Lake 後再爬一段木階梯，就會突然看到一座掛在懸崖之間的小湖與湖畔的木造茶坊。1901 年建的，是加拿大最古老的山中茶坊。</p>
+        <div class="stats"><span class="stat">單程 <b>3.4 km</b></span><span class="stat">爬升 <b>+400 m</b></span><span class="stat">約 <b>1.5 小時</b></span><span class="stat mid">難度 中等</span><span class="stat">茶坊 08:00–16:00</span></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv"><b>加幣現金</b>（茶坊多半只收現金，一壺茶約 CAD 12，一份麵包 CAD 10）、頭燈（起登時仍暗）</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">木階梯段<b>清晨結霜非常滑</b>，這裡是全線最容易跌倒的地方。茶坊如果已休季，就直接接續下一段，別在這裡耗時間。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip hike">Hike 2</span><h3>Big Beehive 大蜂巢 → Highline Trail 橫切</h3><span class="clock">09:00</span></div>
+        <p class="desc">從茶坊繞湖到底再之字形上到 Big Beehive 的觀景亭，<b>整個路易斯湖的翡翠色從正上方一覽無遺</b>——這是全程最好的一個畫面。接著走 Highline Trail 橫切山腰接往六冰川平原，途中會穿過一段落葉松林。</p>
+        <div class="stats"><span class="stat">Big Beehive 來回 <b>+1.6 km / +135 m</b></span><span class="stat">Highline 橫切 <b>3.2 km</b></span><span class="stat mid">約 2 小時</span></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv"><b>冰爪</b>（Highline 有幾段北面背陽路段結冰）、登山杖、防風外套</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">Highline Trail 部分路段是<b>橫切陡坡的窄徑</b>，結冰時務必穿冰爪。若這段封閉或狀況不佳，可退回湖畔改走 Lakeshore Trail 接六冰川平原（多走約 2 km 但平緩安全）。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip hike">Hike 3</span><h3>Plain of Six Glaciers 六冰川平原茶坊</h3><span class="clock">11:30</span></div>
+        <p class="desc">1927 年由瑞士嚮導蓋的第二間茶坊，正對 Victoria 冰河。這裡最震撼的不是視覺是聽覺——<b>整天都能聽到冰河崩落的悶響從對面山壁傳過來</b>。有力氣可再往前走 1.3 km 到 Abbot Pass 觀景點，站在冰磧石堆上。</p>
+        <div class="stats"><span class="stat">茶坊海拔 <b>2,100 m</b></span><span class="stat">+Abbot 觀景 <b>+2.6 km 來回</b></span><span class="stat">茶坊 09:00–17:00（季末可能提早收）</span></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv">加幣現金、保溫瓶、<b>足夠的自備行動糧</b>（茶坊季末可能已關）、防風保暖層</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">往 Abbot Pass 觀景的最後一段是<b>鬆動的冰磧石與碎石坡</b>，落石風險真實存在，<b>戴帽子、不要在正下方停留</b>。看到「Route not maintained」的告示就是終點。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip hike">Return</span><h3>Lakeshore Trail 沿湖岸回停車場</h3><span class="clock">14:00</span></div>
+        <p class="desc">下山後段沿湖岸走 5.3 km 平緩回程，正對城堡飯店。下午湖水顏色最亮，也是遊客最多的一段。</p>
+        <div class="stats"><span class="stat">5.3 km</span><span class="stat easy">全平</span><span class="stat">約 1.2 小時</span></div>
+        <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">今天全程累計 <b>18–20 km、爬升 900 m</b>。走到這裡腳一定很酸，<b>把登山杖用到最後一步</b>，湖岸步道也有結霜的木橋。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip rec">🍁 Allen 推薦</span><h3>Fairview Lookout 費爾維觀景台</h3><span class="clock">15:30</span></div>
+        <p class="desc">起點就在湖畔停車場旁（獨木舟碼頭附近），短短 2 km 就能上到湖的<b>正對岸</b>，把整片湖水、城堡飯店與後方的 Victoria 冰河一起收進畫面。這是很多人不知道、但當地人最愛的角度——而且人超少。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Fairview+Lookout,+Lake+Louise,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到 Fairview Lookout</a></div>
+        <div class="stats"><span class="stat">來回 <b>2 km</b></span><span class="stat">爬升 <b>+100 m</b></span><span class="stat easy">約 45 分</span></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv">相機（下午光線從西邊打在城堡上最好看）、頭燈（回程可能已近黃昏）</span></div>
+          <div class="mrow warn"><span class="mk">彈性</span><span class="mv">大滿貫走完如果真的沒力了，<b>這段可以直接放棄</b>，或改成隔天早上出發前來走（起點就在停車場，很方便）。不要為了它把體力壓到危險線。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop is-drive">
+      <div class="card">
+        <div class="card-top"><span class="chip drive">Fuel</span><h3>Lake Louise Village 加油、晚餐 → 回 Canmore</h3><span class="clock">17:00</span></div>
+        <p class="desc">Lake Louise Village 有加油站與超市，也是<b>明天北上冰原大道前最後一個像樣的加油點</b>——今天就加滿。</p>
+        <div class="actions">
+          <a class="navbtn link" href="https://www.google.com/maps/dir/?api=1&amp;destination=Lake+Louise+Village,+AB&amp;travelmode=driving" target="_blank" rel="noopener">⛽ Lake Louise Village</a>
+          <a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=302+Old+Canmore+Road,+Canmore,+AB+T1W+2X2&amp;travelmode=driving" target="_blank" rel="noopener">🧭 回 Canmore 住宿</a>
+        </div>
+        <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv"><b>疲勞駕駛是今天最大的風險。</b>走完 20 km 再開 55 分鐘夜路，且正是動物出沒高峰。<b>先吃飽、喝杯咖啡、休息 20 分鐘再上路</b>，路上想睡就找路肩休息區停下來。</span></div>
+          <div class="mrow gear"><span class="mk">推薦</span><span class="mv">Lake Louise Village 的 <b>Trailhead Café</b>（三明治與咖啡）；回 Canmore 後 <b>Grizzly Paw</b> 的漢堡與自釀啤酒是慰勞自己的好選擇</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="duo">
+    <div class="box gear">
+      <h4>🎒 今日必備</h4>
+      <div class="gearlist">
+        <span class="must">冰爪 microspikes</span><span class="must">登山杖</span><span class="must">加幣現金（茶坊＋停車）</span><span class="must">頭燈</span><span class="must">熊噴霧</span><span>2L 水</span><span>大量行動糧</span><span>保溫瓶熱飲</span><span>防風防水外套</span><span>羽絨中層</span><span>手套＋毛帽</span><span>防曬 SPF50+</span><span>太陽眼鏡</span><span>備用襪</span><span>水泡貼</span>
+      </div>
+    </div>
+    <div class="box warn">
+      <h4>⚠️ 今日注意事項</h4>
+      <ul>
+        <li><b>05:00 準時出發</b>：晚半小時就可能失去停車位，整天節奏全亂</li>
+        <li><b>停好車先繳費</b>：票放擋風玻璃內側，巡查很勤</li>
+        <li><b>茶坊只收現金且可能休季</b>：行動糧要自己帶足全天份</li>
+        <li><b>Highline 橫切段結冰</b>：冰爪不是備品，是今天的必需品</li>
+        <li><b>設定折返時間</b>：15:00 一定要開始往停車場走，天黑後湖岸步道很危險</li>
+        <li><b>回程疲勞駕駛</b>：吃飽休息 20 分鐘再開車，這是今天最容易出事的環節</li>
+        <li><b>今晚要收行李</b>：明天離開 Canmore 北上，連住五晚的東西要打包</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="guide">
+    <div class="guide-head"><span class="g-ic">📖</span><div><h3>今日景點介紹</h3><span>路易斯湖 ── 洛磯山脈的門面，與兩間不通電的茶坊</span></div></div>
+    <div class="gcards">
+      <div class="gcard">
+        <h4>Lake Louise — 從「小魚湖」到英國公主</h4>
+        <p>1882 年，同樣是嚮導 Tom Wilson 在原住民帶領下第一個見到這座湖。Stoney Nakoda 人稱它 <b>Ho-run-num-nay</b>，意思是「小魚湖」。後來以維多利亞女王的四女兒 <b>Louise Caroline Alberta 公主</b>命名——Alberta 省的名字也來自她。</p>
+        <ul>
+          <li><span class="tag blue">尺寸</span>長 2.4 km、最深 70 m，海拔 1,750 m。冬天完全結冰，可以在湖面上溜冰</li>
+          <li><span class="tag">城堡</span><b>Fairmont Chateau Lake Louise</b> 1890 年代開始營運，非住客可以走進大廳與後方湖畔平台，廁所也可以借用</li>
+          <li><span class="tag gold">顏色</span>湖水的翡翠色來自 Victoria 冰河帶下的岩粉。<b>6 月剛融雪時最淡，8–9 月最濃</b>——你們來的時間正好</li>
+          <li><span class="tag red">冷知識</span>這座湖每年吸引超過 200 萬人，是加拿大最多人拍照的地點。也因此 Parks Canada 才把停車費訂得這麼高，用價格分流</li>
+        </ul>
+      </div>
+      <div class="gcard">
+        <h4>兩間茶坊 — 沒有電、沒有路、靠人背上山的百年生意</h4>
+        <p><b>Lake Agnes Tea House</b>（1901）與 <b>Plain of Six Glaciers Tea House</b>（1927）都是加拿大太平洋鐵路為登山客蓋的休息小屋，由當年鐵路公司請來的<b>瑞士嚮導</b>建造與經營。</p>
+        <ul>
+          <li><span class="tag">補給</span>至今<b>沒有通電、沒有自來水、沒有道路</b>。麵粉與食材靠員工背上山或直升機空運，用柴火與丙烷爐煮</li>
+          <li><span class="tag gold">必點</span>現烤的司康與麵包、四十幾種散裝茶葉。<b>只收現金</b>，價格偏高但這是把物資背上 400 公尺垂直落差的成本</li>
+          <li><span class="tag">員工</span>茶坊員工整個夏天住在山上小屋，每週下山採買一次</li>
+          <li><span class="tag red">季節</span>Lake Agnes 官方營業到<b>「10 月第一週」</b>，六冰川平原通常更早收。9/29 是尾聲</li>
+        </ul>
+        <div class="pull"><b>👣 為什麼叫「大滿貫」？</b> Lake Agnes → Big Beehive → Highline → Plain of Six Glaciers → Lakeshore 這條環線把路易斯湖從「湖面」「高處」「冰河腳下」三個角度都走過一遍，是 Banff 最經典的一日縱走路線，當地人叫它 <b>The Teahouse Challenge</b>。</div>
+      </div>
+      <div class="gcard">
+        <h4>Victoria 冰河與那個聲音</h4>
+        <p>六冰川平原正對的是 <b>Victoria Glacier</b>，湖水就是它融化來的。你在茶坊會不時聽到低沉的轟隆聲——那是冰崩（icefall）從對面 Mt. Lefroy 與 Mt. Victoria 之間落下。</p>
+        <ul>
+          <li><span class="tag red">退縮</span>Victoria 冰河在過去一百年退縮了超過 <b>1 公里</b>。1900 年代的老照片裡，冰舌幾乎伸到湖邊</li>
+          <li><span class="tag">Abbot Pass</span>兩山之間那個隘口有一座 1922 年建的石造山屋 <b>Abbot Pass Hut</b>，是加拿大海拔最高的永久建築之一，也是國家歷史古蹟。2022 年因冰河退縮導致邊坡不穩而拆除</li>
+          <li>那六條冰河分別掛在 Mt. Lefroy、Mt. Victoria、Pope's Peak 等山壁上，從茶坊平台一次可以數完</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="stay">
+    <div class="ic">🏡</div>
+    <div>
+      <h4>今晚住宿 · Canmore（最後一晚）</h4>
+      <p><b>201-302 Old Canmore Road, Canmore, AB T1W 2X2</b></p>
+      <p><b>今晚把行李全部打包好</b>——明天北上冰原大道，五天後才會再回到 Canmore。別忘了冰箱裡的食物。</p>
+      <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=302+Old+Canmore+Road,+Canmore,+AB+T1W+2X2&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航回住宿</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ DAY 6 ════════════ -->
+<section class="pane" id="p-d6">
+  <div class="dayhead">
+    <div class="daynum"><div class="lbl">Day</div><div class="n">06</div></div>
+    <div>
+      <h2>冰原大道南段 · 全世界最美的公路</h2>
+      <p class="meta">9/30（三）・<b>Canmore → Icefields Parkway → Hinton 住宿</b>・大移動日</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h4>先搞清楚：你們的「Jasper 住宿」其實在 Hinton 附近</h4>
+    <p>訂房地址 <b>50529B Highway 40 North, Yellowhead County, AB T7V 1X3</b> 在<b>國家公園界外、Hinton 一帶</b>，不在賈斯珀鎮上。這件事會影響接下來四天的每一次出門：</p>
+    <ul>
+      <li>到 <b>賈斯珀鎮</b>：約 <b>80 km／55 分</b>（Hwy 16 西行）</li>
+      <li>到 <b>哥倫比亞冰原</b>：約 <b>185 km／2 小時 15 分</b>（明天要來回一趟，早點出門）</li>
+      <li>到 <b>Miette Hot Springs</b>：約 <b>55 km／45 分</b> ← <b>反而比住鎮上更近</b>，所以 Day 9 排在那裡是對的</li>
+      <li>好處是：<b>住在公園外，晚上開車回家不必擔心公園內的動物路殺高峰</b>，Hinton 也有 24 小時超市、加油站與速食</li>
+    </ul>
+  </div>
+
+  <div class="route">
+    <div class="route-top">
+      <span class="route-title">🚗 今日路線</span>
+      <span class="route-figs"><span>總里程 <b>約 425 km</b></span><span>純開車 <b>約 5 小時 30 分</b></span><span>含停留 <b>全天 11–12 小時</b></span></span>
+    </div>
+    <div class="legs">
+      <span class="pt">Canmore 07:30</span><span class="seg">55 min · 82 km</span>
+      <span class="pt">Lake Louise 加滿油</span><span class="seg">30 min · 37 km</span>
+      <span class="pt">Bow Lake</span><span class="seg">8 min</span>
+      <span class="pt">Peyto Lake</span><span class="seg">25 min</span>
+      <span class="pt">Mistaya Canyon</span><span class="seg">8 min</span>
+      <span class="pt">Saskatchewan Crossing ⛽</span><span class="seg">55 min · 76 km</span>
+      <span class="pt">哥倫比亞冰原</span><span class="seg">1 h 20 · 105 km</span>
+      <span class="pt">賈斯珀鎮補給</span><span class="seg">1 h · 80 km</span>
+      <span class="pt">Hinton 住宿</span>
+    </div>
+  </div>
+
+  <div class="tl">
+    <div class="stop is-drive">
+      <div class="card">
+        <div class="card-top"><span class="chip drive">Fuel</span><h3>Lake Louise Village — 進入無人區前的最後補給</h3><span class="clock">08:30</span></div>
+        <p class="desc">從這裡開始，<b>230 公里之內只有 Saskatchewan River Crossing 一個加油站</b>，而且油價高、季末還可能提早關門。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Lake+Louise+Village,+AB&amp;travelmode=driving" target="_blank" rel="noopener">⛽ 導航到 Lake Louise Village</a></div>
+        <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">鐵律</span><span class="mv"><b>油箱加滿、廁所上完、水裝滿、離線地圖確認可用。</b>冰原大道全線幾乎沒有手機訊號，也沒有便利商店。</span></div>
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv">全天份的食物與水（今天沒有正經午餐地點）、保溫瓶、垃圾袋、車上零食</span></div>
+          <div class="mrow park"><span class="mk">查路況</span><span class="mv">出發前用最後的訊號查一次 <b>511 Alberta</b>，確認 Hwy 93N 沒有封閉或雪況警告</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip sight">Lake</span><h3>Bow Lake 弓湖 · Num-Ti-Jah Lodge</h3><span class="clock">09:15</span></div>
+        <p class="desc">冰原大道上第一個大湖，湖後方就是 Bow Glacier 與 Crowfoot Mountain。湖畔那棟<b>紅屋頂的木造旅館 Num-Ti-Jah Lodge</b> 是 1930 年代由傳奇嚮導 Jimmy Simpson 蓋的，是這條路上最具代表性的畫面。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Num-Ti-Jah+Lodge,+Bow+Lake,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到 Bow Lake</a></div>
+        <div class="stats"><span class="stat">停留 <b>30 分</b></span><span class="stat easy">湖畔平走</span><span class="stat">海拔 1,920 m</span></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv">防風外套（湖面風很強）、手套、廣角鏡頭</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">停車場入口就在 Hwy 93 上，<b>轉彎處視線不佳</b>。湖岸礫石早上結霜。這裡<b>有廁所</b>，該上就上。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip sight">★ 必看</span><h3>Peyto Lake 佩托湖 — 那隻藍色的狼</h3><span class="clock">10:00</span></div>
+        <p class="desc">冰原大道的招牌畫面。從停車場走 10–15 分鐘的鋪面步道上到 <b>Bow Summit 觀景台</b>（海拔 2,069 m，是整條公路的最高點），俯瞰一座形狀像狼頭的湖——那個藍是全洛磯山脈最不真實的顏色。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Peyto+Lake+Viewpoint,+Bow+Summit,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到 Peyto Lake 觀景台</a></div>
+        <div class="stats"><span class="stat">來回 <b>1.5 km</b></span><span class="stat">爬升 <b>+80 m</b></span><span class="stat">約 <b>45 分</b></span><span class="stat easy">鋪面・輪椅可</span></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv">防風保暖層（2,069 m，風極大且體感低）、手套、防滑鞋（步道結霜）、廣角鏡頭</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">觀景平台<b>上午順光、下午逆光</b>，所以今天上午經過是正確的時間。平台人多時不要擠到護欄外——下方是垂直斷崖。</span></div>
+          <div class="mrow park"><span class="mk">停車</span><span class="mv">Bow Summit 停車場很大且免費，<b>有廁所</b>。10 月中之後會關閉</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip sight">Canyon</span><h3>Mistaya Canyon 米斯塔亞峽谷</h3><span class="clock">11:15</span></div>
+        <p class="desc">從路邊停車走 10 分鐘的緩下坡，就能站在一道被水流鑽成螺旋狀的窄峽谷上方。石灰岩被磨得像被雕刻過，水聲在谷底轟鳴。少有人停，但非常值得。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Mistaya+Canyon,+Icefields+Parkway,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到米斯塔亞峽谷</a></div>
+        <div class="stats"><span class="stat">來回 <b>1 km</b></span><span class="stat">下坡 <b>−30 m</b></span><span class="stat easy">約 30 分</span></div>
+        <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">橋上與岩面<b>常年潮濕結霜，極滑</b>。回程是上坡，別低估。停車場很小、就在公路邊，<b>迴轉時要非常小心高速通過的車</b>。</span></div>
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv">防滑登山鞋、熊噴霧（這段步道穿過灌木林，能見度低）</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop is-drive">
+      <div class="card">
+        <div class="card-top"><span class="chip drive">⛽ Fuel</span><h3>Saskatchewan River Crossing — 230 km 內唯一的加油站</h3><span class="clock">12:00</span></div>
+        <p class="desc">三條河的匯流處，也是這條路上唯一的補給站（The Crossing Resort：加油站、簡餐、紀念品）。油價明顯高於鎮上，但這裡不加就沒有了。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=The+Crossing+Resort,+Saskatchewan+River+Crossing,+AB&amp;travelmode=driving" target="_blank" rel="noopener">⛽ 導航到 Saskatchewan Crossing</a></div>
+        <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv"><b>就算只用掉半桶也要補到滿。</b>10 月初營業時間會縮短，季末甚至可能整個關閉——所以早上在 Lake Louise 就要加滿，這裡當作保險。</span></div>
+          <div class="mrow park"><span class="mk">補給</span><span class="mv">有廁所與熱食（漢堡、薯條）。這是今天唯一能買到熱食的地方</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop is-drive">
+      <div class="card">
+        <div class="card-top"><span class="chip drive">Drive</span><h3>Big Bend 大彎道 · Weeping Wall 哭牆 · Sunwapta Pass</h3><span class="clock">13:00</span></div>
+        <p class="desc">接下來是全線最戲劇性的一段：先經過 <b>Weeping Wall</b>（高 300 公尺的岩壁上掛著數十道細瀑，冬天結成冰柱，是世界級冰攀場），然後是 <b>Big Bend</b> 大迴轉爬升，翻過 <b>Sunwapta Pass（2,035 m，Banff 與 Jasper 的分界）</b>。</p>
+        <div class="stats"><span class="stat">76 km</span><span class="stat">約 <b>55 分</b></span><span class="stat mid">連續長上坡</span></div>
+        <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">開車注意</span><span class="mv">Big Bend 是<b>連續大坡度＋大迴轉</b>，秋天路面可能有黑冰（black ice），尤其是背陽的彎道。<b>下坡請用低檔位控速，不要長時間踩煞車</b>。上坡若車速掉太多，讓後車先過。</span></div>
+          <div class="mrow park"><span class="mk">停車彎</span><span class="mv">Weeping Wall 與 Big Bend 上方都有路邊停車彎可以拍照，<b>務必完全駛離車道</b>再下車</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip sight">Preview</span><h3>哥倫比亞冰原 · 今天先遠望，明天再深入</h3><span class="clock">14:00</span></div>
+        <p class="desc">路過 Athabasca Glacier 的冰舌與 Icefield Discovery Centre，先停 20 分鐘拍照、確認明天活動的報到地點與停車動線。<b>明天會整天在這裡</b>。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Columbia+Icefield+Discovery+Centre,+Jasper+National+Park,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到冰原遊客中心</a></div>
+        <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">停車場海拔 1,980 m，<b>風大又冷，比車內低 10°C</b>。下車一定穿外套。<b>絕對不要自行走上冰河</b>——冰隙每年都吞人。</span></div>
+          <div class="mrow park"><span class="mk">明天用</span><span class="mv">趁今天把「報到櫃檯在哪、停車場怎麼進、廁所位置」看清楚，明天早上就不會慌</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop is-stay">
+      <div class="card">
+        <div class="card-top"><span class="chip stay">Town</span><h3>賈斯珀鎮補給 → Hinton 住宿</h3><span class="clock">16:30</span></div>
+        <p class="desc">在賈斯珀鎮加油、逛超市（Robson Street 上的 Fresh St. Market）、吃晚餐，再往東開一小時回住宿。或者直接開回 Hinton 再採買——<b>Hinton 的超市更大、更便宜、關得更晚</b>。</p>
+        <div class="actions">
+          <a class="navbtn ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Jasper,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 賈斯珀鎮</a>
+          <a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=50529+Highway+40,+Yellowhead+County,+AB+T7V+1X3&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到 Hinton 住宿</a>
+        </div>
+        <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">賈斯珀 → Hinton 的 Hwy 16 這段是<b>知名的野生動物路段</b>（麋鹿、鹿、偶有熊），日落後尤其危險。<b>盡量在天黑前完成這段路</b>，日落約 19:02。</span></div>
+          <div class="mrow gear"><span class="mk">推薦</span><span class="mv">賈斯珀鎮：<b>Jasper Brewing Co.</b>（加拿大第一家開在國家公園內的釀酒廠）／ <b>Bear's Paw Bakery</b>（早餐麵包，隔天早上出發前買）</span></div>
+          <div class="mrow park"><span class="mk">採買</span><span class="mv">Hinton 有 Freson Bros / No Frills 等大超市與 24 小時加油站，價格比公園內便宜很多。<b>明天要早出門，今晚就把行動糧買齊</b></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="duo">
+    <div class="box gear">
+      <h4>🎒 今日必備</h4>
+      <div class="gearlist">
+        <span class="must">滿油箱</span><span class="must">離線地圖</span><span class="must">全天份食物與水</span><span>防風羽絨（觀景台很冷）</span><span>手套＋毛帽</span><span>防滑鞋</span><span>熊噴霧</span><span>太陽眼鏡（西曬）</span><span>相機電池（低溫掉電快）</span><span>垃圾袋</span><span>行李（今天搬家）</span>
+      </div>
+    </div>
+    <div class="box warn">
+      <h4>⚠️ 今日注意事項</h4>
+      <ul>
+        <li><b>Lake Louise 一定加滿油</b>：之後 230 km 只有一個加油站，且可能關門</li>
+        <li><b>全線沒有手機訊號</b>：離線地圖必備，別依賴即時導航</li>
+        <li><b>10/1 起雪胎法規生效</b>：今天正好是 Hwy 93N 冬季輪胎規定的前一天，明天開始就是強制期</li>
+        <li><b>Big Bend 黑冰</b>：背陽彎道最危險，下坡用低檔位</li>
+        <li><b>不要走上冰河</b>：Athabasca Glacier 的冰隙每年都出事，只能跟導覽進去</li>
+        <li><b>天黑前抵達住宿</b>：Hwy 16 賈斯珀–Hinton 段動物極多，日落 19:02</li>
+        <li><b>今天沒有正經午餐點</b>：Saskatchewan Crossing 的漢堡是唯一選擇，或吃自備行動糧</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="guide">
+    <div class="guide-head"><span class="g-ic">📖</span><div><h3>今日景點介紹</h3><span>冰原大道 ── 230 公里，穿過一整個冰河時代</span></div></div>
+    <div class="gcards">
+      <div class="gcard">
+        <h4>Icefields Parkway — 大蕭條時代挖出來的一條公路</h4>
+        <p>Hwy 93N 全長 <b>232 公里</b>，連接 Lake Louise 與 Jasper，被《國家地理》列為<b>世界最美的公路之一</b>。它在 1931–1940 年間興建，是加拿大政府為了解決大蕭條失業問題推出的救濟工程——工人拿的是食宿加微薄工資，用鎬與炸藥開路。</p>
+        <ul>
+          <li><span class="tag">數字</span>沿線可以看到 <b>超過 100 條冰河</b>、兩個海拔 2,000 m 以上的隘口</li>
+          <li><span class="tag blue">分水嶺</span>公路翻越的 <b>Sunwapta Pass</b> 同時是 Banff 與 Jasper 的界線，也是北美大陸的水系分界之一</li>
+          <li><span class="tag red">沒有訊號</span>全線幾乎沒有基地台，這是刻意的——Parks Canada 不希望在核心荒野區架設基礎設施</li>
+          <li><span class="tag gold">動物</span>這條路是灰熊、黑熊、大角羊、山羊、狼與馴鹿的主要廊道。<b>開車時把眼睛也放在路肩</b></li>
+        </ul>
+      </div>
+      <div class="gcard">
+        <h4>Peyto Lake — 一個以獵人命名的湖，和一隻狼</h4>
+        <p>名字來自 <b>Bill Peyto</b>，一位 19 世紀末的英國移民、嚮導與後來的公園守衛。他是個傳奇怪人——據說曾把一隻活的山貓帶進 Banff 的酒吧，只為了清場。</p>
+        <ul>
+          <li><span class="tag blue">顏色</span>Peyto 的藍比其他湖更濃，因為 Peyto Glacier <b>夏季注入的岩粉量特別大</b>。有趣的是，<b>6 月剛開始融雪時湖水偏綠，7–9 月才轉成招牌的螢光藍</b></li>
+          <li><span class="tag gold">狼頭</span>從 Bow Summit 觀景台看下去，湖的形狀很像一隻朝左的狼頭——這是它最出名的特徵</li>
+          <li><span class="tag">高點</span>Bow Summit 海拔 2,069 m，是<b>加拿大所有主要公路中最高的一個埡口</b></li>
+        </ul>
+        <div class="pull"><b>🪟 開車時看什麼？</b> 從 Bow Lake 到 Peyto 這 7 公里，公路右側會一直看到 Crowfoot Glacier（烏鴉腳冰河）。它原本有三根「腳趾」，1940 年代最下面那根已經完全融化消失——現在只剩兩根。</div>
+      </div>
+      <div class="gcard">
+        <h4>Weeping Wall 與 Big Bend</h4>
+        <p><b>Weeping Wall（哭牆）</b>是 Cirrus Mountain 一面高約 300 公尺的石灰岩壁，山體內的地下水從岩縫滲出，形成數十道細長的水簾。冬天全部結成藍白色的冰柱，是北美最著名的冰攀場之一，路線名字包括 Weeping Pillar、Snivelling Gully。</p>
+        <ul>
+          <li><span class="tag red">Big Bend</span>公路在這裡做一個接近 180 度的大迴轉，在 5 公里內爬升約 300 公尺，才能翻上 Sunwapta Pass。從彎道頂端的停車彎回望，整條 U 型冰河谷一覽無遺</li>
+          <li><span class="tag">地質</span>這整段 U 型谷是<b>更新世冰河刻出來的</b>——你開的這條路，一萬八千年前是一條數百公尺厚的冰川</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="stay">
+    <div class="ic">🏕</div>
+    <div>
+      <h4>今晚起連住四晚 · Hinton / Yellowhead County</h4>
+      <p><b>50529B Highway 40 North, Yellowhead County, AB T7V 1X3</b></p>
+      <p>Day 6 – Day 9 都住這裡。<b>距離賈斯珀鎮 80 km／55 分、距離哥倫比亞冰原 185 km／2h15、距離 Miette 溫泉 55 km／45 分。</b></p>
+      <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=50529+Highway+40,+Yellowhead+County,+AB+T7V+1X3&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到 Hinton 住宿</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ DAY 7 ════════════ -->
+<section class="pane" id="p-d7">
+  <div class="dayhead">
+    <div class="daynum"><div class="lbl">Day</div><div class="n">07</div></div>
+    <div>
+      <h2>哥倫比亞冰原 · 站上兩萬年的冰</h2>
+      <p class="meta">10/1（四）・<b>Hinton ⇄ Columbia Icefield</b>・冰原日｜含 IG 筆記⑦</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h4>今天要開 370 km 來回 — 06:00 就得出門</h4>
+    <p>住宿到哥倫比亞冰原單程 <b>185 km／2 小時 15 分</b>，來回就是四個半小時的車程。<b>06:00 出發、08:15 抵達</b>，才有完整的一天可用。回程順路收 Sunwapta Falls 與 Athabasca Falls，這樣長途車程才划算。</p>
+    <ul>
+      <li><b>今天起雪胎法規正式生效</b>（10/1–3/31，Hwy 93N）。出門前再確認一次輪胎有 M+S 或 3PMSF</li>
+      <li>出門前查 <b>511 Alberta</b>：10 月初 Hwy 93N 已可能有雪</li>
+      <li>油：出發前在 Hinton 加滿，回程若不夠就在賈斯珀補</li>
+    </ul>
+  </div>
+
+  <div class="route">
+    <div class="route-top">
+      <span class="route-title">🚗 今日路線</span>
+      <span class="route-figs"><span>總里程 <b>約 380 km</b></span><span>純開車 <b>約 4 小時 40 分</b></span><span>健行 <b>8 km</b></span></span>
+    </div>
+    <div class="legs">
+      <span class="pt">Hinton 06:00</span><span class="seg">2 h 15 · 185 km</span>
+      <span class="pt">Wilcox Pass 步道口</span><span class="seg">5 min</span>
+      <span class="pt">冰原遊客中心</span><span class="seg">45 min · 55 km</span>
+      <span class="pt">Sunwapta Falls</span><span class="seg">25 min · 30 km</span>
+      <span class="pt">Athabasca Falls</span><span class="seg">1 h 25 · 110 km</span>
+      <span class="pt">Hinton</span>
+    </div>
+  </div>
+
+  <div class="tl">
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip hike">★ 必走</span><h3>Wilcox Pass 威爾考克斯隘口 — 看冰河最好的角度</h3><span class="clock">08:30</span></div>
+        <p class="desc">在冰原大道上，唯一能<b>從高處平視整條 Athabasca Glacier 冰舌與哥倫比亞冰原</b>的步道。前 30 分鐘穿過老雲杉林陡上，之後突然開闊成一片高山苔原，冰河就整片攤在你對面。大角羊常在稜線上吃草，完全不怕人。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Wilcox+Pass+Trailhead,+Wilcox+Creek,+Jasper+National+Park,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到 Wilcox Pass 步道口</a></div>
+        <div class="stats"><span class="stat">來回 <b>8 km</b>（觀景點 4.5 km）</span><span class="stat">爬升 <b>+330 m</b></span><span class="stat">最高 <b>2,375 m</b></span><span class="stat mid">約 <b>3 小時</b></span></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv"><b>防風硬殼外套</b>（樹線之上完全沒遮蔽，風速常 40+ km/h）、羽絨中層、<b>手套＋毛帽</b>、<b>冰爪</b>、登山杖、2L 水、熊噴霧、太陽眼鏡</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">走出樹線後<b>體感溫度會驟降 10°C 以上</b>，很多人低估這件事。<b>不必走到最遠的隘口</b>——2.2 km 處第一個開闊觀景點就已經是最好的畫面了。看到雲層壓下來或開始飄雪就立刻折返。</span></div>
+          <div class="mrow park"><span class="mk">停車</span><span class="mv">步道口在 Wilcox Creek Campground 入口旁的小停車場，<b>約 20 個位子</b>，免費。滿了就往南 1 km 有另一個路邊停車彎</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip rec">📸 IG 筆記⑦</span><h3>冰原體驗 — Ice Explorer 冰原車 或 Athabasca Glacier IceWalks</h3><span class="clock">12:00</span></div>
+        <p class="desc">IG 遊記強力推薦：真正站上 Athabasca Glacier 的那一刻，腳下是<b>存在了約兩萬年的冰河遺跡</b>，才真的感受到自然的壯闊與人的渺小。有兩種玩法：</p>
+        <div class="stats"><span class="stat">Ice Explorer 冰原車 <b>約 1.5 小時</b></span><span class="stat easy">親子／長輩友善</span><span class="stat">IceWalks 半日 <b>5 km</b></span><span class="stat mid">IceWalks 全日 <b>8.5 km</b></span></div>
+        <div class="actions">
+          <a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Columbia+Icefield+Discovery+Centre,+Jasper+National+Park,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到冰原遊客中心</a>
+          <a class="navbtn link" href="https://icewalks.com" target="_blank" rel="noopener">🔗 IceWalks 官網訂位</a>
+          <a class="navbtn link" href="https://www.banffjaspercollection.com/attractions/columbia-icefield/" target="_blank" rel="noopener">🔗 Ice Explorer 冰原車</a>
+        </div>
+        <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">最重要</span><span class="mv"><b>一確定行程就立刻上官網刷卡訂位。</b>IG 作者的親友到現場想報名，全部團次都已額滿只剩候補（Waiting list）。現場雖然可以報名，但熱門時段常常一個月前就滿。</span></div>
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv"><b>①保暖衣物一定要帶</b>——即使盛夏站在冰原上依然寒冷，冰風吹來體感比想像低很多，而且高山天氣多變，可能一下出太陽、下一刻就狂風下雨。<b>②防水鞋</b>——冰面上有不少融雪積水，很多人鞋襪都濕了。<b>③背包放一雙備用襪</b>。④手套、毛帽、太陽眼鏡（冰面反光極強）</span></div>
+          <div class="mrow park"><span class="mk">選擇建議</span><span class="mv">上午已走完 Wilcox Pass 8 km，下午建議選 <b>Ice Explorer 冰原車（約 1.5 小時）</b>，時間與體力都比較剛好；若想走 IceWalks Classic Half Day（約 3 小時），就把 Wilcox Pass 縮短成 4.5 km 觀景點來回</span></div>
+          <div class="mrow warn"><span class="mk">絕對禁止</span><span class="mv"><b>不要自己走上冰河。</b>冰隙常被薄雪覆蓋看不出來，掉下去幾乎沒有生還機會。只能跟隨有繩索與導覽的團隊進入。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip sight">彈性</span><h3>【可選】Columbia Icefield Skywalk 冰川天空步道</h3><span class="clock">14:00</span></div>
+        <p class="desc">一條伸出崖壁的玻璃地板觀景走道，離谷底 280 公尺。若已買冰原車套票通常會包含，單買性價比一般，但玻璃地板的體驗確實特別。</p>
+        <div class="stats"><span class="stat">約 <b>1 小時</b></span><span class="stat">需搭接駁前往</span><span class="stat easy">無需體力</span></div>
+        <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">怕高的人請三思。走道上風很大，<b>帽子與輕物品容易被吹走</b>。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip sight">Falls</span><h3>Sunwapta Falls 桑瓦普塔瀑布</h3><span class="clock">15:30</span></div>
+        <p class="desc">回程順路第一停。河水衝進一道極窄的石灰岩裂縫再急墜 18 公尺，中間卡著一個小島。從停車場走 3 分鐘就到上瀑布觀景橋。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Sunwapta+Falls,+Jasper+National+Park,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到 Sunwapta Falls</a></div>
+        <div class="stats"><span class="stat">停留 <b>25 分</b></span><span class="stat easy">步行 3 分</span><span class="stat">下瀑布再 +2 km</span></div>
+        <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">觀景橋上與岩石<b>常年濕滑</b>，護欄外就是垂直落差。「Sunwapta」是 Stoney 語的<b>「洶湧之水」</b>——名副其實。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip sight">Falls</span><h3>Athabasca Falls 阿薩巴斯卡瀑布</h3><span class="clock">16:15</span></div>
+        <p class="desc">賈斯珀最有力量的瀑布——落差只有 23 公尺，但整條 Athabasca 河的水量全被壓進一道石英岩窄縫，聲音大到要用喊的才聽得見。步道系統做得很好，可以走進被水磨穿的<b>古河道岩洞</b>裡。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Athabasca+Falls,+Jasper+National+Park,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到 Athabasca Falls</a></div>
+        <div class="stats"><span class="stat">環形步道 <b>1 km</b></span><span class="stat easy">鋪面・平緩</span><span class="stat">停留 <b>40 分</b></span></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv">防水外套（水霧很強）、鏡頭布、頭燈（古河道岩洞內偏暗，且此時已近黃昏）</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">這裡<b>每年都有遊客為了拍照跨越護欄而墜落</b>。岩面被水霧打濕後像抹了油，請完全待在步道與觀景台上。</span></div>
+          <div class="mrow park"><span class="mk">停車</span><span class="mv">大型停車場免費，有廁所。<b>這是今天最後一個廁所點</b></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="duo">
+    <div class="box gear">
+      <h4>🎒 今日必備</h4>
+      <div class="gearlist">
+        <span class="must">防水鞋（冰原積水）</span><span class="must">備用襪</span><span class="must">保暖外套＋羽絨</span><span class="must">手套＋毛帽</span><span class="must">冰爪</span><span class="must">冰原活動訂位證明</span><span>太陽眼鏡（冰面反光）</span><span>防曬 SPF50+</span><span>登山杖</span><span>2L 水</span><span>熊噴霧</span><span>相機備用電池</span><span>滿油箱</span>
+      </div>
+    </div>
+    <div class="box warn">
+      <h4>⚠️ 今日注意事項</h4>
+      <ul>
+        <li><b>06:00 出發</b>：來回 370 km，晚出門就會壓縮到冰原活動時間</li>
+        <li><b>10/1 雪胎法規今天生效</b>：Hwy 93N 強制期開始，出門前確認一次</li>
+        <li><b>冰原活動先訂位</b>：現場常只剩候補，別賭運氣</li>
+        <li><b>冷不代表不會曬</b>（IG 筆記⑧）：冰面反射讓紫外線加倍，防曬乳一定要擦而且要補</li>
+        <li><b>絕對不要自行走上冰河</b>：冰隙被薄雪蓋住看不見</li>
+        <li><b>Wilcox Pass 樹線之上風極大</b>：外套要能立刻穿上，不要放在背包深處</li>
+        <li><b>回程 110 km 夜路</b>：日落 19:03，Hwy 16 動物多，開慢一點</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="guide">
+    <div class="guide-head"><span class="g-ic">📖</span><div><h3>今日景點介紹</h3><span>哥倫比亞冰原 ── 北極圈以南最大的冰體</span></div></div>
+    <div class="gcards">
+      <div class="gcard">
+        <h4>Columbia Icefield — 一座會流向三個大洋的冰</h4>
+        <p>面積約 <b>325 平方公里</b>、最厚處 <b>365 公尺</b>，是北極圈以南北美洲最大的冰原。它坐落在<b>北美大陸的三重分水嶺（Hydrological Apex）</b>上——這是全世界極少數的地形之一。</p>
+        <ul>
+          <li><span class="tag blue">三個大洋</span>冰原融水分別流入 <b>太平洋</b>（經 Columbia River）、<b>北冰洋</b>（經 Athabasca / Mackenzie River）與 <b>大西洋／哈德遜灣</b>（經 Saskatchewan River）</li>
+          <li><span class="tag">年紀</span>冰原的冰形成於上一次冰期，最深處的冰約有 <b>兩到四百年到數千年</b>的歷史；你腳下踩的冰河遺跡則可追溯到<b>約兩萬年前的最後冰盛期</b></li>
+          <li><span class="tag gold">降雪</span>冰原每年降雪約 <b>7 公尺</b>，但融化的速度更快</li>
+          <li><span class="tag red">退縮</span><b>Athabasca Glacier 自 1890 年以來已退縮超過 1.5 公里、失去一半以上的體積</b>。開車進停車場的路上，路邊有標示牌寫著「1908」「1925」「1948」——那都是當年冰舌所在的位置</li>
+        </ul>
+        <div class="pull"><b>🧊 為什麼冰是藍的？</b> 冰河的冰在巨大壓力下把氣泡全擠了出去，變成密實的晶體。密實的冰會吸收紅光、散射藍光，所以裂隙深處看起來是那種發光的藍。氣泡越少，藍得越深。</div>
+      </div>
+      <div class="gcard">
+        <h4>Wilcox Pass — 一條 1896 年就存在的老路</h4>
+        <p>1896 年探險家 Walter Wilcox 想沿 Athabasca 河谷北上，卻被冰河擋住去路，只好繞上這個隘口。他因此成為第一批完整看見哥倫比亞冰原的歐洲人。<b>當年他站在隘口時，Athabasca 冰河一路延伸到現在的公路位置。</b></p>
+        <ul>
+          <li><span class="tag">大角羊</span>隘口的高山草原是 <b>Bighorn Sheep 大角羊</b>的固定棲地，牠們對人非常習慣。<b>可以拍照，但保持 30 公尺以上，絕不餵食</b>——公羊發情期（秋季）會有攻擊性</li>
+          <li><span class="tag gold">看什麼</span>對面依序排開的是 <b>Mt. Athabasca（3,491 m）、Mt. Andromeda、Snow Dome、Mt. Kitchener</b>。Snow Dome 就是那個三重分水嶺的頂點</li>
+          <li><span class="tag">植被</span>隘口的地被是<b>高山苔原</b>，一株矮柳可能已經 50 歲。<b>請走在既有路徑上</b>——踩壞的苔原要幾十年才長得回來</li>
+        </ul>
+      </div>
+      <div class="gcard">
+        <h4>Athabasca 這個名字</h4>
+        <p>「Athabasca」來自 Cree 語 <b>aðapaskāw</b>，意思是「有蘆葦草的地方」。這條河全長 1,231 公里，是加拿大重要的歷史水路——19 世紀毛皮貿易時代，獨木舟從這裡一路划到北冰洋。</p>
+        <ul>
+          <li><span class="tag blue">遺產河流</span>Athabasca River 是加拿大官方指定的 <b>Canadian Heritage River</b></li>
+          <li><span class="tag">石英岩</span>Athabasca Falls 沖刷的是極堅硬的石英岩，所以瀑布往上游後退得很慢；但軟弱的岩層被掏空後形成了那些<b>壺穴與古河道</b>，就是你們會走進去的那些岩洞</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="stay">
+    <div class="ic">🏕</div>
+    <div>
+      <h4>今晚住宿 · Hinton（第 2 晚）</h4>
+      <p><b>50529B Highway 40 North, Yellowhead County, AB T7V 1X3</b></p>
+      <p>明天行程輕鬆許多，可以睡飽一點。今晚把濕掉的鞋襪徹底烘乾。</p>
+      <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=50529+Highway+40,+Yellowhead+County,+AB+T7V+1X3&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航回住宿</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ DAY 8 ════════════ -->
+<section class="pane" id="p-d8">
+  <div class="dayhead">
+    <div class="daynum"><div class="lbl">Day</div><div class="n">08</div></div>
+    <div>
+      <h2>賈斯珀 · 五湖谷、老堡崗與金字塔湖</h2>
+      <p class="meta">10/2（五）・<b>Hinton ⇄ Jasper</b>・<b>原訂天使冰川封閉，已改行程</b></p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h4>原訂的 Edith Cavell 天使冰川，2026 全季封閉</h4>
+    <p>Parks Canada 公告：<b>Cavell Road 因 2024 年大火後的邊坡穩定工程，2026 整季不開放</b>，Cavell Meadows 與 Path of the Glacier 都去不了，預計要到 2027 年秋季工程完成後才有機會重開。</p>
+    <p style="margin-top:8px">👉 今天改成<b>賈斯珀谷地精華一日</b>：剛整修完重新開放的五湖谷 ＋ 老堡崗全景 ＋ 金字塔湖日落 ＋ 暗空觀星。強度低，正好接在昨天的冰原長征之後。</p>
+  </div>
+
+  <div class="route">
+    <div class="route-top">
+      <span class="route-title">🚗 今日路線</span>
+      <span class="route-figs"><span>總里程 <b>約 210 km</b></span><span>純開車 <b>約 2 小時 40 分</b></span><span>健行 <b>約 9 km</b></span></span>
+    </div>
+    <div class="legs">
+      <span class="pt">Hinton 08:00</span><span class="seg">1 h 5 · 90 km</span>
+      <span class="pt">五湖谷</span><span class="seg">15 min</span>
+      <span class="pt">Old Fort Point</span><span class="seg">10 min</span>
+      <span class="pt">賈斯珀鎮午餐</span><span class="seg">20 min</span>
+      <span class="pt">金字塔湖</span><span class="seg">1 h 5 · 85 km</span>
+      <span class="pt">Hinton</span>
+    </div>
+  </div>
+
+  <div class="tl">
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip hike">★ 2026 新開放</span><h3>Valley of the Five Lakes 五湖谷</h3><span class="clock">09:15</span></div>
+        <p class="desc">賈斯珀最受歡迎的步道，2024 年大火中受損，<b>2026 年夏天整修完重新開放</b>——路線重新調整過、加了新的休息點與排水，比火災前更好走。五座小湖各有不同的藍綠色調，從深祖母綠到淡土耳其藍，繞一圈就能全部看完。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Valley+of+the+Five+Lakes+Trailhead,+Jasper,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到五湖谷步道口</a></div>
+        <div class="stats"><span class="stat">環線 <b>4.5 km</b></span><span class="stat">爬升 <b>+70 m</b></span><span class="stat easy">難度 輕鬆</span><span class="stat">約 <b>1.5 小時</b></span></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv">登山鞋、<b>熊噴霧</b>（這一區黑熊活動頻繁）、1L 水、防曬</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">火燒過的區域<b>會有站立的枯死樹（snag）</b>，起風時有倒木風險，請勿在焦木林中停留。步道有幾段木棧橋，早上結霜會滑。</span></div>
+          <div class="mrow park"><span class="mk">停車</span><span class="mv">Hwy 93 邊的專屬停車場，免費，約 60 個位子，<b>有廁所</b></span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip hike">View</span><h3>Old Fort Point 老堡崗 — 賈斯珀谷地的觀景陽台</h3><span class="clock">11:00</span></div>
+        <p class="desc">一塊被冰河磨圓的岩丘（羊背石 roche moutonnée），從鎮邊爬上去只要 30 分鐘，山頂可以一次看到賈斯珀鎮、Athabasca 河、Lac Beauvert 與整圈山脈。<b>這是理解賈斯珀地形的最佳位置。</b></p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Old+Fort+Point+Trailhead,+Jasper,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到 Old Fort Point</a></div>
+        <div class="stats"><span class="stat">環線 <b>3.8 km</b></span><span class="stat">爬升 <b>+130 m</b></span><span class="stat easy">約 1.2 小時</span></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv">防風外套（山頂風大）、太陽眼鏡、水</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">建議<b>順時針走</b>（先走緩坡上、陡的木階下），比較不傷膝蓋。山頂裸露岩面在潮濕時很滑。<b>大角羊常在山頂活動</b>，保持距離。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip food">Town</span><h3>賈斯珀鎮 · 午餐與火後重生的市容</h3><span class="clock">12:30</span></div>
+        <p class="desc">2024 年 7 月的野火燒掉了鎮上約三分之一的建築。兩年後的現在，重建仍在進行——街上會看到新舊交錯的景象。<b>在這裡消費就是最直接的支持。</b></p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Connaught+Drive,+Jasper,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 賈斯珀鎮中心</a></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">推薦</span><span class="mv"><b>Jasper Brewing Co.</b>（加拿大第一家國家公園內的釀酒廠）／ <b>Bear's Paw Bakery</b>（肉桂捲與咖啡）／ <b>Coco's Café</b>（早午餐）／ <b>Patricia Street Deli</b>（三明治，適合外帶）</span></div>
+          <div class="mrow park"><span class="mk">順便</span><span class="mv">鎮上的 <b>Jasper Information Centre</b>（1914 年的石造古蹟建築）可以問到最新的步道與路況資訊，也有免費廁所與 Wi-Fi</span></div>
+          <div class="mrow warn"><span class="mk">請留意</span><span class="mv">鎮民才剛經歷家園被燒毀。拍攝火場遺跡與重建工地時請有分寸，也避免把「災後」當成觀光賣點來談論。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip sight">彈性</span><h3>【可選】Jasper SkyTram 賈斯珀纜車</h3><span class="clock">14:00</span></div>
+        <p class="desc">加拿大最長最高的空中纜車，7 分鐘上到 Whistlers Mountain 的 2,263 公尺上站。天氣好時可以看到 80 公里外的 Mt. Robson（洛磯山脈最高峰，3,954 m）。上站再走 1.4 km 陡坡可攻頂 2,470 m。</p>
+        <div class="actions"><a class="navbtn ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Jasper+SkyTram,+Jasper,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到賈斯珀纜車</a></div>
+        <div class="stats"><span class="stat">約 <b>CAD 70+ / 人</b></span><span class="stat">上站 <b>2,263 m</b></span><span class="stat mid">攻頂 +1.4 km / +200 m</span></div>
+        <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">上站<b>常年刮強風、氣溫比鎮上低 10–15°C</b>，10 月初可能已有積雪。<b>雲霧天就不要花這筆錢</b>，先在山下抬頭看山頂有沒有雲再決定。10 月中後停駛。</span></div>
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv">羽絨外套、毛帽、手套、防風褲。上站幾乎沒有遮蔽</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip sight">Sunset</span><h3>Pyramid Lake &amp; Pyramid Island 金字塔湖與小島</h3><span class="clock">16:30</span></div>
+        <p class="desc">一座木橋通向湖心小島，島上是一小片老雲杉林與野餐區。<b>日落時 Pyramid Mountain 的紅褐色岩壁會被染成橘紅，整片倒映在湖面上</b>——這是賈斯珀最經典的黃昏畫面。路上順道經過 Patricia Lake。</p>
+        <div class="actions">
+          <a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Pyramid+Island,+Jasper,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到 Pyramid Island</a>
+          <a class="navbtn ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Patricia+Lake,+Jasper,+AB&amp;travelmode=driving" target="_blank" rel="noopener">📍 Patricia Lake（順路）</a>
+        </div>
+        <div class="stats"><span class="stat easy">木橋步行 5 分</span><span class="stat">日落 <b>約 18:58</b></span><span class="stat">環島 0.6 km</span></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv">腳架（日落長曝）、<b>頭燈</b>（回停車場時已暗）、羽絨外套、熱飲</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">木橋在低溫下會結霜。天黑後這一區<b>常有麋鹿 elk 在湖邊活動</b>，秋天是牠們的發情期，公鹿具攻擊性——<b>看到就退回車上，不要靠近拍照</b>。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip sight">★ 加碼</span><h3>暗空觀星 — 全世界第二大的暗空保護區</h3><span class="clock">20:00</span></div>
+        <p class="desc">賈斯珀國家公園是<b>全世界面積第二大的暗空保護區（Dark Sky Preserve）</b>，11,000 平方公里內幾乎沒有光害。10 月初新月前後、無雲的夜晚，肉眼就能看到清晰的銀河，運氣好還有極光。</p>
+        <div class="actions"><a class="navbtn ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Pyramid+Lake,+Jasper,+AB&amp;travelmode=driving" target="_blank" rel="noopener">📍 金字塔湖（觀星點）</a></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv"><b>紅光頭燈</b>（白光會毀掉夜視力，也影響別人）、羽絨外套＋毛帽＋手套、保溫瓶熱飲、腳架、露營椅或野餐墊</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">夜間氣溫會降到 <b>−3°C 左右</b>。開車回 Hinton 要 1 小時，<b>如果太累就不要勉強看到太晚</b>——夜間 Hwy 16 動物極多。也可以在住宿門口看，Hinton 一帶光害同樣很少。</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="duo">
+    <div class="box gear">
+      <h4>🎒 今日必備</h4>
+      <div class="gearlist">
+        <span class="must">熊噴霧</span><span class="must">頭燈（最好有紅光）</span><span>登山鞋</span><span>羽絨外套</span><span>毛帽＋手套</span><span>腳架</span><span>保溫瓶熱飲</span><span>防曬＋太陽眼鏡</span><span>1.5L 水</span><span>相機備用電池</span>
+      </div>
+    </div>
+    <div class="box warn">
+      <h4>⚠️ 今日注意事項</h4>
+      <ul>
+        <li><b>Cavell Road 封閉</b>：不要導航過去，路口有封鎖</li>
+        <li><b>火燒區的枯立木</b>：起風時不要在焦木林中停留</li>
+        <li><b>秋天是麋鹿發情期</b>：公鹿具攻擊性，看到就退回車上</li>
+        <li><b>纜車看天氣再決定</b>：山頂有雲就別花這筆錢</li>
+        <li><b>觀星要保暖</b>：−3°C＋不動＝很快就受不了</li>
+        <li><b>回程 85 km 夜路</b>：累了就早點回去，別為了觀星拖到深夜開車</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="guide">
+    <div class="guide-head"><span class="g-ic">📖</span><div><h3>今日景點介紹</h3><span>賈斯珀 ── 從毛皮貿易站到火後重生的小鎮</span></div></div>
+    <div class="gcards">
+      <div class="gcard">
+        <h4>Jasper — 一個補給站員工的名字</h4>
+        <p>1813 年，西北公司在這一帶設了一個毛皮貿易補給站，管理員叫 <b>Jasper Hawes</b>，人們就叫那裡「Jasper's House」。這個名字後來成了整座國家公園的名字。1907 年正式設立，是<b>洛磯山脈四座國家公園中最大的一座</b>（11,228 平方公里，約為 Banff 的 1.7 倍）。</p>
+        <ul>
+          <li><span class="tag">氣質</span>賈斯珀比 Banff 更安靜、更北、更野。遊客量只有 Banff 的三分之一，動物遭遇率卻高得多</li>
+          <li><span class="tag blue">暗空</span>2011 年被認證為暗空保護區，每年 10 月會辦 <b>Jasper Dark Sky Festival</b>，是北美最大的星空節慶之一</li>
+          <li><span class="tag red">2024 大火</span>2024 年 7 月的野火燒毀了鎮上約 <b>三分之一</b> 的建築，兩千多位居民撤離。公園內大片森林轉為焦黑，也造成 Cavell Road 與 Maligne 區域的邊坡不穩，至今仍在整治</li>
+          <li><span class="tag gold">重生</span>火燒過的森林其實是生態循環的一部分——這裡的黑松（lodgepole pine）毬果<b>需要高溫才會裂開釋放種子</b>，你在五湖谷會看到焦木下已經冒出新苗</li>
+        </ul>
+      </div>
+      <div class="gcard">
+        <h4>五湖谷 — 五座湖，五種藍</h4>
+        <p>這五座小湖排成一列，卻各有不同顏色，原因是<b>水深、湖底沉積物與地下水補注比例都不一樣</b>。第四湖與第五湖最深也最藍，第一湖最淺偏綠。</p>
+        <ul>
+          <li><span class="tag">水源</span>這些湖沒有明顯的入水口與出水口，主要靠<b>地下水</b>補注——這也是它們冬天不容易完全凍結的原因</li>
+          <li><span class="tag gold">看什麼</span>秋天湖畔的白楊（aspen）與樺樹會轉成亮黃，配上深藍的湖水與黑色的燒焦樹幹，是很有張力的畫面</li>
+          <li>這裡是<b>黑熊</b>、駝鹿（moose）與河狸的活動區。步道上留意河狸啃出的樹樁</li>
+        </ul>
+      </div>
+      <div class="gcard">
+        <h4>Pyramid Mountain 與那些「羊背石」</h4>
+        <p>Pyramid Mountain（2,763 m）的岩石富含<b>氧化鐵</b>，所以呈現獨特的紅褐色，日落時會被染得特別鮮豔。山頂那些天線是賈斯珀的通訊設施。</p>
+        <ul>
+          <li><span class="tag blue">羊背石</span>Old Fort Point 是典型的 <b>roche moutonnée（羊背石）</b>——冰河流過時，迎冰面被磨得平滑圓潤，背冰面被拔蝕成陡崖。爬上去時感受一下：緩的那一面是冰來的方向</li>
+          <li><span class="tag">Lac Beauvert</span>山下那座祖母綠的湖，湖名是法語的「美麗的綠」。旁邊是 1922 年的 Fairmont Jasper Park Lodge</li>
+          <li><span class="tag gold">Mt. Robson</span>纜車上站天氣好時能看到的那座巨大金字塔，是<b>加拿大洛磯山脈最高峰（3,954 m）</b>，在 BC 省境內，距離約 80 公里</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="stay">
+    <div class="ic">🏕</div>
+    <div>
+      <h4>今晚住宿 · Hinton（第 3 晚）</h4>
+      <p><b>50529B Highway 40 North, Yellowhead County, AB T7V 1X3</b></p>
+      <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=50529+Highway+40,+Yellowhead+County,+AB+T7V+1X3&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航回住宿</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ DAY 9 ════════════ -->
+<section class="pane" id="p-d9">
+  <div class="dayhead">
+    <div class="daynum"><div class="lbl">Day</div><div class="n">09</div></div>
+    <div>
+      <h2>硫磺天際線 · 爬上去，再泡下去</h2>
+      <p class="meta">10/3（六）・<b>Hinton ⇄ Miette Hot Springs</b>・<b>原訂瑪琳湖封閉，已改行程</b></p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h4>原訂的瑪琳峽谷與瑪琳湖，2026 全季封閉</h4>
+    <p>Parks Canada 公告：<b>Maligne Canyon 與 Maligne Lake Road 2026 整季不開放</b>（火災後峽谷內與沿線的整治工程），意味著<b>瑪琳湖、精靈島遊船、Bald Hills 步道全部去不了</b>。</p>
+    <p style="margin-top:8px">👉 今天改成 <b>Miette Hot Springs + Sulphur Skyline</b>：賈斯珀公認最高 CP 值的一日健行，8 km 換來 360 度的高山展望，下山直接泡進加拿大洛磯山脈最熱的溫泉。而且<b>從你們 Hinton 的住宿出發只要 45 分鐘，比住鎮上還近</b>。</p>
+  </div>
+
+  <div class="route">
+    <div class="route-top">
+      <span class="route-title">🚗 今日路線</span>
+      <span class="route-figs"><span>總里程 <b>約 130 km</b></span><span>純開車 <b>約 1 小時 45 分</b></span><span>健行 <b>8 km / +700 m</b></span></span>
+    </div>
+    <div class="legs">
+      <span class="pt">Hinton 07:30</span><span class="seg">30 min · 38 km · Hwy 16 W</span>
+      <span class="pt">Pocahontas 路口</span><span class="seg">20 min · 17 km · Miette Rd</span>
+      <span class="pt">Miette 溫泉停車場</span><span class="seg">健行 3.5 h</span>
+      <span class="pt">泡溫泉</span><span class="seg">50 min · 55 km</span>
+      <span class="pt">Hinton</span>
+    </div>
+  </div>
+
+  <div class="tl">
+    <div class="stop is-drive">
+      <div class="card">
+        <div class="card-top"><span class="chip drive">Drive</span><h3>Miette Road — 17 公里的野生動物大道</h3><span class="clock">08:00</span></div>
+        <p class="desc">從 Hwy 16 的 Pocahontas 路口轉進來，這條路彎彎曲曲爬升進 Fiddle River 谷地。<b>這是整個賈斯珀看到大角羊與黑熊機率最高的一條路</b>。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Miette+Hot+Springs,+Jasper+National+Park,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到 Miette Hot Springs</a></div>
+        <div class="stats"><span class="stat">17 km</span><span class="stat">約 <b>20 分</b></span><span class="stat mid">連續彎道</span></div>
+        <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">Hwy 16 上的 <b>Disaster Point</b>（Pocahontas 西邊）是大角羊固定舔食礦物鹽的地點，<b>常有整群羊站在路面上</b>。減速、不要按喇叭、不要下車。Miette Road 本身彎多路窄，10 月中後就會封閉到隔年 5 月。</span></div>
+          <div class="mrow park"><span class="mk">順路</span><span class="mv">Miette Road 入口附近有 <b>Punchbowl Falls</b>（步行 5 分鐘的雙層瀑布）與 <b>Pocahontas 廢煤礦遺址步道</b>（1910 年代的礦鎮遺跡，1 km 環線），回程若有時間可以停</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip hike">★ 今日主菜</span><h3>Sulphur Skyline 硫磺天際線步道</h3><span class="clock">08:45</span></div>
+        <p class="desc">從溫泉停車場直接起登。前半段是鋪面緩坡，之後轉為連續之字形陡上，最後在裸露的山脊上一路推到 <b>2,050 公尺的山頂</b>。山頂是 360 度全開的視野——東邊是 Fiddle River 谷地與 Ashlar Ridge 的白色石灰岩壁，西邊是層層疊疊的賈斯珀山脈。<b>爬升 700 公尺換這個展望，是整個賈斯珀 CP 值最高的一條路。</b></p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Sulphur+Skyline+Trailhead,+Miette+Hot+Springs,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到步道口</a></div>
+        <div class="stats"><span class="stat">來回 <b>8 km</b></span><span class="stat">爬升 <b>+700 m</b></span><span class="stat">山頂 <b>2,050 m</b></span><span class="stat hard">難度 中偏難</span><span class="stat">約 <b>3–4 小時</b></span></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv"><b>登山杖</b>（下坡碎石很滑）、<b>冰爪</b>（10 月初山頂路段可能結冰）、防風硬殼、羽絨中層、手套毛帽、<b>熊噴霧</b>、2L 水、行動糧、太陽眼鏡＋防曬</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">爬升集中在後半段，<b>坡度陡且沒有平緩處可以喘息</b>。山頂稜線風極大且完全無遮蔽，體感常在 0°C 以下。步道<b>全線沒有水源</b>。這一區<b>黑熊與灰熊都有</b>，熊噴霧掛腰帶、行進中出聲。</span></div>
+          <div class="mrow park"><span class="mk">停車</span><span class="mv">與溫泉共用停車場，免費，位子多。<b>有廁所與飲水機</b>，起登前把水裝滿</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip sight">Soak</span><h3>Miette Hot Springs — 加拿大洛磯山脈最熱的泉水</h3><span class="clock">13:00</span></div>
+        <p class="desc">泉水從地底湧出時高達 <b>54°C</b>，是洛磯山脈最熱的天然溫泉，注入池中冷卻到約 39°C，另有一池 29°C 可以先適應。剛走完 700 公尺爬升後泡進去，正對 Ashlar Ridge 的岩壁——這是今天的完美收尾。</p>
+        <div class="stats"><span class="stat">約 <b>CAD 16–17 / 人</b></span><span class="stat">主池 <b>39°C</b></span><span class="stat">湧出 <b>54°C</b></span><span class="stat">停留 <b>1.5 小時</b></span></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv"><b>泳衣</b>（現場可租，泳衣／毛巾／置物櫃各約 CAD 2–6）、<b>快乾毛巾</b>、拖鞋、防水袋、換洗衣物、零錢</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">季節性營業，<b>約 5 月底 – 10 月中</b>，勞動節後時段約 <b>10:30–21:00</b>（出發前務必上 Parks Canada 官網或打電話確認當日開放時間，10 月初可能縮短）。剛運動完泡熱水容易頭暈，<b>先坐在池邊讓身體降溫、補充水分再下水</b>，也不要泡超過 20 分鐘就起來休息一次。</span></div>
+          <div class="mrow park"><span class="mk">補給</span><span class="mv">溫泉旁有小咖啡吧，但選擇很少。回程可在 Hinton 吃晚餐（選擇多且便宜）</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip sight">彈性</span><h3>【可選】回程順路：Jasper Lake &amp; Talbot Lake 動物線</h3><span class="clock">15:30</span></div>
+        <p class="desc">Hwy 16 沿線的 Jasper Lake 秋季水位低，會露出大片沙丘般的湖床，非常特別。Talbot Lake 一帶是<b>賈斯珀看動物最穩的路段</b>：大角羊、麋鹿、鹿都常見。</p>
+        <div class="actions"><a class="navbtn ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Jasper+Lake,+Jasper+National+Park,+AB&amp;travelmode=driving" target="_blank" rel="noopener">📍 Jasper Lake</a></div>
+        <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">在路邊看動物時<b>務必完全駛離車道、開雙黃燈、待在車內</b>。這條路速限 90，追撞事故多半是因為有人為了看動物突然停在車道上。</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="duo">
+    <div class="box gear">
+      <h4>🎒 今日必備</h4>
+      <div class="gearlist">
+        <span class="must">泳衣＋快乾毛巾</span><span class="must">熊噴霧</span><span class="must">登山杖</span><span class="must">冰爪</span><span>防風硬殼＋羽絨</span><span>手套＋毛帽</span><span>2L 水</span><span>行動糧</span><span>防曬 SPF50+</span><span>太陽眼鏡</span><span>拖鞋</span><span>零錢（置物櫃）</span><span>換洗衣物</span>
+      </div>
+    </div>
+    <div class="box warn">
+      <h4>⚠️ 今日注意事項</h4>
+      <ul>
+        <li><b>先確認溫泉當日營業時間</b>：10 月初季末，時段可能縮短</li>
+        <li><b>Maligne 區域封閉</b>：不要導航過去</li>
+        <li><b>Disaster Point 的大角羊</b>：整群站在路面上，減速、待在車內</li>
+        <li><b>Sulphur Skyline 沒有水源</b>：起登前在停車場飲水機裝滿 2L</li>
+        <li><b>山頂風極大</b>：外套放在背包最外層，一到稜線就穿上</li>
+        <li><b>運動後泡溫泉先降溫</b>：容易頭暈，泡 20 分鐘就起來休息一次</li>
+        <li><b>泡完不要立刻開車</b>：休息 15 分鐘再上路</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="guide">
+    <div class="guide-head"><span class="g-ic">📖</span><div><h3>今日景點介紹</h3><span>Miette ── 一個礦工挖出來的溫泉</span></div></div>
+    <div class="gcards">
+      <div class="gcard">
+        <h4>Miette Hot Springs — 從煤礦工的浴池到國家公園設施</h4>
+        <p>Miette 的溫泉水從 <b>Fiddle River 河谷的斷層</b>湧出，含大量硫酸鈣，帶著淡淡的硫磺味。原住民早在數千年前就使用這些泉水；20 世紀初，附近 <b>Pocahontas 煤礦</b>的礦工用木頭搭了簡陋的浴池，這是最早的「設施」。1938 年 Parks Canada 蓋了正式泳池，1980 年代改建成現在的樣子。</p>
+        <ul>
+          <li><span class="tag red">溫度</span>湧出時 <b>53.9°C</b>，是加拿大洛磯山脈最熱的泉水，必須冷卻後才能使用</li>
+          <li><span class="tag">成分</span>主要是硫酸鹽、鈣、鎂與碳酸氫鹽。那股蛋味來自硫化氫</li>
+          <li><span class="tag gold">遺跡</span>舊池的遺跡還在旁邊，走一小段步道可以看到</li>
+          <li><span class="tag">Pocahontas</span>山下那座廢煤礦鎮 1910–1921 年間曾住了數百人，一戰時是重要的煤炭來源。現在只剩地基與生鏽的機具</li>
+        </ul>
+      </div>
+      <div class="gcard">
+        <h4>Sulphur Skyline — 為什麼這條路值得爬</h4>
+        <p>它不是賈斯珀最高的山，也不是最長的步道，但它站在一個地質分界上：<b>東邊是前山帶（Front Ranges）的破碎石灰岩，西邊是主脈（Main Ranges）</b>。所以從山頂看出去，兩種完全不同的山形同時攤在眼前。</p>
+        <ul>
+          <li><span class="tag blue">Ashlar Ridge</span>東北方那道<b>刀切般的白色岩壁</b>，是整個賈斯珀最上鏡的地質構造之一，也是攀岩路線</li>
+          <li><span class="tag gold">Fiddle River</span>山下那條河谷是野生動物的天然廊道，秋天有機會從山頂看到底下移動的動物群</li>
+          <li><span class="tag">植被</span>2,050 公尺已接近樹線，山頂只剩匍匐的矮松與高山草。<b>請勿離開步道</b></li>
+        </ul>
+        <div class="pull"><b>🐑 大角羊小知識：</b> 公羊的角一輩子都在生長，重量可達 14 公斤——差不多是牠全身骨骼的重量。角上的年輪可以數出年紀。發情期（9–11 月）公羊會用時速 30 公里對撞，聲音在山谷裡傳得非常遠，運氣好在山頂會聽到。</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="stay">
+    <div class="ic">🏕</div>
+    <div>
+      <h4>今晚住宿 · Hinton（最後一晚）</h4>
+      <p><b>50529B Highway 40 North, Yellowhead County, AB T7V 1X3</b></p>
+      <p><b>今晚收行李</b>——明天南下走完整條冰原大道回 Canmore，是這趟最長的一天。今晚在 Hinton 加滿油。</p>
+      <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=50529+Highway+40,+Yellowhead+County,+AB+T7V+1X3&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航回住宿</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ DAY 10 ════════════ -->
+<section class="pane" id="p-d10">
+  <div class="dayhead">
+    <div class="daynum"><div class="lbl">Day</div><div class="n">10</div></div>
+    <div>
+      <h2>冰原大道北段南下 · 帕克稜線與弓谷景觀道</h2>
+      <p class="meta">10/4（日）・<b>Hinton → Icefields Parkway → Canmore</b>・<b>全程最長的一天</b>｜含 Allen 推薦 1 處</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h4>今天要開 470 公里 — 06:30 出發，把光線用滿</h4>
+    <p>日落 18:56，扣掉停留時間，實際可用的白天只有 12 小時多一點。<b>Parker Ridge 是今天的主角，其他都是加分題</b>，時間不夠就依序放棄弓谷景觀道上的景點。</p>
+    <ul>
+      <li><b>出發前在 Hinton 加滿油</b>，中途只有 Saskatchewan Crossing 一個加油站</li>
+      <li>查 <b>511 Alberta</b>：10 月初 Hwy 93N 已進入雪季，封路是真實可能</li>
+      <li>若遇降雪封路，替代路線是 <b>Hwy 16 東行 → Edmonton → Hwy 2 南下 Calgary</b>，但要多開 3 小時，非不得已不要走</li>
+    </ul>
+  </div>
+
+  <div class="route">
+    <div class="route-top">
+      <span class="route-title">🚗 今日路線</span>
+      <span class="route-figs"><span>總里程 <b>約 470 km</b></span><span>純開車 <b>約 6 小時</b></span><span>健行 <b>5.5 km</b></span></span>
+    </div>
+    <div class="legs">
+      <span class="pt">Hinton 06:30</span><span class="seg">1 h 20 · 110 km</span>
+      <span class="pt">賈斯珀／Athabasca Falls</span><span class="seg">1 h 20 · 95 km</span>
+      <span class="pt">Parker Ridge</span><span class="seg">50 min · 68 km</span>
+      <span class="pt">Sask. Crossing ⛽</span><span class="seg">50 min · 82 km</span>
+      <span class="pt">Bow Lake</span><span class="seg">30 min · 37 km</span>
+      <span class="pt">弓谷景觀道</span><span class="seg">50 min · 78 km</span>
+      <span class="pt">Canmore</span>
+    </div>
+  </div>
+
+  <div class="tl">
+    <div class="stop is-drive">
+      <div class="card">
+        <div class="card-top"><span class="chip drive">Start</span><h3>06:30 出發 · 賈斯珀最後一眼</h3><span class="clock">06:30</span></div>
+        <p class="desc">天亮前上路。經過賈斯珀鎮時可以在 Bear's Paw Bakery 買早餐外帶（07:00 開），之後就是一整天的冰原大道。</p>
+        <div class="actions"><a class="navbtn ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Jasper,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 賈斯珀鎮（順路）</a></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv">滿油箱、離線地圖、全天份食物與水、頭燈、刮霜片、熱飲</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">Hwy 16 天亮前是動物路殺高峰，<b>速度壓在 80 以下</b>。若昨天已在 Day 7 走過 Athabasca Falls，今天可以直接跳過，把時間留給 Parker Ridge。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip hike">★ 今日主菜</span><h3>Parker Ridge 帕克稜線 — 一條路換一整條冰河</h3><span class="clock">09:15</span></div>
+        <p class="desc">短短 2.7 公里的之字形上坡，翻過稜線的瞬間，<b>整條 Saskatchewan Glacier（哥倫比亞冰原最長的冰舌，長達 13 公里）會毫無預警地攤在你腳下</b>。這是冰原大道上投資報酬率最高的一條步道，短、快、震撼。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Parker+Ridge+Trailhead,+Banff+National+Park,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到 Parker Ridge 步道口</a></div>
+        <div class="stats"><span class="stat">來回 <b>5.5 km</b></span><span class="stat">爬升 <b>+250 m</b></span><span class="stat">最高 <b>2,225 m</b></span><span class="stat mid">約 <b>2 小時</b></span></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv"><b>防風硬殼</b>（稜線風速常超過 50 km/h，是全程最誇張的一段）、羽絨中層、<b>手套＋毛帽</b>、<b>冰爪</b>、登山杖、太陽眼鏡、1L 水</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">步道位於樹線之上，<b>完全沒有遮蔽</b>。10 月初這裡經常已有積雪，之字形路徑可能被雪覆蓋看不清——<b>請務必沿著既有雪徑走，不要為了抄近路直接切上坡</b>（會嚴重破壞高山苔原，也容易滑落）。稜線頂端強風可能讓人站不穩，靠近邊緣時要蹲低。</span></div>
+          <div class="mrow park"><span class="mk">停車</span><span class="mv">公路邊專屬停車場，免費，約 40 位。<b>沒有廁所</b>——最近的在 Saskatchewan Crossing 或冰原遊客中心</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop is-drive">
+      <div class="card">
+        <div class="card-top"><span class="chip drive">⛽ Fuel</span><h3>Saskatchewan River Crossing 加油與午餐</h3><span class="clock">12:30</span></div>
+        <p class="desc">今天最後一個加油機會。順便解決午餐、上廁所。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=The+Crossing+Resort,+Saskatchewan+River+Crossing,+AB&amp;travelmode=driving" target="_blank" rel="noopener">⛽ 導航到 Saskatchewan Crossing</a></div>
+        <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">10 月初可能已縮短營業或關閉。<b>若關門，撐到 Lake Louise Village（82 km）沒問題，但不要再繞路</b>。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip sight">Bonus</span><h3>Bow Lake 補拍 · 下午光線完全不同</h3><span class="clock">14:00</span></div>
+        <p class="desc">Day 6 是早上經過，今天是下午——<b>光線從西邊打過來，湖面顏色與山影完全是另一個樣子</b>。時間允許就停 20 分鐘。</p>
+        <div class="actions"><a class="navbtn ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Num-Ti-Jah+Lodge,+Bow+Lake,+AB&amp;travelmode=driving" target="_blank" rel="noopener">📍 Bow Lake</a></div>
+      </div>
+    </div>
+
+    <div class="stop is-drive">
+      <div class="card">
+        <div class="card-top"><span class="chip drive">Scenic</span><h3>轉進 Bow Valley Parkway 弓谷景觀道（Hwy 1A）</h3><span class="clock">15:30</span></div>
+        <p class="desc">從 Lake Louise 出口轉進這條與 Hwy 1 平行的老公路，速限只有 60，兩旁是原始森林。<b>這是 Banff 看野生動物最好的一條路</b>，也是傍晚光線最美的一段。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Bow+Valley+Parkway,+Lake+Louise,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到弓谷景觀道</a></div>
+        <div class="stats"><span class="stat">全長 <b>48 km</b></span><span class="stat">速限 <b>60 km/h</b></span><span class="stat mid">野生動物廊道</span></div>
+        <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">速限 60 是為了保護動物，<b>執法很認真</b>。這條路上熊、狼、鹿、麋鹿都出現過。傍晚是最容易遇到的時段，也是最容易撞到的時段。</span></div>
+          <div class="mrow park"><span class="mk">順路</span><span class="mv"><b>Morant's Curve</b>——加拿大最著名的鐵路攝影點，弓河、鐵道與 Temple 山在同一個彎道裡。就在 1A 起點附近的路邊停車彎</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip rec">🍁 Allen 推薦</span><h3>Castle Cliff Viewpoint 城堡山斷崖觀景台</h3><span class="clock">16:15</span></div>
+        <p class="desc">弓谷景觀道上正對 <b>Castle Mountain</b> 的觀景點。這座山的名字來得非常直接——一整排垂直的石灰岩壁像城堡的雉堞城牆，橫向延伸將近 10 公里。<b>傍晚西曬時整片岩壁會轉成金橘色</b>，Allen 說這是弓谷光線最好的地方。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Castle+Cliff+Viewpoint,+Bow+Valley+Parkway,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到 Castle Cliff Viewpoint</a></div>
+        <div class="stats"><span class="stat">停留 <b>20–30 分</b></span><span class="stat easy">路邊停車彎</span><span class="stat">黃金時刻 <b>17:30–18:40</b></span></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv">長焦與廣角各一（岩壁很長，兩種都用得到）、防風外套、腳架</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">停車彎不大，<b>進出時要完全駛離車道</b>。這一帶是熊的活動範圍，不要為了取景走進路旁的樹林。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip sight">彈性</span><h3>【可選】Johnston Canyon 強斯頓峽谷（若 Day 2 沒走）</h3><span class="clock">16:45</span></div>
+        <p class="desc">若 Day 2 沒去、今天時間又還夠，可以走下瀑布來回（2.4 km，約 1 小時）。走到上瀑布要多 1 小時，<b>傍晚就不要勉強</b>。</p>
+        <div class="actions"><a class="navbtn ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Johnston+Canyon+Trailhead,+Bow+Valley+Parkway,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到強斯頓峽谷</a></div>
+        <div class="stats"><span class="stat">下瀑布來回 <b>2.4 km</b></span><span class="stat">上下瀑布 <b>5.4 km</b></span><span class="stat easy">鐵架棧道</span></div>
+        <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">峽谷內<b>天黑得比外面早很多</b>，且鐵架棧道傍晚結霜。<b>17:00 之後就不要進去</b>；今天已經開了 400 多公里，安全回家比多看一個瀑布重要。</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="duo">
+    <div class="box gear">
+      <h4>🎒 今日必備</h4>
+      <div class="gearlist">
+        <span class="must">滿油箱</span><span class="must">防風硬殼</span><span class="must">冰爪</span><span class="must">手套＋毛帽</span><span class="must">離線地圖</span><span>登山杖</span><span>全天份食物與水</span><span>熱飲保溫瓶</span><span>頭燈</span><span>太陽眼鏡（西曬）</span><span>相機備用電池</span><span>行李（今天搬家）</span>
+      </div>
+    </div>
+    <div class="box warn">
+      <h4>⚠️ 今日注意事項</h4>
+      <ul>
+        <li><b>06:30 準時出發</b>：470 km＋一條步道，晚出門就會摸黑開山路</li>
+        <li><b>Hinton 加滿油</b>：中途只有 Saskatchewan Crossing，且可能關門</li>
+        <li><b>Parker Ridge 稜線風速 50+</b>：外套放外層，靠近邊緣蹲低</li>
+        <li><b>不要抄近路切上坡</b>：破壞苔原且容易在雪地滑落</li>
+        <li><b>弓谷景觀道速限 60</b>：執法嚴格，且動物很多</li>
+        <li><b>把時間表當作可犧牲的</b>：Parker Ridge 走完就算今天成功，其餘全是加分</li>
+        <li><b>回到 Canmore 先加油</b>：Day 12 要開回機場，先加好省事</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="guide">
+    <div class="guide-head"><span class="g-ic">📖</span><div><h3>今日景點介紹</h3><span>Parker Ridge、Castle Mountain 與那條老公路</span></div></div>
+    <div class="gcards">
+      <div class="gcard">
+        <h4>Saskatchewan Glacier — 冰原伸得最長的一條舌頭</h4>
+        <p>從 Parker Ridge 看到的這條冰河長達 <b>13 公里</b>，是哥倫比亞冰原六大出口冰河中最長的一條。它的融水形成 North Saskatchewan River，一路向東流 1,300 公里，最終注入哈德遜灣。</p>
+        <ul>
+          <li><span class="tag red">退縮</span>自 1893 年以來，Saskatchewan Glacier 已退縮約 <b>1.9 公里</b>。你站的稜線在 1900 年時看到的冰，比現在要近得多</li>
+          <li><span class="tag blue">中磧</span>注意冰河表面那幾條深色的長條紋——那是<b>中磧（medial moraine）</b>，是兩條冰河匯流時各自邊緣的碎石被夾在中間形成的</li>
+          <li><span class="tag gold">高山苔原</span>稜線上的植被是脆弱的高山苔原，一株矮柳可能已經活了半世紀。Parks Canada 在這裡做了大量步道修復——<b>請走在路徑上</b></li>
+          <li><span class="tag">二戰</span>1940 年代，加拿大軍隊曾在 Saskatchewan Glacier 上測試雪地車輛，為北極作戰做準備</li>
+        </ul>
+      </div>
+      <div class="gcard">
+        <h4>Castle Mountain — 曾經叫做「艾森豪山」</h4>
+        <p>1858 年由地質學家 James Hector 命名，因為那排垂直的石灰岩壁看起來就像中世紀城堡的雉堞。<b>1946 年，加拿大政府為了感謝艾森豪將軍在二戰的貢獻，把它改名為 Mount Eisenhower</b>——結果引發當地人強烈反彈，1979 年改回 Castle Mountain，只保留最東端的一座塔峰叫 Eisenhower Tower。</p>
+        <ul>
+          <li><span class="tag">地質</span>山體是<b>寒武紀的石灰岩與白雲岩</b>，超過 5 億年。垂直的城牆狀是因為堅硬的岩層抵抗侵蝕，較軟的頁岩層被掏空形成階地</li>
+          <li><span class="tag red">歷史</span>一戰期間，Castle Mountain 山腳曾設有<b>拘留營</b>，關押被視為「敵國僑民」的烏克蘭裔移民，強制他們修築 Banff 的道路。現在路邊有紀念碑</li>
+          <li><span class="tag gold">Silverton Falls</span>Castle Junction 附近有一條 1.6 km 的小步道通往 Silverton Falls，人非常少</li>
+        </ul>
+      </div>
+      <div class="gcard">
+        <h4>Bow Valley Parkway — 那條慢下來才有意義的路</h4>
+        <p>1920 年代建的老公路，是 Lake Louise 與 Banff 之間的原始道路。1960 年代 Hwy 1 通車後，它被保留成景觀道路。</p>
+        <ul>
+          <li><span class="tag blue">動物走廊</span>Parks Canada 每年 <b>3 月 1 日 – 6 月 25 日</b>會在部分路段實施夜間封閉，讓動物安心通過。你們 10 月來不受影響</li>
+          <li><span class="tag gold">Morant's Curve</span>以加拿大太平洋鐵路的攝影師 <b>Nicholas Morant</b> 命名。他在 1930–1980 年間拍下無數經典的鐵路照片，這個彎道是他最愛的取景點</li>
+          <li>路上會經過 <b>Storm Mountain Viewpoint</b>、<b>Baker Creek</b>、<b>Muleshoe</b> 等多個停車彎，每一個都有不同的視角</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="stay">
+    <div class="ic">🏡</div>
+    <div>
+      <h4>今晚起回到 Canmore（最後兩晚）</h4>
+      <p><b>Canmore Airbnb</b></p>
+      <p>開了 470 公里，今晚早點休息。<b>順手把油加滿</b>，Day 12 要開回機場。</p>
+      <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Canmore,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航回 Canmore</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ DAY 11 ════════════ -->
+<section class="pane" id="p-d11">
+  <div class="dayhead">
+    <div class="daynum"><div class="lbl">Day</div><div class="n">11</div></div>
+    <div>
+      <h2>庫特尼 · 火燒過的秘境與史丹利冰河</h2>
+      <p class="meta">10/5（一）・<b>Canmore ⇄ Kootenay（BC 省）</b>・人煙稀少的一天</p>
+    </div>
+  </div>
+
+  <div class="note">
+    <h4>今天再次進入 BC 省 — 查 DriveBC</h4>
+    <p>Kootenay 國家公園在 BC 卑詩省，但同樣使用山區時間，<b>時鐘不用調</b>。路況查 <b>DriveBC</b>。Hwy 93S 從 Castle Junction 到 Radium Hot Springs 全長 105 km，<b>中間完全沒有加油站與商店</b>。</p>
+  </div>
+
+  <div class="route">
+    <div class="route-top">
+      <span class="route-title">🚗 今日路線</span>
+      <span class="route-figs"><span>總里程 <b>約 200 km</b></span><span>純開車 <b>約 2 小時 30 分</b></span><span>健行 <b>8.4 km</b></span></span>
+    </div>
+    <div class="legs">
+      <span class="pt">Canmore 07:30</span><span class="seg">45 min · 60 km</span>
+      <span class="pt">Castle Junction</span><span class="seg">20 min · 25 km · Hwy 93S</span>
+      <span class="pt">Stanley Glacier 步道口</span><span class="seg">健行 4 h</span>
+      <span class="pt">Marble Canyon</span><span class="seg">5 min</span>
+      <span class="pt">Paint Pots</span><span class="seg">1 h 15 · 95 km</span>
+      <span class="pt">Canmore</span>
+    </div>
+  </div>
+
+  <div class="tl">
+    <div class="stop is-drive">
+      <div class="card">
+        <div class="card-top"><span class="chip drive">Drive</span><h3>翻過 Vermilion Pass · 跨越大陸分水嶺</h3><span class="clock">08:15</span></div>
+        <p class="desc">從 Castle Junction 轉進 Hwy 93S，5 分鐘後就會翻過 <b>Vermilion Pass（1,651 m）</b>——這裡同時是 Alberta / BC 省界，也是<b>北美大陸分水嶺</b>：東邊的水流向大西洋，西邊流向太平洋。路邊有解說牌可以停。</p>
+        <div class="actions"><a class="navbtn ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Vermilion+Pass+Continental+Divide,+BC&amp;travelmode=driving" target="_blank" rel="noopener">📍 大陸分水嶺標誌</a></div>
+        <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv"><b>出發前在 Canmore 加滿油</b>——Hwy 93S 上完全沒有加油站，最近的在 Banff 或 105 km 外的 Radium。手機訊號同樣很差。</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip hike">★ 今日主菜</span><h3>Stanley Glacier 史丹利冰河步道</h3><span class="clock">09:00</span></div>
+        <p class="desc">整條路線穿過 <b>1968 年與 2003 年兩場大火燒過的森林</b>——銀白色的枯立木站在一片新生的野花與小樹之間，是很超現實的畫面。爬升後轉入一個巨大的岩壁圍成的懸谷，正對 Stanley Glacier 與從 500 公尺高崖上落下的細瀑。<b>人非常少，常常整條路只有你們兩個。</b></p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Stanley+Glacier+Trailhead,+Kootenay+National+Park,+BC&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到 Stanley Glacier 步道口</a></div>
+        <div class="stats"><span class="stat">來回 <b>8.4 km</b></span><span class="stat">爬升 <b>+365 m</b></span><span class="stat mid">約 <b>3.5–4 小時</b></span><span class="stat">難度 中等</span></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv"><b>熊噴霧</b>（這一區灰熊活動頻繁且人少，務必掛腰帶並沿路出聲）、登山杖、防風外套、羽絨中層、手套、2L 水、行動糧、<b>冰爪</b>（谷地終點的碎石與雪坡）</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv"><b>人少是優點也是風險。</b>沒有訊號、沒有其他登山者可以求助，請務必<b>兩人全程同行、留下行程給住宿或家人</b>。火燒區的<b>枯立木在強風下有倒塌風險</b>，不要在焦木密集區休息。步道後段跨越幾條溪流，早上可能結冰。</span></div>
+          <div class="mrow park"><span class="mk">停車</span><span class="mv">Hwy 93S 邊的專屬停車場，免費，約 30 位。<b>有旱廁</b>。這是今天上午唯一的廁所</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip sight">Canyon</span><h3>Marble Canyon 大理石峽谷</h3><span class="clock">13:30</span></div>
+        <p class="desc">Tokumm Creek 在白色的白雲岩層中鑿出一道深達 <b>39 公尺、寬僅數公尺</b>的裂縫。步道沿著峽谷架了七座橋，越走越高，最後正對一道墜入深淵的瀑布。1.6 km 的環線，卻是整個庫特尼最讓人印象深刻的地形。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Marble+Canyon,+Kootenay+National+Park,+BC&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到大理石峽谷</a></div>
+        <div class="stats"><span class="stat">環線 <b>1.6 km</b></span><span class="stat">爬升 <b>+60 m</b></span><span class="stat easy">約 45 分</span></div>
+        <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">橋面與岩石<b>常年被水霧打濕，結霜時極滑</b>。峽谷極窄且深，<b>絕對不要把相機或手機伸出護欄外</b>——掉下去就沒了。這裡在 2003 年大火中受損嚴重，兩側山坡的枯木同樣要留意。</span></div>
+          <div class="mrow park"><span class="mk">停車</span><span class="mv">停車場免費，<b>有廁所</b>。旁邊就是 Marble Canyon Campground</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip sight">Culture</span><h3>Paint Pots 顏料池 — 原住民的赭土聖地</h3><span class="clock">14:30</span></div>
+        <p class="desc">三個被橘紅色赭土（ochre）包圍的冷泉池，池水是不真實的鏽橘與藍綠色。這裡是 Ktunaxa、Stoney 與 Blackfoot 族數百年來採集<b>顏料赭土</b>的聖地——他們用它畫身體、畫岩畫、畫帳篷。20 世紀初曾被商業開採運去卡加利做油漆顏料，遺留的機具還在。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Paint+Pots,+Kootenay+National+Park,+BC&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到 Paint Pots</a></div>
+        <div class="stats"><span class="stat">來回 <b>2.4 km</b></span><span class="stat easy">幾乎全平</span><span class="stat">約 50 分</span></div>
+        <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">請注意</span><span class="mv">這是<b>原住民的文化聖地</b>。請待在步道與觀景平台上，<b>不要踩進赭土地、不要帶走任何土石</b>。赭土地表看似乾燥，其實下方是泥沼，踩下去會陷。</span></div>
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv">防水鞋（步道有幾段泥濘與跨溪的吊橋）、熊噴霧</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop is-drive">
+      <div class="card">
+        <div class="card-top"><span class="chip drive">Return</span><h3>回程 · Storm Mountain Viewpoint 順路</h3><span class="clock">15:30</span></div>
+        <p class="desc">回程翻過 Vermilion Pass 前，Storm Mountain Viewpoint 是最後一個開闊的停車彎，可以回望整條 Vermilion 河谷與火燒區的地景。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Canmore,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航回 Canmore</a></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">今晚</span><span class="mv">最後一個在 Canmore 好好吃飯的晚上。<b>Grizzly Paw</b>、<b>Tank 310</b>、<b>The Wood</b> 都是在地人推薦。順便買 Grizzly Paw 的手工汽水當伴手禮</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv"><b>今晚要打包行李、加滿油</b>。明天下午要還車，油不滿會被收高價補油費。</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="duo">
+    <div class="box gear">
+      <h4>🎒 今日必備</h4>
+      <div class="gearlist">
+        <span class="must">熊噴霧（人少更重要）</span><span class="must">滿油箱</span><span class="must">防水鞋</span><span>冰爪</span><span>登山杖</span><span>防風外套＋羽絨</span><span>手套</span><span>2L 水</span><span>行動糧</span><span>離線地圖</span><span>行程留給家人</span>
+      </div>
+    </div>
+    <div class="box warn">
+      <h4>⚠️ 今日注意事項</h4>
+      <ul>
+        <li><b>Hwy 93S 沒有加油站</b>：Canmore 出發前加滿</li>
+        <li><b>Stanley Glacier 人極少</b>：兩人全程同行，行程留給住宿或家人</li>
+        <li><b>火燒區的枯立木</b>：強風時不要在焦木密集處停留或休息</li>
+        <li><b>大理石峽谷極窄極深</b>：不要把相機伸出護欄</li>
+        <li><b>Paint Pots 是文化聖地</b>：不踩赭土、不帶走任何東西</li>
+        <li><b>今晚打包＋加油</b>：明天是返程日，不要留到早上手忙腳亂</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="guide">
+    <div class="guide-head"><span class="g-ic">📖</span><div><h3>今日景點介紹</h3><span>庫特尼 ── 一條公路換來的國家公園</span></div></div>
+    <div class="gcards">
+      <div class="gcard">
+        <h4>Kootenay — 用土地換一條路</h4>
+        <p>1920 年成立，成立方式很特別：BC 省政府當時想修一條翻越洛磯山脈通往 Windermere 谷地的公路，但沒錢完工。<b>聯邦政府答應出錢，條件是 BC 把公路兩側各 8 公里的土地劃為國家公園。</b>所以庫特尼是一座「因路而生」的公園——它的形狀就是沿著 Hwy 93S 的一條長帶。</p>
+        <ul>
+          <li><span class="tag">名字</span>「Kootenay」來自 Ktunaxa 族，意思大約是「來自山外的人」</li>
+          <li><span class="tag gold">跨度</span>這座公園從北端的冰河與高山苔原，一路延伸到南端 Radium 的<b>半乾旱峽谷與仙人掌</b>——是洛磯山脈四座公園中生態跨度最大的</li>
+          <li><span class="tag blue">遊客</span>遊客量只有 Banff 的 5%，很多步道整天遇不到十個人</li>
+        </ul>
+      </div>
+      <div class="gcard">
+        <h4>那兩場大火，與火之後的森林</h4>
+        <p>1968 年的 Vermilion Pass 大火燒掉約 25 平方公里；2003 年的 Tokumm/Verendrye 大火更大，燒掉超過 170 平方公里，是庫特尼有紀錄以來最大的一次。你們今天走的整條 Stanley Glacier 步道，就穿過這兩片火場。</p>
+        <ul>
+          <li><span class="tag red">為什麼不救</span>現代森林管理已經理解：<b>火是這片森林生命週期的一部分</b>。黑松（lodgepole pine）的毬果外層裹著樹脂，<b>必須經過 45–60°C 的高溫才會裂開釋放種子</b>——沒有火，這種樹就無法更新</li>
+          <li><span class="tag gold">看什麼</span>枯立木之間的新生黑松現在大約 3–5 公尺高；地被是柳蘭（fireweed）、野草莓與矮柳。<b>這是一座正在自己重建的森林</b></li>
+          <li><span class="tag">攝影</span>銀白色枯木＋金黃草地＋深藍天空，是洛磯山脈裡最有辨識度的畫面之一</li>
+        </ul>
+      </div>
+      <div class="gcard">
+        <h4>Stanley Glacier 與伯吉斯頁岩</h4>
+        <p>步道終點的懸谷是典型的<b>冰斗（cirque）</b>——冰河在山壁上挖出的碗狀凹地。Stanley Glacier 現在只剩掛在高處的一小片，但融水仍從 500 公尺高的崖壁上細細落下。</p>
+        <ul>
+          <li><span class="tag red">化石</span>這片谷地是 <b>Burgess Shale 伯吉斯頁岩</b>的延伸露頭之一，含有 5.08 億年前寒武紀的三葉蟲與軟體動物化石。<b>Parks Canada 有導覽團才能進入化石區，自行採集是違法的</b></li>
+          <li><span class="tag blue">回音</span>谷地三面環壁，聲音會回彈。在終點喊一聲，會聽到自己的回音從對面 500 公尺高的岩壁傳回來</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="stay">
+    <div class="ic">🏡</div>
+    <div>
+      <h4>今晚住宿 · Canmore（最後一晚）</h4>
+      <p><b>Canmore Airbnb</b></p>
+      <p><b>今晚打包完成、油加滿、把熊噴霧處理掉的計畫想好</b>（不能上飛機）。</p>
+      <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Canmore,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航回 Canmore</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════ DAY 12 ════════════ -->
+<section class="pane" id="p-d12">
+  <div class="dayhead">
+    <div class="daynum"><div class="lbl">Day</div><div class="n">12</div></div>
+    <div>
+      <h2>格拉西湖 · 還車 · 回家</h2>
+      <p class="meta">10/6（二）・<b>Canmore → Calgary YYC</b>・<b>17:50 起飛</b></p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <h4>今天的時間軸倒推：17:50 起飛</h4>
+    <ul>
+      <li><b>15:00</b> 進航廈（國際線建議提前 3 小時，最晚 14:50）</li>
+      <li><b>14:15</b> 還車完成（租車還車區到航廈有接駁或步行約 10–15 分）</li>
+      <li><b>13:45</b> 機場附近加滿油（還車前最後一步）</li>
+      <li><b>12:15</b> 從 Canmore 出發（105 km，約 1 小時 15 分）</li>
+      <li><b>10:30</b> 下山、回住宿整理、退房</li>
+      <li><b>07:30</b> Grassi Lakes 起登</li>
+    </ul>
+  </div>
+
+  <div class="route">
+    <div class="route-top">
+      <span class="route-title">🚗 今日路線</span>
+      <span class="route-figs"><span>總里程 <b>約 120 km</b></span><span>純開車 <b>約 1 小時 30 分</b></span><span>健行 <b>4 km</b></span></span>
+    </div>
+    <div class="legs">
+      <span class="pt">Canmore 07:15</span><span class="seg">12 min · 8 km</span>
+      <span class="pt">Grassi Lakes</span><span class="seg">12 min</span>
+      <span class="pt">Canmore 退房／午餐</span><span class="seg">1 h 15 · 105 km</span>
+      <span class="pt">YYC 加油／還車</span><span class="seg">15 min</span>
+      <span class="pt">航廈</span>
+    </div>
+  </div>
+
+  <div class="tl">
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip hike">Farewell</span><h3>Grassi Lakes 格拉西湖 — 完美的告別</h3><span class="clock">07:30</span></div>
+        <p class="desc">Canmore 的招牌短程步道，走 1 小時就能到兩座小得像玻璃杯的湖——<b>湖水是清澈到能看見湖底枯木的祖母綠</b>，顏色來自石灰岩地下水而非冰河岩粉。上方是知名的攀岩場，湖畔岩壁上還有原住民留下的<b>赭土岩畫</b>。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Grassi+Lakes+Trailhead,+Canmore,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到 Grassi Lakes 步道口</a></div>
+        <div class="stats"><span class="stat">來回 <b>4 km</b></span><span class="stat">爬升 <b>+240 m</b></span><span class="stat easy">約 <b>1.5 小時</b></span></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv">登山鞋、頭燈（07:30 天剛亮）、薄外套、水。<b>裝備已打包的話，這天穿輕便一點就好</b></span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">步道有兩條：<b>「More Difficult」是右側經過瀑布的路線</b>（風景好但有石階與濕滑路段），「Easy」是左側的碎石產業道路。<b>建議難路上、易路下</b>。今天有飛機要趕，<b>設定 09:30 為折返底線</b>。</span></div>
+          <div class="mrow park"><span class="mk">停車</span><span class="mv">上下兩個停車場，免費，<b>有廁所</b>。這裡在 Canmore 鎮界內，不需要國家公園證</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip food">Last Call</span><h3>Canmore 退房 · 最後採買與午餐</h3><span class="clock">10:30</span></div>
+        <p class="desc">回住宿沖澡、退房、把行李裝車。留一點時間在 Main Street 買伴手禮。</p>
+        <div class="actions"><a class="navbtn ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Main+Street,+Canmore,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 Canmore 主街</a></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">伴手禮</span><span class="mv"><b>Grizzly Paw 手工汽水</b>（帶得上飛機的托運行李）／楓糖漿／Rocky Mountain Soap Company（Canmore 起家的手工皂）／原住民工藝品</span></div>
+          <div class="mrow warn"><span class="mk">熊噴霧</span><span class="mv"><b>熊噴霧不能托運也不能手提</b>。請在退房前送給住宿主人、下一位旅客，或丟進 Canmore 遊客中心／戶外用品店的回收桶。<b>千萬不要塞進行李，會被安檢查扣並可能罰款。</b></span></div>
+          <div class="mrow park"><span class="mk">檢查</span><span class="mv">退房前最後檢查：<b>冰箱、烘衣機、充電器、插座轉接頭、浴室掛的衣服</b>——這些是最常忘的東西</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop is-drive">
+      <div class="card">
+        <div class="card-top"><span class="chip drive">⛽ Return</span><h3>加滿油 → YYC 還車</h3><span class="clock">13:45</span></div>
+        <p class="desc">在機場附近的加油站加滿（機場旁的 Costco 或 Petro-Canada 都可以），拍下油表照片，再開進還車區。</p>
+        <div class="actions">
+          <a class="navbtn link" href="https://www.google.com/maps/dir/?api=1&amp;destination=Gas+Station+near+Calgary+International+Airport,+Calgary,+AB&amp;travelmode=driving" target="_blank" rel="noopener">⛽ 機場附近加油站</a>
+          <a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Calgary+International+Airport+Car+Rental+Return,+Calgary,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到 YYC 還車區</a>
+        </div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv">加油收據、還車前<b>繞車拍一圈影片</b>（含輪胎、擋風玻璃、四角）、油表照片、里程數照片</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">還車時務必<b>拿到書面或電子的結案收據</b>，確認沒有額外扣款。車內最後檢查：<b>手機架、車充、太陽眼鏡、置物箱裡的東西</b>。</span></div>
+          <div class="mrow park"><span class="mk">動線</span><span class="mv">YYC 還車區在航廈停車樓內，還完車走通道或搭接駁到出境大廳，約 10–15 分鐘</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop is-drive">
+      <div class="card">
+        <div class="card-top"><span class="chip fly">Departure</span><h3>YYC 出境 · WS 1552 / BR 23</h3><span class="clock">15:00</span></div>
+        <p class="desc">15:00 進航廈，辦理登機、托運、過安檢與美國／國際線出境。</p>
+        <div class="actions"><a class="navbtn ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Calgary+International+Airport+Departures,+Calgary,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 YYC 出境大廳</a></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">托運三動作</span><span class="mv">（IG 筆記⑪）<b>①拍下行李外觀、行李條與磅秤畫面 ②收好行李存根到領回為止 ③行李內放 AirTag</b></span></div>
+          <div class="mrow warn"><span class="mk">不能帶</span><span class="mv"><b>熊噴霧</b>（托運與手提皆禁）、<b>登山用瓦斯罐</b>、超過 100ml 的液體（手提）。行動電源必須<b>手提，不可托運</b>。</span></div>
+          <div class="mrow park"><span class="mk">別白跑</span><span class="mv">加拿大<b>已於 2007 年取消一般旅客的 GST 消費稅退稅制度</b>，機場沒有旅客退稅櫃檯，不用去找。</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="duo">
+    <div class="box gear">
+      <h4>🎒 今日必備</h4>
+      <div class="gearlist">
+        <span class="must">護照＋登機證</span><span class="must">加油收據</span><span class="must">還車結案收據</span><span>頭燈</span><span>輕便鞋</span><span>行動電源（放手提）</span><span>轉接頭</span><span>伴手禮空間</span>
+      </div>
+    </div>
+    <div class="box warn">
+      <h4>⚠️ 今日注意事項</h4>
+      <ul>
+        <li><b>09:30 是 Grassi Lakes 的折返底線</b>：今天有飛機，不能拖</li>
+        <li><b>熊噴霧一定要在 Canmore 處理掉</b>：不能托運也不能手提</li>
+        <li><b>還車前加滿油＋拍影片</b>：油表、里程、車身四角都拍</li>
+        <li><b>行動電源必須手提</b>：托運會被退運</li>
+        <li><b>沒有旅客退稅</b>：加拿大 2007 年就取消了，別浪費時間找櫃檯</li>
+        <li><b>退房前檢查冰箱與浴室</b>：最常忘東西的兩個地方</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="guide">
+    <div class="guide-head"><span class="g-ic">📖</span><div><h3>今日景點介紹</h3><span>Grassi Lakes ── 一位義大利礦工留下的路</span></div></div>
+    <div class="gcards">
+      <div class="gcard">
+        <h4>Lawrence Grassi — 用鎬與雙手鑿出步道的人</h4>
+        <p>Lawrence Grassi（1890–1980）是從義大利移民來的煤礦工人，白天在 Canmore 的礦坑工作，<b>下班和假日就自己一個人上山修步道</b>。他沒有任何工程訓練，全靠一把鎬、一根撬棍與對山的熱情，在 Canmore 與 Lake O'Hara 一帶鑿出了數十公里的登山道與石階。</p>
+        <ul>
+          <li><span class="tag gold">石階</span>他鋪的石階至今仍在使用，每一塊石頭都是他一個人搬動、對齊、卡進去的。這條步道上你踩的很多階梯就是他的作品</li>
+          <li><span class="tag">後來</span>他後來成為 Lake O'Hara 的山屋管理員與救難隊員，1980 年在 Canmore 過世，享年 90 歲。這兩座湖以他為名</li>
+          <li><span class="tag blue">湖水</span>Grassi Lakes 的祖母綠<b>不是冰河岩粉</b>，而是石灰岩地下水中溶解的碳酸鈣與湖底的藻類共同造成的。因為水極清澈，能直接看到沉在湖底的枯木</li>
+          <li><span class="tag red">岩畫</span>上湖後方的岩壁上有<b>原住民留下的赭土岩畫（pictographs）</b>，據估計有數百年歷史。位置不明顯，仔細找找看——<b>但絕對不要觸摸</b></li>
+        </ul>
+        <div class="pull"><b>🧗 抬頭看看：</b> 上湖後方那面陡峭的石灰岩壁是加拿大最著名的運動攀岩場之一。天氣好的日子，你會看到攀岩者像壁虎一樣貼在上面。</div>
+      </div>
+      <div class="gcard">
+        <h4>12 天，1,750 公里，四座國家公園</h4>
+        <p>從草原盡頭第一眼看到洛磯山脈，到現在準備離開——你們走過了 <b>Banff、Yoho、Jasper、Kootenay</b> 四座國家公園，開了將近 1,750 公里，爬升累計超過 <b>4,000 公尺</b>。</p>
+        <ul>
+          <li><span class="tag gold">最金的一天</span>9/27 Larch Valley，一年只有兩三週的窗口</li>
+          <li><span class="tag blue">最藍的一天</span>9/30 Peyto Lake，那隻狼頭形狀的湖</li>
+          <li><span class="tag">最冷的一天</span>10/1 哥倫比亞冰原，腳下是兩萬年的冰</li>
+          <li><span class="tag red">最長的一天</span>10/4，470 公里穿過整條冰原大道</li>
+          <li>回家路上，記得在飛機上看一眼窗外——如果座位在左側，起飛後幾分鐘還能看到整片洛磯山脈</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <b>函君 &amp; Ayson 的落葉松季洛磯山脈自駕 🍁</b>
+  <span>Calgary · Canmore · Banff · Yoho · Jasper · Kootenay ｜ 2026.09.24 – 10.08</span>
+  <div class="fnote">DRIVE SAFE · CHECK 511 ALBERTA &amp; DRIVEBC EVERY MORNING</div>
+</footer>
+
+<script>
+(function(){
+  var rail=document.getElementById('rail');
+  rail.addEventListener('click',function(e){
+    var b=e.target.closest('.tab'); if(!b) return;
+    document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on')});
+    document.querySelectorAll('.pane').forEach(function(p){p.classList.remove('on')});
+    b.classList.add('on');
+    var el=document.getElementById(b.dataset.pane);
+    if(el) el.classList.add('on');
+    b.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+})();
+</script>
+
+</body>
+</html>
