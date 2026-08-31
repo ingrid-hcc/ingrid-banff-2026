@@ -2,13 +2,23 @@
 <html lang="zh-TW">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <meta name="description" content="函君 & Ayson 的加拿大洛磯山脈 12 日自駕行程手冊 — Banff / Yoho / Jasper / Kootenay，2026 落葉松季">
-<style>html{color-scheme:light dark}body{margin:0;font:14px system-ui}img{max-width:100%}[hidden]{display:none!important}</style>
+<meta name="theme-color" content="#1f4a3d">
+<meta name="color-scheme" content="light dark">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="apple-touch-icon" href="./apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="落葉松季自駕">
+<style>html{color-scheme:light dark}body{margin:0;font:14px system-ui;-webkit-text-size-adjust:100%}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>落葉松季自駕手冊</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700;900&display=swap" media="print" onload="this.media='all'">
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=Noto+Sans+TC:wght@400;500;700;900&display=swap"></noscript>
 <style>
 /* ══════════════ TOKENS ══════════════ */
 :root{
@@ -394,6 +404,32 @@ footer .fnote{font-family:var(--font-mono);font-size:11px;letter-spacing:.05em;m
   .stop::before{left:-19px}
   .route-figs{margin-left:0;width:100%}
 }
+</style>
+<style>
+  /* 主畫面啟動（standalone）時的瀏海／底部安全區 */
+  .rail{padding-top:env(safe-area-inset-top,0)}
+  body{padding-bottom:env(safe-area-inset-bottom,0)}
+  #offline-pill{
+    position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0));
+    z-index:200;display:none;align-items:center;gap:7px;
+    background:var(--spruce);color:var(--ground);
+    border-radius:999px;padding:8px 15px;font-size:12.5px;font-weight:700;
+    box-shadow:0 4px 18px rgba(0,0,0,.28);cursor:pointer;border:0;
+    font-family:var(--font-body);max-width:calc(100vw - 28px);
+  }
+  #offline-pill.show{display:inline-flex;animation:pillin .35s ease}
+  #offline-pill.warn{background:var(--larch);color:#2a1f08}
+  @keyframes pillin{from{opacity:0;transform:translateX(-50%) translateY(10px)}to{opacity:1;transform:translateX(-50%) translateY(0)}}
+  @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) #offline-pill{color:#11150f}}
+  :root[data-theme="dark"] #offline-pill{color:#11150f}
+  @media print{
+    .rail,#offline-pill{display:none!important}
+    .pane{display:block!important;break-before:page}
+    .pane:first-of-type{break-before:auto}
+    .hero{break-after:page}
+    .card,.gcard,.box,.callout,.note,.stay,.flight,.packcard{break-inside:avoid}
+    body{background:#fff}
+  }
 </style>
 
 <!-- ═══════════════ HERO ═══════════════ -->
@@ -2850,5 +2886,46 @@ footer .fnote{font-family:var(--font-mono);font-size:11px;letter-spacing:.05em;m
 })();
 </script>
 
+<button id="offline-pill" type="button" aria-live="polite"></button>
+<script>
+(function(){
+  var pill=document.getElementById('offline-pill');
+  function say(txt,warn,hold){
+    pill.textContent=txt;
+    pill.classList.toggle('warn',!!warn);
+    pill.classList.add('show');
+    if(!hold) setTimeout(function(){pill.classList.remove('show')},4200);
+  }
+  pill.addEventListener('click',function(){pill.classList.remove('show')});
+
+  // 直接從「檔案」App 開啟（file://）時不註冊 Service Worker — 本來就已經離線可讀
+  var web = location.protocol === 'https:' || location.hostname === 'localhost';
+  if(!web){ say('📄 本機檔案模式 — 已可離線閱讀'); return; }
+  if(!('serviceWorker' in navigator)){return;}
+  window.addEventListener('load',function(){
+    navigator.serviceWorker.register('./sw.js',{scope:'./'}).then(function(reg){
+      if(navigator.serviceWorker.controller){
+        say('✓ 已存到手機，沒有網路也能看');
+      }else{
+        say('⏳ 正在存進手機…',true,true);
+        navigator.serviceWorker.addEventListener('controllerchange',function(){
+          say('✓ 已存到手機，沒有網路也能看');
+        });
+      }
+      reg.addEventListener('updatefound',function(){
+        var sw=reg.installing;
+        if(!sw) return;
+        sw.addEventListener('statechange',function(){
+          if(sw.state==='installed' && navigator.serviceWorker.controller){
+            say('↻ 有新版本，關掉重開就會更新',true,true);
+          }
+        });
+      });
+    }).catch(function(){ say('⚠ 離線儲存失敗，請用 Safari 開啟',true,true); });
+  });
+
+  window.addEventListener('offline',function(){say('📴 目前沒有網路 — 行程仍可正常閱讀',true);});
+})();
+</script>
 </body>
 </html>
