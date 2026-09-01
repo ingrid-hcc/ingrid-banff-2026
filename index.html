@@ -51,9 +51,12 @@
   --shadow:0 1px 2px rgba(23,33,29,.05), 0 4px 14px rgba(23,33,29,.05);
   --shadow-lift:0 2px 6px rgba(23,33,29,.08), 0 12px 28px rgba(23,33,29,.10);
 
-  --font-display:'Bitter', 'Noto Serif TC', Georgia, serif;
-  --font-body:'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', system-ui, sans-serif;
-  --font-mono:'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* 中文一律走黑體：'Bitter' 只吃拉丁字母，中文交給後面的無襯線字型。
+     絕不留 serif 當結尾，否則 Windows 會掉到新細明體 PMingLiU。 */
+  --cjk:'Noto Sans TC','PingFang TC','PingFang HK','Hiragino Sans TC','Microsoft JhengHei UI','Microsoft JhengHei','微軟正黑體','Noto Sans CJK TC','Source Han Sans TC',sans-serif;
+  --font-display:'Bitter', var(--cjk);
+  --font-body:var(--cjk);
+  --font-mono:'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, 'Noto Sans TC','PingFang TC','Microsoft JhengHei',monospace;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
@@ -110,10 +113,15 @@ body{
   font-family:var(--font-body);
   background:var(--ground);
   color:var(--ink);
-  line-height:1.7;
-  font-size:15px;
+  line-height:1.78;
+  font-size:16px;
+  letter-spacing:.012em;
   overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
+/* 中文標題用比拉丁更重的字重才撐得起來 */
+h1,h2,h3,h4,.dayhead h2,.card h3,.gcard h4,.box h4,.sec > h3{letter-spacing:.01em}
 a{color:inherit}
 :focus-visible{outline:2px solid var(--larch);outline-offset:2px;border-radius:4px}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
@@ -458,6 +466,105 @@ td small{display:block;font-size:11px;color:var(--ink-3);font-family:var(--font-
   .tl{padding-left:20px}
   .stop::before{left:-19px}
   .route-figs{margin-left:0;width:100%}
+}
+
+/* ══════════════════════════════════════════════════════════
+   字體系統 v2 — 以手機戶外閱讀為主要情境
+   ・中文字級一律比拉丁高一階（同樣 px 下中文的視覺高度較小）
+   ・正文行高 1.85：中文方塊字需要比拉丁更多的行間才不擁擠
+   ・任何「文章型」文字不低於 14px，手機上不低於 15px
+   ══════════════════════════════════════════════════════════ */
+:root{
+  --fs-label:12px;    /* 標籤、單位、mono 說明 — 只給非句子的短字串 */
+  --fs-chip:13px;     /* 數據膠囊、分頁 */
+  --fs-sm:14.5px;     /* 次要說明文 */
+  --fs-base:15.5px;   /* 正文 */
+  --fs-title:17px;    /* 卡片標題 */
+  --lh-prose:1.85;    /* 正文行高 */
+  --lh-tight:1.55;    /* 標籤、單行 */
+  --lh-head:1.45;     /* 標題 */
+}
+
+/* ── 正文層 ── */
+.card p.desc,
+.gcard p,
+.callout p, .note p,
+.td-body > span,
+.stay p,
+.pull,
+.box ul li,
+.gcard ul li,
+.callout ul li, .note ul li,
+.packcard li,
+.kv-row .v,
+.mrow .mv{
+  font-size:var(--fs-base);
+  line-height:var(--lh-prose);
+  letter-spacing:.015em;
+  text-wrap:pretty;
+}
+.mrow .mv,.kv-row .v{font-size:var(--fs-sm)}
+.packcard li small,.olink span{font-size:13px;line-height:1.65;letter-spacing:.01em}
+
+/* ── 標題層 ── */
+.dayhead h2{font-size:clamp(21px,4.4vw,28px);line-height:var(--lh-head);font-weight:700}
+.dayhead .meta{font-size:var(--fs-sm);line-height:1.6}
+.card h3{font-size:var(--fs-title);line-height:var(--lh-head)}
+.gcard h4,.box h4,.callout h4,.note h4,.slot h4{font-size:16px;line-height:var(--lh-head)}
+.sec > h3{font-size:18px;line-height:var(--lh-head)}
+.td-body > b{font-size:16px;line-height:var(--lh-head)}
+.guide-head h3{font-size:17.5px}
+.guide-head span{font-size:13.5px}
+
+/* ── 標籤與數據層（短字串，可以小，但不要更小）── */
+.stat{font-size:var(--fs-chip);line-height:1.5}
+.gearlist span{font-size:var(--fs-chip);line-height:1.7}
+.chip{font-size:var(--fs-label)}
+.mrow .mk,.td-when{font-size:var(--fs-label)}
+.kv-row .k{font-size:13.5px;line-height:1.5}
+.legs{font-size:13.5px;line-height:1.75}
+.legs .seg{font-size:12px}
+.tab{font-size:13.5px}
+.tab .num{font-size:10.5px}
+th,td{font-size:13.5px;line-height:1.7}
+footer{font-size:13.5px;line-height:1.8}
+.tlink{font-size:12.5px}
+
+/* ── 桌機：限制中文每行字數 ──
+   中文一行超過 45 字左右眼睛就會抓不到行首。1080px 全寬會到 60 字以上。 */
+@media (min-width:1000px){
+  .card p.desc,.gcard p,.callout > p,.note > p,.td-body > span,.stay p,.pull{max-width:46em}
+  .box ul li,.gcard ul li,.callout ul li,.note ul li{max-width:44em}
+  .mrow .mv{max-width:52em}
+}
+
+/* ── 手機：戶外、行進中、可能戴手套 ── */
+@media (max-width:560px){
+  :root{
+    --fs-sm:15px;
+    --fs-base:16px;
+    --fs-title:17.5px;
+    --lh-prose:1.9;
+  }
+  body{font-size:16px}
+  .wrap{padding:20px 13px 60px}
+  .card{padding:15px 14px}
+  .gcard,.box,.callout,.note,.packcard,.flight{padding:15px 15px}
+  .tab{padding:14px 10px 11px;font-size:13.5px}   /* 觸控高度 ≥44px */
+  .stat{font-size:13px;padding:4px 10px}
+  .gearlist span{font-size:13.5px;padding:4px 12px}
+  .navbtn{font-size:13.5px;padding:9px 15px}       /* 導航鍵要好按 */
+  .mrow{gap:8px}
+  .mrow .mk{font-size:11.5px;padding:3px 8px}
+  .kv-row{grid-template-columns:1fr}
+  .kv-row .k{padding:9px 14px 3px;background:none;font-size:12.5px;color:var(--ink-3)}
+  .kv-row .v{padding:0 14px 11px}
+  .sec > h3{font-size:17px}
+  .guide-head h3{font-size:16.5px}
+}
+@media (max-width:380px){
+  :root{--fs-base:15.5px}
+  .dayhead h2{font-size:20px}
 }
 </style>
 <style>
