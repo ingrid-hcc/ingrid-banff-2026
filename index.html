@@ -14,6 +14,9 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="落葉松季自駕">
 <style>html{color-scheme:light dark}body{margin:0;font:14px system-ui;-webkit-text-size-adjust:100%}img{max-width:100%}[hidden]{display:none!important}</style>
+<script>
+(function(){try{var t=localStorage.getItem('banff-theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
 <title>落葉松季自駕手冊</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -156,7 +159,16 @@ a{color:inherit}
   border-bottom:1px solid var(--line);
   box-shadow:0 1px 0 rgba(0,0,0,.02);
 }
-.rail-scroll{display:flex;gap:2px;max-width:1080px;margin:0 auto;padding:0 12px;overflow-x:auto;scrollbar-width:none}
+.rail-inner{display:flex;align-items:stretch;max-width:1080px;margin:0 auto;gap:2px}
+.rail-scroll{display:flex;gap:2px;flex:1 1 auto;min-width:0;padding:0 4px 0 12px;overflow-x:auto;scrollbar-width:none}
+.theme-btn{
+  flex:0 0 auto;border:0;border-left:1px solid var(--line);background:none;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1px;
+  padding:0 13px;color:var(--ink-3);font-family:var(--font-body);transition:color .15s;
+}
+.theme-btn:hover{color:var(--spruce-2)}
+.theme-btn .ti{font-size:15px;line-height:1}
+.theme-btn .tl{font-family:var(--font-mono);font-size:9.5px;letter-spacing:.06em;white-space:nowrap}
 .rail-scroll::-webkit-scrollbar{display:none}
 .tab{
   flex:0 0 auto;border:0;background:none;cursor:pointer;
@@ -493,6 +505,7 @@ td small{display:block;font-size:11px;color:var(--ink-3);font-family:var(--font-
 
 <!-- ═══════════════ TABS ═══════════════ -->
 <nav class="rail">
+  <div class="rail-inner">
   <div class="rail-scroll" id="rail">
     <button class="tab util on" data-pane="p-drive"><span class="num">Info</span>🚗 自駕總覽</button>
     <button class="tab util" data-pane="p-pack"><span class="num">Info</span>🎒 打包清單</button>
@@ -508,6 +521,10 @@ td small{display:block;font-size:11px;color:var(--ink-3);font-family:var(--font-
     <button class="tab" data-pane="p-d10"><span class="num">10/04</span>D10 冰原大道北</button>
     <button class="tab" data-pane="p-d11"><span class="num">10/05</span>D11 庫特尼</button>
     <button class="tab" data-pane="p-d12"><span class="num">10/06</span>D12 返程</button>
+  </div>
+  <button class="theme-btn" id="themeBtn" type="button" aria-label="切換配色模式" title="切換配色：跟隨系統 / 淺色 / 深色">
+    <span class="ti" id="themeIcon">🌓</span><span class="tl" id="themeLabel">系統</span>
+  </button>
   </div>
 </nav>
 
@@ -3134,6 +3151,36 @@ td small{display:block;font-size:11px;color:var(--ink-3);font-family:var(--font-
 
 <script>
 (function(){
+  // ── 配色切換：跟隨系統 → 淺色 → 深色 → 跟隨系統 ──
+  var MODES=[{k:'auto',i:'🌓',l:'系統'},{k:'light',i:'☀️',l:'淺色'},{k:'dark',i:'🌙',l:'深色'}];
+  var btn=document.getElementById('themeBtn'),
+      ico=document.getElementById('themeIcon'),
+      lab=document.getElementById('themeLabel'),
+      idx=0;
+  function store(v){try{v?localStorage.setItem('banff-theme',v):localStorage.removeItem('banff-theme');}catch(e){}}
+  function read(){try{return localStorage.getItem('banff-theme');}catch(e){return null;}}
+  function paintMeta(){
+    var m=document.querySelector('meta[name="theme-color"]');
+    if(!m) return;
+    var dark=getComputedStyle(document.documentElement).getPropertyValue('--spruce-ink').trim();
+    var isDark=document.documentElement.getAttribute('data-theme')==='dark' ||
+      (!document.documentElement.hasAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+    m.setAttribute('content', isDark ? '#11150f' : '#1f4a3d');
+  }
+  function apply(){
+    var m=MODES[idx];
+    if(m.k==='auto'){document.documentElement.removeAttribute('data-theme');store(null);}
+    else{document.documentElement.setAttribute('data-theme',m.k);store(m.k);}
+    ico.textContent=m.i; lab.textContent=m.l;
+    btn.setAttribute('aria-label','目前配色：'+m.l+'，點擊切換');
+    paintMeta();
+  }
+  var saved=read();
+  idx = saved==='light' ? 1 : saved==='dark' ? 2 : 0;
+  apply();
+  btn.addEventListener('click',function(){ idx=(idx+1)%MODES.length; apply(); });
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){ if(MODES[idx].k==='auto') paintMeta(); });
+
   var rail=document.getElementById('rail');
   rail.addEventListener('click',function(e){
     var b=e.target.closest('.tab'); if(!b) return;
