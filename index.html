@@ -391,6 +391,29 @@ footer{background:var(--spruce-ink);color:rgba(243,243,239,.62);padding:28px 20p
 footer b{color:#f3f3ef;font-family:var(--font-display);font-size:14px;display:block;margin-bottom:5px}
 footer .fnote{font-family:var(--font-mono);font-size:11px;letter-spacing:.05em;margin-top:9px;opacity:.7}
 
+/* 出發前待辦清單 */
+.todo{display:grid;gap:8px}
+.todo-row{
+  display:grid;grid-template-columns:76px 1fr;gap:14px;align-items:start;
+  background:var(--card);border:1px solid var(--line);border-left:3px solid var(--spruce-2);
+  border-radius:var(--radius);padding:12px 15px;box-shadow:var(--shadow);
+}
+.todo-row.urgent{border-left-color:var(--alert);background:linear-gradient(90deg,var(--alert-wash),var(--card) 42%)}
+.td-when{
+  font-family:var(--font-mono);font-size:12px;font-weight:600;color:var(--spruce-2);
+  line-height:1.4;text-align:center;padding-top:2px;
+}
+.todo-row.urgent .td-when{color:var(--alert)}
+.td-when small{display:block;font-size:10px;opacity:.75;font-weight:400}
+.td-body > b{display:block;font-family:var(--font-display);font-size:14px;line-height:1.45;margin-bottom:3px}
+.td-body > span{display:block;font-size:12.5px;color:var(--ink-2);line-height:1.7}
+.td-body > span b{color:var(--ink);font-weight:600}
+@media (max-width:560px){
+  .todo-row{grid-template-columns:1fr;gap:6px}
+  .td-when{text-align:left;display:flex;gap:6px;align-items:baseline}
+  .td-when small{display:inline}
+}
+
 /* 表格內的訂票連結 */
 .tlink{
   display:inline-block;font-size:11.5px;font-weight:700;color:var(--nav-blue);
@@ -638,6 +661,89 @@ td small{display:block;font-size:11px;color:var(--ink-3);font-family:var(--font-
   </div>
 
   <div class="sec">
+    <h3>✅ 出發前待辦 — 依截止日排序</h3>
+    <div class="todo">
+      <div class="todo-row urgent">
+        <div class="td-when">本週<br><small>最急</small></div>
+        <div class="td-body">
+          <b>翻開兩本護照確認兩件事</b>
+          <span>①內頁有沒有印<b>身分證字號</b>（沒有就不能用 eTA，得辦訪客簽證，時間來不及）②是不是<b>晶片護照</b>（ESTA 強制要求）。這是唯一會讓整趟夭折的項目，先確認再辦其他。</span>
+        </div>
+      </div>
+      <div class="todo-row urgent">
+        <div class="td-when">本週<br><small>最急</small></div>
+        <div class="td-body">
+          <b>辦 美國 ESTA ＋ 加拿大 eTA（兩人各一份）</b>
+          <span>ESTA US$40.27 · <a class="tlink" href="https://esta.cbp.dhs.gov" target="_blank" rel="noopener">esta.cbp.dhs.gov</a>（官方保留 72 小時審核）｜eTA CA$7 · <a class="tlink" href="https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/eta/apply.html" target="_blank" rel="noopener">canada.ca</a>。<b>沒有 ESTA 在桃園就登不了機。</b></span>
+        </div>
+      </div>
+      <div class="todo-row urgent">
+        <div class="td-when">本週<br><small>會賣完</small></div>
+        <div class="td-body">
+          <b>訂 IceWalks Classic Half Day — 10/1（四）<u>09:45 班</u>・兩人</b>
+          <span>≈CA$138／人。<a class="tlink" href="https://www.icewalks.com/tours/half-day-tours" target="_blank" rel="noopener">icewalks.com 訂票</a> 或電話 (780) 852-3803。<b>訂票時順便問四件事</b>：①下雪或能見度差會不會出團、取消是退錢還是折抵 ②24 小時前取消是否全額退 ③有沒有最低成團人數 ④10 月第一週是不是兩班都還在跑。訂完把確認信截圖存離線。</span>
+        </div>
+      </div>
+      <div class="todo-row urgent">
+        <div class="td-when">本週<br><small>會賣完</small></div>
+        <div class="td-body">
+          <b>訂 精靈島遊船 Classic — 10/3（六）上午 09:30 或 10:00・兩人</b>
+          <span>CA$107／人。<a class="tlink" href="https://www.banffjaspercollection.com/attractions/maligne-lake-cruise/tickets/" target="_blank" rel="noopener">Pursuit 訂票</a> 或電話 1.888.900.6272。<b>訂的時候順便問改期規定</b>——10/2 與 10/3 可能要依天氣對調。</span>
+        </div>
+      </div>
+      <div class="todo-row">
+        <div class="td-when">出發前<br><small>一週</small></div>
+        <div class="td-body">
+          <b>打電話問冰原遊客中心：Wilcox Pass 步道口停車場 10 月還開嗎？</b>
+          <span>Wilcox Campground <b>9/28 就關閉</b>，而步道口停車場就在營地入口旁，<b>沒有任何官方資料說明那條路會不會上鎖</b>。被關的話 10/1 下午就要改成 Skywalk。這通電話值得打。</span>
+        </div>
+      </div>
+      <div class="todo-row">
+        <div class="td-when">出發前<br><small>一週</small></div>
+        <div class="td-body">
+          <b>打電話給 Alamo YYC 確認雪胎，並改取車時間</b>
+          <span>訂單 <b>2126884712</b>。①確認雪胎需求已註記在檔案上（M+S 或 3PMSF）②把取車時間從 09:00 改成 <b>11:00</b>（班機 09:40 才落地，差太久有 no-show 風險，改期免費）。</span>
+        </div>
+      </div>
+      <div class="todo-row">
+        <div class="td-when">出發前<br><small>採買</small></div>
+        <div class="td-body">
+          <b>迪卡儂買冰爪（microspikes）兩副</b>
+          <span>Sentinel Pass、Wilcox Pass、Parker Ridge 這種 2,000 m 以上路段，10 月初結冰是常態。台灣買好帶去，當地不一定有現貨。</span>
+        </div>
+      </div>
+      <div class="todo-row">
+        <div class="td-when">出發前<br><small>三天</small></div>
+        <div class="td-body">
+          <b>查一次 Parks Canada 公告</b>
+          <span><a class="tlink" href="https://parks.canada.ca/pn-np/ab/banff/bulletins" target="_blank" rel="noopener">Banff 公告</a>：①Larch Valley 有沒有轉成強制四人成團 ②強斯頓峽谷有沒有秋季維修封閉。<a class="tlink" href="https://parks.canada.ca/pn-np/ab/jasper/visit/ouvert-fermee-open-closed" target="_blank" rel="noopener">Jasper 開放清單</a>：確認瑪琳湖仍開放。</span>
+        </div>
+      </div>
+      <div class="todo-row">
+        <div class="td-when">出發前<br><small>Wi-Fi 下</small></div>
+        <div class="td-body">
+          <b>下載 Google Maps 離線地圖 ＋ 把這份手冊加到主畫面</b>
+          <span>離線地圖範圍：<b>Calgary–Banff–Jasper 整條走廊</b>。冰原大道與瑪琳湖全線沒訊號，導航按鈕點得開但算不出路線。</span>
+        </div>
+      </div>
+      <div class="todo-row">
+        <div class="td-when">落地<br><small>當天</small></div>
+        <div class="td-body">
+          <b>YYC 機場買 Discovery Pass 家庭年票 ＋ 取車時加登記第二駕駛人</b>
+          <span>年票 CA$167.50（比日票省 CA$126.50），<b>機場就有賣，取車前先買最順</b>。取車時把函君加登記為 Additional Driver，未登記開車出事所有保險失效。</span>
+        </div>
+      </div>
+      <div class="todo-row">
+        <div class="td-when">10/1<br><small>晚上</small></div>
+        <div class="td-body">
+          <b>看三天預報，決定 10/2 與 10/3 要不要對調</b>
+          <span>精靈島最看天氣，Day 8 的五湖谷陰天照樣好看。10/2 晴、10/3 陰 → 打電話把遊船改到 10/2，兩天內容整個換。</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="sec">
     <h3>📋 預約檢查表 — 依急迫度排序</h3>
 
     <div class="callout">
@@ -646,8 +752,9 @@ td small{display:block;font-size:11px;color:var(--ink-3);font-family:var(--font-
       <ul>
         <li>Classic Half Day：<b>CA$131.43 ＋5% GST ≈ CA$138／成人</b>，3.25–3.5 小時，5 km</li>
         <li>出發時間 <b>09:45</b> 或 <b>14:00</b>（MT），需<b>提前 20 分鐘</b>報到</li>
-        <li><b>選 14:00 那班，不要選 09:45。</b>09:45 要 09:25 報到，等於 06:00 出門後全程零緩衝——10/1 正是雪胎法規生效日，路上一場雪就可能遲到，錯過就是 CA$276 丟掉。14:00 有四小時緩衝，而且高山步道拿到天氣最穩的早上</li>
+        <li><b>選 09:45 那班。</b>兩個理由：①<b>官方公告「10 月起冰原大道下午 3:30 到隔天早上 7:00 沒有道路維護」，且 Parks Canada 明講「建議白天行駛」</b>——14:00 的團 17:30 才結束，會正好在黃昏動物出沒高峰上路 ②<b>萬一早上路上下雪遲到，同一天下午 14:00 那班就是你的救命備案</b>（官方政策：遲到不退費，但「會盡力安排你上另一班，視空位而定」）。反過來訂 14:00 就沒有後路了</li>
         <li><b>只訂 IceWalks，不要再訂冰原車。</b>兩者去的是同一條 Athabasca Glacier，差別只在坐車上去 vs 綁繩走上去。省下 3 小時和一筆錢</li>
+        <li><b>天氣取消機率其實很低。</b>官網 FAQ 原文：「就算天氣不好我們還是會盡量出團⋯⋯我們可以提供你需要的雨具。<b>如果有雷雨，我們會取消並全額退費</b>，這種情況一個夏天大概發生兩三次。」下雨照走，10 月的雷雨機率又比盛夏低。<b>但下雪、能見度差他們沒有公告政策</b>，這要打電話問</li>
         <li>官網 <b>icewalks.com</b>｜電話 (780) 852-3803。<b>官網有一個舊頁面還掛著 2021 年的資訊，別看錯</b>，訂之前打電話確認 10/1 那班確定成行</li>
       </ul>
     </div>
@@ -656,9 +763,9 @@ td small{display:block;font-size:11px;color:var(--ink-3);font-family:var(--font-
       <table>
         <thead><tr><th>項目</th><th>日期</th><th>要不要訂</th><th>價格</th><th class="num">季節到</th><th>官方訂票</th></tr></thead>
         <tbody>
-          <tr><td><b>IceWalks 冰川健行</b><br><small>Classic Half Day 5 km</small></td><td>10/1</td><td><b style="color:var(--alert)">必訂・最急</b></td><td>≈CA$138／人</td><td class="num">10/12</td><td><a class="tlink" href="https://www.icewalks.com/tours/half-day-tours" target="_blank" rel="noopener">icewalks.com ↗</a><br><small>(780) 852-3803</small></td></tr>
-          <tr><td><b>瑪琳湖精靈島遊船</b></td><td>10/3</td><td><b style="color:var(--alert)">必訂</b><br><small>不預購無法指定班次</small></td><td>Classic CA$107<br>Premium CA$143</td><td class="num">10/11</td><td><a class="tlink" href="https://www.banffjaspercollection.com/attractions/maligne-lake-cruise/tickets/" target="_blank" rel="noopener">Pursuit 訂票 ↗</a><br><small>1.888.900.6272</small></td></tr>
-          <tr><td><b>哥倫比亞冰原車</b><br><small>Ice Explorer ＋ Skywalk</small></td><td>10/1</td><td>強烈建議<br><small>分時段，會賣完</small></td><td>官網動態定價<br><small>15:30 後 8 折</small></td><td class="num">10/12</td><td><a class="tlink" href="https://www.banffjaspercollection.com/attractions/columbia-icefield-adventure/tickets/" target="_blank" rel="noopener">Pursuit 訂票 ↗</a><br><small>1.866.506.0515</small></td></tr>
+          <tr><td><b>IceWalks 冰川健行</b><br><small>Classic Half Day 5 km</small></td><td>10/1</td><td><b style="color:var(--alert)">現在就訂</b><br><small>選 09:45 班</small></td><td>≈CA$138／人<br><small>兩人 ≈CA$276</small></td><td class="num">10/12</td><td><a class="tlink" href="https://www.icewalks.com/tours/half-day-tours" target="_blank" rel="noopener">icewalks.com ↗</a><br><small>(780) 852-3803</small></td></tr>
+          <tr><td><b>瑪琳湖精靈島遊船</b></td><td>10/3</td><td><b style="color:var(--alert)">現在就訂</b><br><small>Classic・上午 09:30/10:00</small></td><td>Classic CA$107<br><small>兩人 CA$214</small></td><td class="num">10/11</td><td><a class="tlink" href="https://www.banffjaspercollection.com/attractions/maligne-lake-cruise/tickets/" target="_blank" rel="noopener">Pursuit 訂票 ↗</a><br><small>1.888.900.6272</small></td></tr>
+          <tr style="opacity:.62"><td><b>哥倫比亞冰原車</b><br><small>Ice Explorer ＋ Skywalk</small></td><td>10/1</td><td><b>已決定不訂</b><br><small>與 IceWalks 重複</small></td><td>—<br><small>省下 3 小時</small></td><td class="num">10/12</td><td><a class="tlink" href="https://www.banffjaspercollection.com/attractions/columbia-icefield-adventure/tickets/" target="_blank" rel="noopener">Pursuit 訂票 ↗</a><br><small>1.866.506.0515</small></td></tr>
           <tr><td><b>夢蓮湖接駁</b></td><td>9/27</td><td><b style="color:var(--alert)">必訂</b><br><small>你已訂私營 bus ✓</small></td><td>私營 CA$70 起<br>官方 CA$12.75＋$3.5</td><td class="num">10/12</td><td><a class="tlink" href="https://morainelakebus.com/" target="_blank" rel="noopener">私營 bus ↗</a><br><a class="tlink" href="https://reservation.pc.gc.ca" target="_blank" rel="noopener">官方接駁 ↗</a></td></tr>
           <tr><td><b>賈斯珀纜車</b><br><small>Jasper SkyTram</small></td><td>10/2</td><td>建議<br><small>官方建議提前 24 小時</small></td><td>官網動態定價</td><td class="num">10/25</td><td><a class="tlink" href="https://www.banffjaspercollection.com/attractions/jasper-skytram/tickets/" target="_blank" rel="noopener">Pursuit 訂票 ↗</a><br><small>1.866.850.8726</small></td></tr>
           <tr><td><b>班夫纜車</b><br><small>Sulphur Mountain・可選</small></td><td>9/26</td><td>建議<br><small>會賣完，票不可退</small></td><td>官網動態定價<br><small>提前 48h 較便宜</small></td><td class="num">全年</td><td><a class="tlink" href="https://www.banffjaspercollection.com/attractions/banff-gondola/" target="_blank" rel="noopener">Pursuit 訂票 ↗</a></td></tr>
@@ -722,11 +829,12 @@ td small{display:block;font-size:11px;color:var(--ink-3);font-family:var(--font-
     <div class="kv">
       <div class="kv-row"><div class="k">📱 每天早上</div><div class="v"><b>511 Alberta</b>（Alberta 境內：Banff / Jasper / 冰原大道）＋ <b>DriveBC</b>（BC 境內：Yoho 優鶴 / Kootenay 庫特尼）。出發前一定要下載並在每天早上開車前查一次</div></div>
       <div class="kv-row"><div class="k">🚦 速限</div><div class="v">Hwy 1 國家公園段 <b>90 km/h</b>｜冰原大道 Hwy 93N <b>90 km/h</b>｜弓谷景觀道 Bow Valley Pkwy (1A) <b>60 km/h</b>｜鎮內 30–50 km/h。測速相機不少，罰單會寄到租車公司再加手續費</div></div>
-      <div class="kv-row"><div class="k">⛽ 加油</div><div class="v">冰原大道 Lake Louise → Jasper 之間 <b>230 km 只有 Saskatchewan River Crossing 一個加油站（貴且可能關門）</b>。<b>鐵律：離開 Lake Louise / Jasper 前一定加滿油</b></div></div>
+      <div class="kv-row"><div class="k">⛽ 加油</div><div class="v">冰原大道 Lake Louise → Jasper 之間 <b>232 km 只有 Saskatchewan River Crossing 一個加油站</b>，而且 Parks Canada 標示該路段服務「<b>僅 6–9 月營運</b>」——<b>你們 9/30 之後經過時，請當作它不存在</b>。<b>鐵律：離開 Lake Louise / Jasper / Hinton 前一定把油加滿</b>（Ford Escape 滿油續航 600 km 以上，各段都夠）</div></div>
       <div class="kv-row"><div class="k">📶 訊號</div><div class="v">冰原大道全線幾乎沒訊號，優鶴、庫特尼也常斷訊。<b>務必先在 Google Maps 下載離線地圖</b>（範圍：Calgary–Banff–Jasper 整條走廊）</div></div>
       <div class="kv-row"><div class="k">🦌 野生動物</div><div class="v">清晨與黃昏是動物出沒高峰，也是撞車高峰。看到前車減速就跟著減速；<b>絕不下車靠近動物</b>；車內不留食物、垃圾；停車場的垃圾桶都是防熊設計，要用力壓開</div></div>
       <div class="kv-row"><div class="k">🅿️ 停車</div><div class="v">熱門停車場（Lake Louise、Moraine、Emerald Lake、Johnston Canyon）<b>早上 8 點前基本就滿了</b>。路邊紅線與「No Stopping」標誌拖吊很認真</div></div>
-      <div class="kv-row"><div class="k">❄️ 降雪</div><div class="v">10 月初高海拔隨時可能下雪。<b>Yoho Valley Road（Takakkaw Falls）遇雪即封</b>；冰原大道遇雪封路不預警。行程要有「B 方案」的心理準備</div></div>
+      <div class="kv-row"><div class="k">❄️ 降雪</div><div class="v">10 月初高海拔隨時可能下雪。Parks Canada 原文：<b>「冰原大道上，任何月份的雨都可能下成雪。」Yoho Valley Road（Takakkaw Falls）遇雪即封</b>；冰原大道遇雪<b>可能不預警封路</b>。行程要有「B 方案」的心理準備</div></div>
+      <div class="kv-row"><div class="k">🌙 夜間行駛</div><div class="v"><b>Parks Canada 明確建議「白天行駛冰原大道」。</b>而且 <b>10 月起，該路段下午 3:30 至隔天早上 7:00 沒有道路維護</b>——下雪不會有人來鏟。加上全線無訊號、無路燈，<b>10/1 與 10/4 都要把行程壓在天黑前結束</b>。Alberta 統計：<b>35% 的動物撞擊發生在 19:00–23:00</b>，而秋季正是麋鹿發情期與熊入冬前瘋狂覓食的高峰</div></div>
       <div class="kv-row"><div class="k">🕐 時差</div><div class="v">Mountain Daylight Time（UTC−6），<b>台北比當地快 14 小時</b>。台北中午 12:00 = 當地前一天 22:00</div></div>
       <div class="kv-row"><div class="k">🆘 緊急</div><div class="v">報警／救護 <code>911</code>｜Parks Canada 24 小時派遣（山難／野生動物）<code>403-762-1470</code>｜Banff Mineral Springs Hospital <code>403-762-2222</code>｜Hinton Healthcare Centre <code>780-865-3333</code></div></div>
     </div>
@@ -745,6 +853,29 @@ td small{display:block;font-size:11px;color:var(--ink-3);font-family:var(--font-
       </table>
     </div>
     <p style="font-size:12.5px;color:var(--ink-3);margin-top:9px">夜間普遍 −3 ~ 2°C，車窗會結霜。<b>每天回住宿前先把車頭朝東停</b>，隔天早上省掉刮霜時間。</p>
+  </div>
+
+  <div class="sec">
+    <h3>🪑 順路收集：Parks Canada 官方紅椅子</h3>
+    <div class="note">
+      <h4>賈斯珀有 7 組，你們的路線會經過 6 組</h4>
+      <p>Parks Canada 在全國「風景最好、最安靜」的地點放了 <b>400 多張紅色 Adirondack 椅</b>，只公布 GPS 座標、不標距離——官方原文是「<b>紅椅子是留給你去發現的</b>」。賈斯珀共 7 組，你們正好會經過其中 6 組，可以當成三天的小任務。</p>
+      <div class="tblwrap" style="margin-top:12px">
+        <table>
+          <thead><tr><th>紅椅子位置</th><th>日期</th><th>怎麼到</th><th>座標</th></tr></thead>
+          <tbody>
+            <tr><td><b>Wilcox Pass Trail</b></td><td>10/1</td><td>步道口起登 <b>1.5 km</b>，樹線一開就到</td><td><small>52°13'25.3"N 117°12'03.0"W</small></td></tr>
+            <tr><td><b>Valley of the Five Lakes</b></td><td>10/2</td><td>環線上，<b>第三湖與第四湖之間</b></td><td><small>52°48'58.3"N 118°00'20.3"W</small></td></tr>
+            <tr><td><b>Old Fort Point Trail</b></td><td>10/2</td><td>環線的<b>第二個小山頭</b>上</td><td><small>52°52'03.1"N 118°02'44.5"W</small></td></tr>
+            <tr><td><b>Cottonwood Slough</b></td><td>10/2</td><td>Pyramid Lake Road 途中的觀景點</td><td><small>52°53'51.3"N 118°05'38.3"W</small></td></tr>
+            <tr><td><b>Pyramid Overlook Trail</b></td><td>10/2</td><td>金字塔湖區的瞭望步道上</td><td><small>52°55'26.8"N 118°05'39.3"W</small></td></tr>
+            <tr><td><b>Maligne Lake 野餐區</b></td><td>10/3</td><td>遊船碼頭旁的野餐區，最好找的一組</td><td><small>52°43'36.4"N 117°38'05.5"W</small></td></tr>
+            <tr style="opacity:.55"><td>Mt Christie Viewpoint</td><td>—</td><td>在 Hwy 93 上，10/4 南下時<b>可能順路</b></td><td><small>52°35'41.7"N 117°48'19.1"W</small></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:10px;font-size:12.5px">座標可以直接貼進 Google Maps 搜尋。官方清單：<a class="tlink" href="https://parks.canada.ca/pn-np/ab/jasper/activ/experience/chaises-chairs" target="_blank" rel="noopener">賈斯珀紅椅子 ↗</a></p>
+    </div>
   </div>
 
   <div class="sec">
@@ -1965,12 +2096,13 @@ td small{display:block;font-size:11px;color:var(--ink-3);font-family:var(--font-
     <h4>今天只能做兩件事，不是三件</h4>
     <p>單程 <b>185 km／2 小時 15 分</b>，來回四個半小時車程。扣掉這些，冰原區實際只剩約 <b>7 小時</b>。而 Wilcox Pass 要 3 小時、IceWalks 冰川健行 3.5 小時、冰原車另外 2.5–3 小時——<b>三個全做會做到天黑還在山上</b>。</p>
     <ul>
-      <li><b>建議組合：上午 Wilcox Pass ＋ 下午 IceWalks 14:00 班。</b>高山步道拿到天氣最穩的早上，冰川健行有四小時緩衝不怕路況延誤</li>
+      <li><b>建議組合：上午 IceWalks 09:45 班 ＋ 下午 Wilcox Pass。</b>這樣 16:30 就能上路，<b>18:45 天黑前回到 Hinton</b>。若反過來訂 14:00 的團，17:30 才結束、19:45 才到家，等於整段冰原大道都在黃昏與夜間開——這是官方明確建議避免的</li>
       <li><b>冰原車 Ice Explorer 建議直接放棄。</b>它跟 IceWalks 去的是<b>同一條 Athabasca Glacier</b>，差別只在「坐車上去」和「綁繩走上去」。已經訂了 IceWalks 就別再花這筆錢和 3 小時；除非你們特別想站上 <b>Skywalk 玻璃步道</b>（那是另一個地點，可單獨購票）</li>
       <li><b>Sunwapta Falls 與 Athabasca Falls 移走了</b>：Athabasca Falls 挪到 <b>Day 8</b>（那天輕鬆，且就在賈斯珀南邊 31 km），Sunwapta Falls 留給 <b>Day 10</b> 南下時順路收。今天不要再排</li>
     </ul>
     <ul>
       <li><b>今天起雪胎法規正式生效</b>（10/1–3/31，Hwy 93N）。出門前再確認一次輪胎有 M+S 或 3PMSF</li>
+      <li><b>10 月起，冰原大道下午 3:30 到隔天早上 7:00 沒有道路維護</b>，且中途<b>不要指望能加油</b>（Saskatchewan Crossing 的服務官方標示「6–9 月」，10 月可能已收）。<b>出門前在 Hinton 加滿，這趟來回 370 km 一桶油綽綽有餘</b></li>
       <li>出門前查 <b>511 Alberta</b>：10 月初 Hwy 93N 已可能有雪</li>
       <li>油：出發前在 Hinton 加滿，回程若不夠就在賈斯珀補</li>
     </ul>
@@ -1982,32 +2114,18 @@ td small{display:block;font-size:11px;color:var(--ink-3);font-family:var(--font-
       <span class="route-figs"><span>總里程 <b>約 370 km</b></span><span>純開車 <b>約 4 小時 30 分</b></span><span>健行 <b>4.5 km</b></span></span>
     </div>
     <div class="legs">
-      <span class="pt">Hinton 06:00</span><span class="seg">2 h 15 · 185 km</span>
-      <span class="pt">Wilcox Pass 步道口</span><span class="seg">5 min</span>
-      <span class="pt">冰原遊客中心</span><span class="seg">冰川健行 3.5 h</span>
-      <span class="pt">IceWalks 14:00 出發</span><span class="seg">2 h 15 · 185 km</span>
-      <span class="pt">Hinton</span>
+      <span class="pt">Hinton 05:30</span><span class="seg">2 h 15 · 185 km</span>
+      <span class="pt">冰原遊客中心 07:45</span><span class="seg">09:25 報到</span>
+      <span class="pt">IceWalks 09:45–13:15</span><span class="seg">午餐 45 min</span>
+      <span class="pt">Wilcox Pass 14:15–16:15</span><span class="seg">2 h 15 · 185 km</span>
+      <span class="pt">Hinton 18:45</span>
     </div>
   </div>
 
   <div class="tl">
     <div class="stop">
       <div class="card">
-        <div class="card-top"><span class="chip hike">★ 上午主場</span><h3>Wilcox Pass 威爾考克斯隘口 — 看冰河最好的角度</h3><span class="clock">08:30</span></div>
-        <p class="desc">在冰原大道上，唯一能<b>從高處平視整條 Athabasca Glacier 冰舌與哥倫比亞冰原</b>的步道。前 30 分鐘穿過老雲杉林陡上，之後突然開闊成一片高山苔原，冰河就整片攤在你對面。大角羊常在稜線上吃草，完全不怕人。</p>
-        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Wilcox+Pass+Trailhead,+Wilcox+Creek,+Jasper+National+Park,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到 Wilcox Pass 步道口</a></div>
-        <div class="stats"><span class="stat">來回 <b>8 km</b>（觀景點 4.5 km）</span><span class="stat">爬升 <b>+330 m</b></span><span class="stat">最高 <b>2,375 m</b></span><span class="stat mid">約 <b>3 小時</b></span></div>
-        <div class="stopmeta">
-          <div class="mrow gear"><span class="mk">必備</span><span class="mv"><b>防風硬殼外套</b>（樹線之上完全沒遮蔽，風速常 40+ km/h）、羽絨中層、<b>手套＋毛帽</b>、<b>冰爪</b>、登山杖、2L 水、熊噴霧、太陽眼鏡</span></div>
-          <div class="mrow warn"><span class="mk">注意</span><span class="mv">走出樹線後<b>體感溫度會驟降 10°C 以上</b>，很多人低估這件事。<b>不必走到最遠的隘口</b>——2.2 km 處第一個開闊觀景點就已經是最好的畫面了。看到雲層壓下來或開始飄雪就立刻折返。</span></div>
-          <div class="mrow park"><span class="mk">停車</span><span class="mv">步道口在 Wilcox Creek Campground 入口旁的小停車場，<b>約 20 個位子</b>，免費。滿了就往南 1 km 有另一個路邊停車彎</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div class="stop">
-      <div class="card">
-        <div class="card-top"><span class="chip rec">📸 IG 筆記⑦</span><h3>Athabasca Glacier IceWalks — 綁上繩子走進冰河</h3><span class="clock">14:00</span></div>
+        <div class="card-top"><span class="chip rec">📸 IG 筆記⑦</span><h3>Athabasca Glacier IceWalks — 綁上繩子走進冰河</h3><span class="clock">09:45</span></div>
         <p class="desc">IG 遊記強力推薦：真正站上 Athabasca Glacier 的那一刻，腳下是<b>存在了約兩萬年的冰河遺跡</b>，才真的感受到自然的壯闊與人的渺小。有兩種玩法：</p>
         <div class="stats"><span class="stat easy">冰原車 <b>5/1–10/12</b></span><span class="stat">Ice Explorer <b>2.5–3 小時</b></span><span class="stat mid">IceWalks 半日 <b>5/16–10/12</b></span><span class="stat hard">全日團 9/20 已結束</span></div>
         <div class="actions">
@@ -2016,10 +2134,12 @@ td small{display:block;font-size:11px;color:var(--ink-3);font-family:var(--font-
           <a class="navbtn link" href="https://www.banffjaspercollection.com/attractions/columbia-icefield-adventure/tickets/" target="_blank" rel="noopener">🎟 冰原車訂票</a>
         </div>
         <div class="stopmeta">
+          <div class="mrow warn"><span class="mk">天氣</span><span class="mv">官網 FAQ 原文：<b>「就算天氣不好我們還是會盡量出團⋯⋯如果有雷雨，我們會取消並全額退費，這種情況一個夏天大概發生兩三次。」下雨照走</b>，他們會借你雨具。10 月的雷雨機率比盛夏低。<b>但下雪與能見度差沒有公告政策</b>，訂票時打電話問清楚。</span></div>
+          <div class="mrow warn"><span class="mk">遲到</span><span class="mv">官方政策：<b>遲到或缺席一律不退費</b>，但<b>「會盡力安排你上另一班，視空位而定」</b>。所以訂 09:45 的好處是——萬一早上路上下雪耽誤，<b>同一天 14:00 那班就是你的備案</b>。訂 24 小時內取消也不退費。</span></div>
           <div class="mrow warn"><span class="mk">季節</span><span class="mv"><b>冰原車 Columbia Icefield Adventure：2026 營運 5/1 – 10/12</b>，你們 10/1 穩穩在季內。<b>IceWalks 冰川健行：官網寫「5 月底 – 10 月初」</b>，10/1 已經在最後邊緣——<b>務必先上官網看 10/1 那天的行事曆有沒有開團</b>，沒開就改搭冰原車。</span></div>
           <div class="mrow warn"><span class="mk">最重要</span><span class="mv"><b>現在就上官網刷卡訂位。</b>IceWalks 官網自己寫「我們通常提前 2–3 週就訂滿」；IG 作者的親友到現場想報名，全部團次都只剩候補（Waiting list）。距離你們出發只剩約四週，<b>這件事排在待辦第一順位</b>。</span></div>
           <div class="mrow gear"><span class="mk">必備</span><span class="mv"><b>①保暖衣物一定要帶</b>——即使盛夏站在冰原上依然寒冷，冰風吹來體感比想像低很多，而且高山天氣多變，可能一下出太陽、下一刻就狂風下雨。<b>②防水鞋</b>——冰面上有不少融雪積水，很多人鞋襪都濕了。<b>③背包放一雙備用襪</b>。④手套、毛帽、太陽眼鏡（冰面反光極強）</span></div>
-          <div class="mrow park"><span class="mk">選擇建議</span><span class="mv">上午已走完 Wilcox Pass 8 km，下午建議選 <b>Ice Explorer 冰原車（約 1.5 小時）</b>，時間與體力都比較剛好；若想走 IceWalks Classic Half Day（約 3 小時），就把 Wilcox Pass 縮短成 4.5 km 觀景點來回</span></div>
+          <div class="mrow park"><span class="mk">今天怎麼排</span><span class="mv"><b>05:30 從 Hinton 出發 → 07:45 抵達</b>（留 100 分鐘緩衝）→ 09:25 報到 → <b>09:45–13:15 冰川健行</b> → 遊客中心吃午餐、看冰河退縮標示牌 → <b>14:15–16:15 Wilcox Pass（走到 2.2 km 的觀景點就折返，4.5 km 來回）</b> → 16:30 上路 → <b>18:45 天黑前回到 Hinton</b></span></div>
           <div class="mrow warn"><span class="mk">絕對禁止</span><span class="mv"><b>不要自己走上冰河。</b>冰隙常被薄雪覆蓋看不出來，掉下去幾乎沒有生還機會。只能跟隨有繩索與導覽的團隊進入。</span></div>
         </div>
       </div>
@@ -2027,8 +2147,24 @@ td small{display:block;font-size:11px;color:var(--ink-3);font-family:var(--font-
 
     <div class="stop">
       <div class="card">
-        <div class="card-top"><span class="chip sight">彈性</span><h3>【可選】Columbia Icefield Skywalk 冰川天空步道</h3><span class="clock">11:30</span></div>
-        <p class="desc">一條伸出崖壁的玻璃地板觀景走道，離谷底 280 公尺。若已買冰原車套票通常會包含，單買性價比一般，但玻璃地板的體驗確實特別。</p>
+        <div class="card-top"><span class="chip hike">★ 下午主場</span><h3>Wilcox Pass 紅椅子觀景點 — 只走 1.5 km 就夠</h3><span class="clock">14:15</span></div>
+        <p class="desc">在冰原大道上，唯一能<b>從高處平視整條 Athabasca Glacier 冰舌與哥倫比亞冰原</b>的步道。<b>不必走完全程 8 km。</b>前 1.5 km 陡上穿過冷杉林，樹一開就到——<b>Parks Canada 在那裡放了兩張官方紅椅子</b>，正對 Athabasca、Dome、Andromeda 三條冰河與 Snow Dome、Mt. Kitchener 群峰。<b>坐下來的那個位置，就是整條步道視野最好的一點</b>；再往上走只是高山草原變寬，冰河的畫面不會更好。</p>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Wilcox+Pass+Trailhead,+Wilcox+Creek,+Jasper+National+Park,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到 Wilcox Pass 步道口</a></div>
+        <div class="stats"><span class="stat easy">紅椅子來回 <b>3 km</b></span><span class="stat easy">爬升 <b>+160 m</b></span><span class="stat easy">約 <b>1.5 小時</b></span><span class="stat">椅子海拔 2,200 m</span><span class="stat mid">走完全程 8 km／+390 m／3–4 h</span></div>
+        <div class="stopmeta">
+          <div class="mrow gear"><span class="mk">必備</span><span class="mv"><b>防風硬殼外套</b>（樹線之上完全沒遮蔽，風速常 40+ km/h）、羽絨中層、<b>手套＋毛帽</b>、<b>冰爪</b>、登山杖、2L 水、熊噴霧、太陽眼鏡</span></div>
+          <div class="mrow warn"><span class="mk">注意</span><span class="mv">爬升全集中在<b>第一公里的森林段</b>，很陡且 10 月初可能結霜打滑——<b>冰爪帶著</b>。走出樹線後<b>體感溫度驟降 10°C 以上</b>，紅椅子那個位置正對冰河、風極大。看到雲層壓下來或開始飄雪就立刻折返。</span></div>
+          <div class="mrow warn"><span class="mk">要先問</span><span class="mv"><b>Wilcox Campground 9/28 就關閉了</b>，而步道口停車場就在營地入口旁。<b>沒有任何官方資料說明 10 月營地關閉後那條路會不會上鎖</b>——出發前打電話問冰原遊客中心。真的被關就停 Discovery Centre，但單程要多走 3 km，這個下午就泡湯了。</span></div>
+          <div class="mrow park"><span class="mk">大角羊</span><span class="mv">羊群主要在<b>紅椅子再往上的高山草原</b>。走短版看到的機率會降低但不是零；真的很想看羊、腿又還有力，就再往上走 20 分鐘。保持 30 公尺、不餵食。</span></div>
+          <div class="mrow park"><span class="mk">停車</span><span class="mv">步道口在 <b>Discovery Centre 南邊 3.1 km</b>（車程 3 分鐘）的 Wilcox Creek Campground 入口旁，轉進去約 100 公尺、停車場在左手邊，<b>有廁所</b>。只有 <b>10–20 個位子</b>，但 10 月初壓力小很多</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stop">
+      <div class="card">
+        <div class="card-top"><span class="chip sight">替代</span><h3>【替代 Wilcox Pass】Columbia Icefield Skywalk 冰川天空步道</h3><span class="clock">14:00</span></div>
+        <p class="desc">一條伸出崖壁的玻璃地板觀景走道，離谷底 280 公尺。<b>如果冰川健行走完腿已經軟了、或下午天氣轉壞不適合上稜線，就用它取代 Wilcox Pass</b>——不用體力、有接駁車、一小時結束，一樣趕得上天黑前回家。</p>
         <div class="stats"><span class="stat">約 <b>1 小時</b></span><span class="stat">需搭接駁前往</span><span class="stat easy">無需體力</span></div>
         <div class="stopmeta">
           <div class="mrow warn"><span class="mk">注意</span><span class="mv">怕高的人請三思。走道上風很大，<b>帽子與輕物品容易被吹走</b>。</span></div>
@@ -2048,7 +2184,8 @@ td small{display:block;font-size:11px;color:var(--ink-3);font-family:var(--font-
     <div class="box warn">
       <h4>⚠️ 今日注意事項</h4>
       <ul>
-        <li><b>06:00 出發</b>：來回 370 km；就算路上下雪耽誤，14:00 的冰川團也還有緩衝</li>
+        <li><b>05:30 出發</b>：07:45 抵達、09:25 報到，留 100 分鐘吸收路況延誤。萬一還是遲到，同一天 14:00 那班是備案</li>
+        <li><b>先問步道口停車</b>：Wilcox Campground 9/28 關閉，那條路 10 月會不會上鎖沒有官方說法。被關就改走 Skywalk</li>
         <li><b>10/1 雪胎法規今天生效</b>：Hwy 93N 強制期開始，出門前確認一次</li>
         <li><b>冰原活動先訂位</b>：現場常只剩候補，別賭運氣</li>
         <li><b>冷不代表不會曬</b>（IG 筆記⑧）：冰面反射讓紫外線加倍，防曬乳一定要擦而且要補</li>
@@ -2146,6 +2283,7 @@ td small{display:block;font-size:11px;color:var(--ink-3);font-family:var(--font-
         <div class="stopmeta">
           <div class="mrow gear"><span class="mk">必備</span><span class="mv">登山鞋、<b>熊噴霧</b>（這一區黑熊活動頻繁）、1L 水、防曬</span></div>
           <div class="mrow warn"><span class="mk">注意</span><span class="mv">火燒過的區域<b>會有站立的枯死樹（snag）</b>，起風時有倒木風險，請勿在焦木林中停留。步道有幾段木棧橋，早上結霜會滑。</span></div>
+          <div class="mrow park"><span class="mk">🪑 紅椅子</span><span class="mv">環線上<b>第三湖與第四湖之間</b>有一組 Parks Canada 官方紅椅子，正對湖面。這是賈斯珀 7 組裡最好找的其中一組</span></div>
           <div class="mrow park"><span class="mk">停車</span><span class="mv">Hwy 93 邊的專屬停車場，免費，約 60 個位子，<b>有廁所</b></span></div>
         </div>
       </div>
@@ -2174,6 +2312,7 @@ td small{display:block;font-size:11px;color:var(--ink-3);font-family:var(--font-
         <div class="stopmeta">
           <div class="mrow gear"><span class="mk">必備</span><span class="mv">防風外套（山頂風大）、太陽眼鏡、水</span></div>
           <div class="mrow warn"><span class="mk">注意</span><span class="mv">建議<b>順時針走</b>（先走緩坡上、陡的木階下），比較不傷膝蓋。山頂裸露岩面在潮濕時很滑。<b>大角羊常在山頂活動</b>，保持距離。</span></div>
+          <div class="mrow park"><span class="mk">🪑 紅椅子</span><span class="mv">在環線的<b>第二個小山頭</b>上，正對賈斯珀鎮與 Athabasca 河谷</span></div>
         </div>
       </div>
     </div>
@@ -2360,6 +2499,7 @@ td small{display:block;font-size:11px;color:var(--ink-3);font-family:var(--font-
           <div class="mrow park"><span class="mk">買哪張</span><span class="mv"><b>兩人買 Classic 上午班（合計 CA$214）</b>：精靈島停 15 分鐘，留得下時間走湖畔步道、看 Medicine Lake、開 120 km 回程。Premium 貴 <b>CA$72</b>（每人 +$36），多的是精靈島 30 分鐘＋加停 Pincushion Bay——<b>只有當訂位頁上 Premium 有 10:00–13:00 的班次、而且你們願意把 Bald Hills 換成 Mary Schäffer 短環線</b>時才值得。<b>「Alberta Locals」那張 CA$172 是亞伯達省居民限定，報到要查證件，不能買。</b></span></div>
           <div class="mrow gear"><span class="mk">必備</span><span class="mv"><b>羽絨外套＋防風層</b>（湖面上體感比岸邊低很多，10 月初船上很冷）、毛帽、手套、太陽眼鏡、相機備用電池、訂票 QR Code 截圖</span></div>
           <div class="mrow park"><span class="mk">當日班次</span><span class="mv">10/3 屬於 <b>9/7–10/3 時段：09:00–17:30</b>（10/4 起就縮短成 09:00–16:00，你們剛好卡在長時段的最後一天）。<b>Premium 限 16 歲以上</b>，你們兩位都符合，但它多的 30 分鐘要換掉下午的步道時間，仍建議 Classic 上午班。</span></div>
+          <div class="mrow park"><span class="mk">🪑 紅椅子</span><span class="mv">碼頭旁的<b>野餐區</b>就有一組 Parks Canada 官方紅椅子，正對瑪琳湖。等船的空檔就能收集</span></div>
           <div class="mrow park"><span class="mk">停車</span><span class="mv">Maligne Lake 日間使用區大型停車場，免費，<b>有廁所與咖啡吧</b>。這是這條路上唯一的補給點</span></div>
         </div>
       </div>
