@@ -391,6 +391,26 @@ footer{background:var(--spruce-ink);color:rgba(243,243,239,.62);padding:28px 20p
 footer b{color:#f3f3ef;font-family:var(--font-display);font-size:14px;display:block;margin-bottom:5px}
 footer .fnote{font-family:var(--font-mono);font-size:11px;letter-spacing:.05em;margin-top:9px;opacity:.7}
 
+/* 表格內的訂票連結 */
+.tlink{
+  display:inline-block;font-size:11.5px;font-weight:700;color:var(--nav-blue);
+  text-decoration:none;border-bottom:1px solid color-mix(in srgb,var(--nav-blue) 40%,transparent);
+  white-space:nowrap;line-height:1.9;
+}
+.tlink:hover{border-bottom-color:var(--nav-blue)}
+td small{display:block;font-size:11px;color:var(--ink-3);font-family:var(--font-mono)}
+
+/* 官方連結格 */
+.linkgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px}
+.olink{
+  display:block;text-decoration:none;background:var(--card);border:1px solid var(--line);
+  border-left:3px solid var(--glacier);border-radius:8px;padding:9px 12px;transition:box-shadow .15s,transform .15s;
+}
+.olink:hover{box-shadow:var(--shadow-lift);transform:translateY(-1px)}
+.olink b{display:block;font-size:13px;color:var(--nav-blue);font-weight:700}
+.olink b::after{content:' ↗';font-size:10px;opacity:.6}
+.olink span{display:block;font-size:11.5px;color:var(--ink-3);line-height:1.5;margin-top:2px}
+
 /* misc */
 .slot{border:2px dashed var(--larch);background:var(--larch-wash);border-radius:var(--radius);padding:15px 18px;margin-top:16px}
 .slot h4{font-family:var(--font-display);font-weight:700;color:var(--larch);font-size:14px;margin-bottom:5px}
@@ -633,20 +653,38 @@ footer .fnote{font-family:var(--font-mono);font-size:11px;letter-spacing:.05em;m
 
     <div class="tblwrap">
       <table>
-        <thead><tr><th>項目</th><th>日期</th><th>要不要訂</th><th>價格</th><th class="num">季節到</th></tr></thead>
+        <thead><tr><th>項目</th><th>日期</th><th>要不要訂</th><th>價格</th><th class="num">季節到</th><th>官方訂票</th></tr></thead>
         <tbody>
-          <tr><td><b>IceWalks 冰川健行</b><br><small>Classic Half Day 5 km</small></td><td>10/1</td><td><b style="color:var(--alert)">必訂・最急</b></td><td>≈CA$138／人</td><td class="num">10/12</td></tr>
-          <tr><td><b>瑪琳湖精靈島遊船</b></td><td>10/3</td><td><b style="color:var(--alert)">必訂</b><br><small>不預購無法指定班次</small></td><td>Classic CA$107<br>Premium CA$143</td><td class="num">10/11</td></tr>
-          <tr><td><b>哥倫比亞冰原車</b><br><small>Ice Explorer ＋ Skywalk</small></td><td>10/1</td><td>強烈建議<br><small>分時段，會賣完</small></td><td>官網動態定價<br><small>15:30 後 8 折</small></td><td class="num">10/12</td></tr>
-          <tr><td><b>夢蓮湖接駁</b></td><td>9/27</td><td><b style="color:var(--alert)">必訂</b><br><small>你已訂私營 bus ✓</small></td><td>私營 CA$70 起<br>官方 CA$12.75＋$3.5</td><td class="num">10/12</td></tr>
-          <tr><td><b>賈斯珀纜車</b><br><small>Jasper SkyTram</small></td><td>10/2</td><td>建議<br><small>官方建議提前 24 小時</small></td><td>官網動態定價</td><td class="num">10/25</td></tr>
-          <tr><td><b>班夫纜車</b><br><small>Sulphur Mountain・可選</small></td><td>9/26</td><td>建議<br><small>會賣完，票不可退</small></td><td>官網動態定價<br><small>提前 48h 較便宜</small></td><td class="num">全年</td></tr>
-          <tr><td><b>路易斯湖停車</b></td><td>9/29</td><td><b>不能訂</b><br><small>只能現場排</small></td><td><b>CA$42／日</b><br><small>03:00–19:00 收費</small></td><td class="num">10/12</td></tr>
-          <tr><td><b>班夫上溫泉</b></td><td>9/26</td><td>不能訂<br><small>官方明說無預約制</small></td><td>成人 CA$19.75<br>雙人 CA$39.50</td><td class="num">全年</td></tr>
-          <tr><td><b>Miette 溫泉</b><br><small>Day 9 B 案</small></td><td>10/3</td><td>不能訂<br><small>只能現場櫃檯買</small></td><td>成人 CA$19.75</td><td class="num">10/12</td></tr>
-          <tr><td><b>兩間山中茶坊</b></td><td>9/29</td><td>不接受訂位<br><small>現場排隊</small></td><td><b>只收現金</b></td><td class="num">10 月初</td></tr>
+          <tr><td><b>IceWalks 冰川健行</b><br><small>Classic Half Day 5 km</small></td><td>10/1</td><td><b style="color:var(--alert)">必訂・最急</b></td><td>≈CA$138／人</td><td class="num">10/12</td><td><a class="tlink" href="https://www.icewalks.com/tours/half-day-tours" target="_blank" rel="noopener">icewalks.com ↗</a><br><small>(780) 852-3803</small></td></tr>
+          <tr><td><b>瑪琳湖精靈島遊船</b></td><td>10/3</td><td><b style="color:var(--alert)">必訂</b><br><small>不預購無法指定班次</small></td><td>Classic CA$107<br>Premium CA$143</td><td class="num">10/11</td><td><a class="tlink" href="https://www.banffjaspercollection.com/attractions/maligne-lake-cruise/tickets/" target="_blank" rel="noopener">Pursuit 訂票 ↗</a><br><small>1.888.900.6272</small></td></tr>
+          <tr><td><b>哥倫比亞冰原車</b><br><small>Ice Explorer ＋ Skywalk</small></td><td>10/1</td><td>強烈建議<br><small>分時段，會賣完</small></td><td>官網動態定價<br><small>15:30 後 8 折</small></td><td class="num">10/12</td><td><a class="tlink" href="https://www.banffjaspercollection.com/attractions/columbia-icefield-adventure/tickets/" target="_blank" rel="noopener">Pursuit 訂票 ↗</a><br><small>1.866.506.0515</small></td></tr>
+          <tr><td><b>夢蓮湖接駁</b></td><td>9/27</td><td><b style="color:var(--alert)">必訂</b><br><small>你已訂私營 bus ✓</small></td><td>私營 CA$70 起<br>官方 CA$12.75＋$3.5</td><td class="num">10/12</td><td><a class="tlink" href="https://morainelakebus.com/" target="_blank" rel="noopener">私營 bus ↗</a><br><a class="tlink" href="https://reservation.pc.gc.ca" target="_blank" rel="noopener">官方接駁 ↗</a></td></tr>
+          <tr><td><b>賈斯珀纜車</b><br><small>Jasper SkyTram</small></td><td>10/2</td><td>建議<br><small>官方建議提前 24 小時</small></td><td>官網動態定價</td><td class="num">10/25</td><td><a class="tlink" href="https://www.banffjaspercollection.com/attractions/jasper-skytram/tickets/" target="_blank" rel="noopener">Pursuit 訂票 ↗</a><br><small>1.866.850.8726</small></td></tr>
+          <tr><td><b>班夫纜車</b><br><small>Sulphur Mountain・可選</small></td><td>9/26</td><td>建議<br><small>會賣完，票不可退</small></td><td>官網動態定價<br><small>提前 48h 較便宜</small></td><td class="num">全年</td><td><a class="tlink" href="https://www.banffjaspercollection.com/attractions/banff-gondola/" target="_blank" rel="noopener">Pursuit 訂票 ↗</a></td></tr>
+          <tr><td><b>路易斯湖接駁</b><br><small>停車搶不到時的備案</small></td><td>9/29</td><td>要訂<br><small>48h 前 08:00 MT 釋出</small></td><td>CA$12.75＋$3.50</td><td class="num">10/12</td><td><a class="tlink" href="https://reservation.pc.gc.ca" target="_blank" rel="noopener">reservation.pc.gc.ca ↗</a></td></tr>
+          <tr><td><b>路易斯湖停車</b></td><td>9/29</td><td><b>不能訂</b><br><small>只能現場排</small></td><td><b>CA$42／日</b><br><small>03:00–19:00 收費</small></td><td class="num">10/12</td><td><a class="tlink" href="https://parks.canada.ca/pn-np/ab/banff/visit/parkbus/louise/renseignements-sur-le-stationnement-parking-information" target="_blank" rel="noopener">停車說明 ↗</a></td></tr>
+          <tr><td><b>班夫上溫泉</b></td><td>9/26</td><td>不能訂<br><small>官方明說無預約制</small></td><td>成人 CA$19.75<br>雙人 CA$39.50</td><td class="num">全年</td><td><a class="tlink" href="https://parks.canada.ca/pn-np/ab/banff/sources-banff-springs/heures-hours" target="_blank" rel="noopener">時段查詢 ↗</a></td></tr>
+          <tr><td><b>Miette 溫泉</b><br><small>Day 9 B 案</small></td><td>10/3</td><td>不能訂<br><small>只能現場櫃檯買</small></td><td>成人 CA$19.75</td><td class="num">10/12</td><td><a class="tlink" href="https://parks.canada.ca/pn-np/ab/jasper/sources-miette-springs/heures-hours" target="_blank" rel="noopener">時段查詢 ↗</a><br><small>1-800-767-1611</small></td></tr>
+          <tr><td><b>兩間山中茶坊</b></td><td>9/29</td><td>不接受訂位<br><small>現場排隊</small></td><td><b>只收現金</b></td><td class="num">10 月初</td><td><a class="tlink" href="https://www.lakeagnesteahouse.com/" target="_blank" rel="noopener">Lake Agnes ↗</a></td></tr>
         </tbody>
       </table>
+    </div>
+
+    <div class="note" style="margin-top:16px">
+      <h4>🔗 常用官方連結 — 存進手機書籤</h4>
+      <div class="linkgrid">
+        <a class="olink" href="https://511.alberta.ca" target="_blank" rel="noopener"><b>511 Alberta</b><span>每天開車前查路況（Banff／Jasper／冰原大道）</span></a>
+        <a class="olink" href="https://www.drivebc.ca" target="_blank" rel="noopener"><b>DriveBC</b><span>BC 境內路況（Yoho 優鶴／Kootenay 庫特尼）</span></a>
+        <a class="olink" href="https://parks.canada.ca/pn-np/ab/banff/bulletins" target="_blank" rel="noopener"><b>Banff 即時公告</b><span>熊況管制、臨時封閉。出發前三天查一次</span></a>
+        <a class="olink" href="https://parks.canada.ca/pn-np/ab/banff/activ/randonnee-hiking/etat-sentiers-trail-conditions" target="_blank" rel="noopener"><b>Banff 步道現況</b><span>每條步道的積雪、泥濘、封閉狀態</span></a>
+        <a class="olink" href="https://parks.canada.ca/pn-np/ab/jasper/activ/experience/sentiers-trails/etat-sentiers-trail-conditions" target="_blank" rel="noopener"><b>Jasper 步道現況</b><span>Wilcox Pass、Bald Hills、五湖谷都在這查</span></a>
+        <a class="olink" href="https://parks.canada.ca/pn-np/ab/jasper/visit/ouvert-fermee-open-closed" target="_blank" rel="noopener"><b>Jasper 開放清單</b><span>逐項確認哪裡開、哪裡封（火後復原用）</span></a>
+        <a class="olink" href="https://parks.canada.ca/pn-np/ab/banff/visit/passer-passes" target="_blank" rel="noopener"><b>國家公園通行證</b><span>價格與現場購買地點（含 YYC 機場）</span></a>
+        <a class="olink" href="https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/eta/apply.html" target="_blank" rel="noopener"><b>加拿大 eTA 申請</b><span>CA$7・只認 canada.ca</span></a>
+        <a class="olink" href="https://esta.cbp.dhs.gov" target="_blank" rel="noopener"><b>美國 ESTA 申請</b><span>US$40.27・只認 .cbp.dhs.gov</span></a>
+        <a class="olink" href="https://www.alamo.ca" target="_blank" rel="noopener"><b>Alamo 租車</b><span>改預訂用確認信裡的連結・訂單 2126884712</span></a>
+      </div>
+      <p style="margin-top:10px;font-size:12.5px"><b>⚠️ 這幾個都有山寨站。</b>eTA 只有 <code>canada.ca</code>、ESTA 只有 <code>esta.cbp.dhs.gov</code>、通行證只有 <code>parks.canada.ca</code>、遊船與冰原車只有 <code>banffjaspercollection.com</code>。從這裡點進去最安全。</p>
     </div>
 
     <div class="note" style="margin-top:14px">
@@ -1101,7 +1139,7 @@ footer .fnote{font-family:var(--font-mono);font-size:11px;letter-spacing:.05em;m
       <div class="card">
         <div class="card-top"><span class="chip sight">Soak</span><h3>Banff Upper Hot Springs 硫磺山溫泉</h3><span class="clock">17:00</span></div>
         <p class="desc">海拔 1,585 公尺，加拿大最高的營運溫泉。露天池水溫 37–40°C，泡在裡面正對 Mt. Rundle 的山壁。天冷時水氣蒸騰，是整趟最放鬆的一小時。</p>
-        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Banff+Upper+Hot+Springs,+Mountain+Ave,+Banff,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到硫磺山溫泉</a></div>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Banff+Upper+Hot+Springs,+Mountain+Ave,+Banff,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到硫磺山溫泉</a><a class="navbtn link" href="https://parks.canada.ca/pn-np/ab/banff/sources-banff-springs/heures-hours" target="_blank" rel="noopener">🔗 當日開放時段</a></div>
         <div class="stats"><span class="stat">成人 <b>CA$19.75</b>（兩人 $39.50）</span><span class="stat">每日 <b>10:00–22:00</b></span><span class="stat easy">不能預約・現場排</span><span class="stat">海拔 1,585 m</span></div>
         <div class="stopmeta">
           <div class="mrow gear"><span class="mk">必備</span><span class="mv"><b>泳衣</b>（現場可租但不便宜）、<b>快乾毛巾</b>、拖鞋、防水袋、更衣後保暖的帽子（頭髮濕著出來很冷）</span></div>
@@ -1215,7 +1253,7 @@ footer .fnote{font-family:var(--font-mono);font-size:11px;letter-spacing:.05em;m
       <div class="card">
         <div class="card-top"><span class="chip drive">Drive</span><h3>05:45 摸黑出發 · 前往 Lake Louise 接駁站</h3><span class="clock">05:45</span></div>
         <p class="desc">日出約 07:24，出發時天還全黑。這段 Hwy 1 是野生動物活動最高峰的時段，請把速度壓在速限以下。</p>
-        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Lake+Louise+Ski+Resort+Park+and+Ride,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到接駁站 Park &amp; Ride</a></div>
+        <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Lake+Louise+Ski+Resort+Park+and+Ride,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到接駁站 Park &amp; Ride</a><a class="navbtn link" href="https://morainelakebus.com/" target="_blank" rel="noopener">🎟 私營接駁</a><a class="navbtn link" href="https://reservation.pc.gc.ca" target="_blank" rel="noopener">🎟 官方接駁（備案）</a></div>
         <div class="stats"><span class="stat">86 km</span><span class="stat">約 <b>55 分</b></span><span class="stat mid">出發時 −2 ~ 2°C</span></div>
         <div class="stopmeta">
           <div class="mrow gear"><span class="mk">必備</span><span class="mv"><b>頭燈</b>（停車場沒燈）、擋風玻璃刮霜片、熱飲保溫瓶、接駁車 QR Code 截圖</span></div>
@@ -1547,7 +1585,7 @@ footer .fnote{font-family:var(--font-mono);font-size:11px;letter-spacing:.05em;m
         <div class="card-top"><span class="chip drive">Drive</span><h3>05:00 出發 · 摸黑上路搶停車位</h3><span class="clock">05:00</span></div>
         <p class="desc">日出 07:27，抵達時天還是黑的。停好車先在車上吃早餐、穿裝備，等天微亮再起登。</p>
         <div class="actions"><a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Lake+Louise+Lakeshore+Parking+Lot,+Lake+Louise,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到湖畔停車場</a>
-        <a class="navbtn ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Lake+Louise+Ski+Resort+Park+and+Ride,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🅿️ Park &amp; Ride（接駁需先訂）</a></div>
+        <a class="navbtn ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Lake+Louise+Ski+Resort+Park+and+Ride,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🅿️ Park &amp; Ride</a><a class="navbtn link" href="https://reservation.pc.gc.ca" target="_blank" rel="noopener">🎟 接駁訂位（48h 前釋出）</a></div>
         <div class="stats"><span class="stat">80 km</span><span class="stat">約 <b>50 分</b></span><span class="stat hard">停車 CA$42／日</span><span class="stat">日出 07:25</span></div>
         <div class="stopmeta">
           <div class="mrow gear"><span class="mk">必備</span><span class="mv"><b>頭燈</b>、刮霜片、信用卡＋加幣現金（繳費機與茶坊）、早餐、熱飲</span></div>
@@ -1969,8 +2007,8 @@ footer .fnote{font-family:var(--font-mono);font-size:11px;letter-spacing:.05em;m
         <div class="stats"><span class="stat easy">冰原車 <b>5/1–10/12</b></span><span class="stat">Ice Explorer <b>2.5–3 小時</b></span><span class="stat mid">IceWalks 半日 <b>5/16–10/12</b></span><span class="stat hard">全日團 9/20 已結束</span></div>
         <div class="actions">
           <a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Columbia+Icefield+Discovery+Centre,+Jasper+National+Park,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到冰原遊客中心</a>
-          <a class="navbtn link" href="https://icewalks.com" target="_blank" rel="noopener">🔗 IceWalks 官網訂位</a>
-          <a class="navbtn link" href="https://www.banffjaspercollection.com/attractions/columbia-icefield/" target="_blank" rel="noopener">🔗 Ice Explorer 冰原車</a>
+          <a class="navbtn link" href="https://www.icewalks.com/tours/half-day-tours" target="_blank" rel="noopener">🎟 IceWalks 半日團訂票</a>
+          <a class="navbtn link" href="https://www.banffjaspercollection.com/attractions/columbia-icefield-adventure/tickets/" target="_blank" rel="noopener">🎟 冰原車訂票</a>
         </div>
         <div class="stopmeta">
           <div class="mrow warn"><span class="mk">季節</span><span class="mv"><b>冰原車 Columbia Icefield Adventure：2026 營運 5/1 – 10/12</b>，你們 10/1 穩穩在季內。<b>IceWalks 冰川健行：官網寫「5 月底 – 10 月初」</b>，10/1 已經在最後邊緣——<b>務必先上官網看 10/1 那天的行事曆有沒有開團</b>，沒開就改搭冰原車。</span></div>
@@ -2162,7 +2200,7 @@ footer .fnote{font-family:var(--font-mono);font-size:11px;letter-spacing:.05em;m
       <div class="card">
         <div class="card-top"><span class="chip sight">彈性</span><h3>【可選】Jasper SkyTram 賈斯珀纜車</h3><span class="clock">14:00</span></div>
         <p class="desc">加拿大最長最高的空中纜車，7 分鐘上到 Whistlers Mountain 的 2,263 公尺上站。天氣好時可以看到 80 公里外的 Mt. Robson（洛磯山脈最高峰，3,954 m）。上站再走 1.4 km 陡坡可攻頂 2,470 m。</p>
-        <div class="actions"><a class="navbtn ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Jasper+SkyTram,+Jasper,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到賈斯珀纜車</a></div>
+        <div class="actions"><a class="navbtn ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=Jasper+SkyTram,+Jasper,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到賈斯珀纜車</a><a class="navbtn link" href="https://www.banffjaspercollection.com/attractions/jasper-skytram/tickets/" target="_blank" rel="noopener">🎟 纜車訂票</a></div>
         <div class="stats"><span class="stat">約 <b>CAD 70+ / 人</b></span><span class="stat">上站 <b>2,263 m</b></span><span class="stat mid">攻頂 +1.4 km / +200 m</span></div>
         <div class="stopmeta">
           <div class="mrow warn"><span class="mk">注意</span><span class="mv">上站<b>常年刮強風、氣溫比鎮上低 10–15°C</b>，10 月初可能已有積雪。<b>雲霧天就不要花這筆錢</b>，先在山下抬頭看山頂有沒有雲再決定。10 月中後停駛。</span></div>
@@ -2318,7 +2356,7 @@ footer .fnote{font-family:var(--font-mono);font-size:11px;letter-spacing:.05em;m
         <p class="desc">全程約 90 分鐘的來回遊船，開到湖中央那座出現在無數明信片上的小島。船會靠岸讓大家上棧道走到觀景點，停留約 15–20 分鐘。<b>精靈島只能搭船抵達</b>，這是唯一的方式。</p>
         <div class="actions">
           <a class="navbtn" href="https://www.google.com/maps/dir/?api=1&amp;destination=Maligne+Lake+Boathouse,+Jasper+National+Park,+AB&amp;travelmode=driving" target="_blank" rel="noopener">🧭 導航到遊船碼頭</a>
-          <a class="navbtn link" href="https://www.banffjaspercollection.com/attractions/maligne-lake-cruise/" target="_blank" rel="noopener">🔗 線上訂票</a>
+          <a class="navbtn link" href="https://www.banffjaspercollection.com/attractions/maligne-lake-cruise/tickets/" target="_blank" rel="noopener">🎟 遊船訂票</a>
         </div>
         <div class="stats"><span class="stat">Classic <b>1.5 h / CA$107 成人</b></span><span class="stat">Premium <b>2 h / CA$143 成人</b></span><span class="stat">2026 營運到 <b>10/11</b></span><span class="stat mid">需提前訂位</span></div>
         <div class="stopmeta">
