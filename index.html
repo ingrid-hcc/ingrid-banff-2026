@@ -47,6 +47,10 @@
   --alert-wash:#fbeee9;
   --nav-blue:#1a68c4;    /* 導航按鈕 */
 
+  --check-line:#c1c9be;  /* 待辦勾選框：未勾邊框（柔和灰綠，不是黑） */
+  --check-fill:#2f6b57;  /* 待辦勾選框：已勾底色（森林綠） */
+  --check-mark:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23ffffff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round' d='M3.5 8.3l3 3 6-6.6'/%3E%3C/svg%3E");
+
   --radius:10px;
   --shadow:0 1px 2px rgba(23,33,29,.05), 0 4px 14px rgba(23,33,29,.05);
   --shadow-lift:0 2px 6px rgba(23,33,29,.08), 0 12px 28px rgba(23,33,29,.10);
@@ -79,6 +83,9 @@
     --alert:#e0836a;
     --alert-wash:#2c1a15;
     --nav-blue:#4d94ee;
+    --check-line:#3f4d42;
+    --check-fill:#6fb999;
+    --check-mark:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23122a20' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round' d='M3.5 8.3l3 3 6-6.6'/%3E%3C/svg%3E");
     --shadow:0 1px 2px rgba(0,0,0,.4), 0 4px 14px rgba(0,0,0,.3);
     --shadow-lift:0 2px 6px rgba(0,0,0,.5), 0 12px 28px rgba(0,0,0,.4);
   }
@@ -103,6 +110,9 @@
   --alert:#e0836a;
   --alert-wash:#2c1a15;
   --nav-blue:#4d94ee;
+  --check-line:#3f4d42;
+  --check-fill:#6fb999;
+  --check-mark:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='none' stroke='%23122a20' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round' d='M3.5 8.3l3 3 6-6.6'/%3E%3C/svg%3E");
   --shadow:0 1px 2px rgba(0,0,0,.4), 0 4px 14px rgba(0,0,0,.3);
   --shadow-lift:0 2px 6px rgba(0,0,0,.5), 0 12px 28px rgba(0,0,0,.4);
 }
@@ -414,13 +424,29 @@ footer .fnote{font-family:var(--font-mono);font-size:11px;letter-spacing:.05em;m
 /* 出發前待辦清單 */
 .todo{display:grid;gap:8px}
 .todo-row{
-  display:grid;grid-template-columns:26px 66px 1fr;gap:12px;align-items:start;
+  display:grid;grid-template-columns:24px 66px 1fr;gap:12px;align-items:start;
   background:var(--card);border:1px solid var(--line);border-left:3px solid var(--spruce-2);
   border-radius:var(--radius);padding:12px 15px;box-shadow:var(--shadow);
+  transition:border-left-color .15s;
 }
 .todo-row.urgent{border-left-color:var(--alert);background:linear-gradient(90deg,var(--alert-wash),var(--card) 42%)}
-.td-check{display:flex;align-items:center;justify-content:center;padding-top:1px;cursor:pointer;min-height:24px}
-.td-check input{width:19px;height:19px;margin:0;cursor:pointer;accent-color:var(--spruce, #2f6b4f);flex:none}
+
+/* 勾選框：用一個 <span> 當視覺方塊，input 只留無障礙用途；
+   這樣兩種配色下都是清楚的森林綠，完全不吃系統預設 checkbox 樣式 */
+.td-check{display:flex;align-items:flex-start;justify-content:center;padding-top:1px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.td-check input{position:absolute;width:1px;height:1px;opacity:0;margin:0;pointer-events:none}
+.td-box{
+  box-sizing:border-box;width:20px;height:20px;flex:none;display:block;
+  border:2px solid var(--check-line);border-radius:6px;background:var(--card);
+  transition:background-color .12s,border-color .12s;
+}
+@media (hover:hover){.td-check:hover .td-box{border-color:var(--check-fill)}}
+.td-check input:focus-visible + .td-box{outline:2px solid var(--check-fill);outline-offset:2px}
+.td-check input:checked + .td-box{
+  border-color:var(--check-fill);
+  background:var(--check-fill) var(--check-mark) center/13px 13px no-repeat;
+}
+
 .td-when{
   font-family:var(--font-mono);font-size:12px;font-weight:600;color:var(--spruce-2);
   line-height:1.4;text-align:center;padding-top:2px;
@@ -430,11 +456,16 @@ footer .fnote{font-family:var(--font-mono);font-size:11px;letter-spacing:.05em;m
 .td-body > b{display:block;font-family:var(--font-display);font-size:14px;line-height:1.45;margin-bottom:3px}
 .td-body > span{display:block;font-size:12.5px;color:var(--ink-2);line-height:1.7}
 .td-body > span b{color:var(--ink);font-weight:600}
-.todo-row.done{opacity:.5}
-.todo-row.done .td-body > b{text-decoration:line-through}
+
+/* 做完的項目：文字淡出、標題劃線，但勾選框保持鮮明的綠 */
+.todo-row.done{border-left-color:var(--check-fill)}
 .todo-row.done.urgent{background:var(--card)}
+.todo-row.done .td-when,
+.todo-row.done .td-body{opacity:.5}
+.todo-row.done .td-body > b{text-decoration:line-through}
+
 @media (max-width:560px){
-  .todo-row{grid-template-columns:26px 1fr;gap:6px 12px}
+  .todo-row{grid-template-columns:24px 1fr;gap:6px 12px}
   .td-when{grid-column:2;text-align:left;display:flex;gap:6px;align-items:baseline}
   .td-when small{display:inline}
   .td-body{grid-column:2}
@@ -854,7 +885,7 @@ footer{font-size:13.5px;line-height:1.8}
     <h3>✅ 出發前待辦 — 依截止日排序（可勾選，勾選狀態存在這台裝置）</h3>
     <div class="todo">
       <div class="todo-row urgent" data-task="prep-passport">
-        <label class="td-check"><input type="checkbox" aria-label="標記完成：翻開兩本護照確認兩件事"></label>
+        <label class="td-check"><input type="checkbox" aria-label="標記完成：翻開兩本護照確認兩件事"><span class="td-box" aria-hidden="true"></span></label>
         <div class="td-when">9/08<br><small>週二</small></div>
         <div class="td-body">
           <b>翻開兩本護照確認兩件事</b>
@@ -862,7 +893,7 @@ footer{font-size:13.5px;line-height:1.8}
         </div>
       </div>
       <div class="todo-row urgent" data-task="prep-visa">
-        <label class="td-check"><input type="checkbox" aria-label="標記完成：辦 ESTA 與 eTA"></label>
+        <label class="td-check"><input type="checkbox" aria-label="標記完成：辦 ESTA 與 eTA"><span class="td-box" aria-hidden="true"></span></label>
         <div class="td-when">9/10<br><small>週四</small></div>
         <div class="td-body">
           <b>辦 美國 ESTA ＋ 加拿大 eTA（兩人各一份）</b>
@@ -870,7 +901,7 @@ footer{font-size:13.5px;line-height:1.8}
         </div>
       </div>
       <div class="todo-row urgent" data-task="prep-icewalks">
-        <label class="td-check"><input type="checkbox" aria-label="標記完成：訂 IceWalks"></label>
+        <label class="td-check"><input type="checkbox" aria-label="標記完成：訂 IceWalks"><span class="td-box" aria-hidden="true"></span></label>
         <div class="td-when">9/10<br><small>週四</small></div>
         <div class="td-body">
           <b>訂 IceWalks Classic Half Day — 10/1（四）<u>09:45 班</u>・兩人</b>
@@ -878,7 +909,7 @@ footer{font-size:13.5px;line-height:1.8}
         </div>
       </div>
       <div class="todo-row urgent" data-task="prep-cruise">
-        <label class="td-check"><input type="checkbox" aria-label="標記完成：訂精靈島遊船"></label>
+        <label class="td-check"><input type="checkbox" aria-label="標記完成：訂精靈島遊船"><span class="td-box" aria-hidden="true"></span></label>
         <div class="td-when">9/10<br><small>週四</small></div>
         <div class="td-body">
           <b>訂 精靈島遊船 Classic — 10/3（六）上午 09:30 或 10:00・兩人</b>
@@ -886,7 +917,7 @@ footer{font-size:13.5px;line-height:1.8}
         </div>
       </div>
       <div class="todo-row" data-task="prep-wilcox-call">
-        <label class="td-check"><input type="checkbox" aria-label="標記完成：打電話問冰原遊客中心 Wilcox Pass"></label>
+        <label class="td-check"><input type="checkbox" aria-label="標記完成：打電話問冰原遊客中心 Wilcox Pass"><span class="td-box" aria-hidden="true"></span></label>
         <div class="td-when">9/17<br><small>週四</small></div>
         <div class="td-body">
           <b>打電話問冰原遊客中心：Wilcox Pass 步道口停車場 10 月還開嗎？</b>
@@ -894,7 +925,7 @@ footer{font-size:13.5px;line-height:1.8}
         </div>
       </div>
       <div class="todo-row" data-task="prep-alamo">
-        <label class="td-check"><input type="checkbox" aria-label="標記完成：打電話給 Alamo YYC"></label>
+        <label class="td-check"><input type="checkbox" aria-label="標記完成：打電話給 Alamo YYC"><span class="td-box" aria-hidden="true"></span></label>
         <div class="td-when">9/17<br><small>週四</small></div>
         <div class="td-body">
           <b>打電話給 Alamo YYC 確認雪胎，並改取車時間</b>
@@ -902,7 +933,7 @@ footer{font-size:13.5px;line-height:1.8}
         </div>
       </div>
       <div class="todo-row" data-task="prep-fx">
-        <label class="td-check"><input type="checkbox" aria-label="標記完成：線上結購加幣"></label>
+        <label class="td-check"><input type="checkbox" aria-label="標記完成：線上結購加幣"><span class="td-box" aria-hidden="true"></span></label>
         <div class="td-when">9/19<br><small>週六</small></div>
         <div class="td-body">
           <b>臺灣銀行線上結購加拿大幣 CA$150</b>
@@ -910,7 +941,7 @@ footer{font-size:13.5px;line-height:1.8}
         </div>
       </div>
       <div class="todo-row" data-task="prep-microspikes">
-        <label class="td-check"><input type="checkbox" aria-label="標記完成：買冰爪"></label>
+        <label class="td-check"><input type="checkbox" aria-label="標記完成：買冰爪"><span class="td-box" aria-hidden="true"></span></label>
         <div class="td-when">9/20<br><small>週日</small></div>
         <div class="td-body">
           <b>迪卡儂買冰爪（microspikes）兩副</b>
@@ -918,7 +949,7 @@ footer{font-size:13.5px;line-height:1.8}
         </div>
       </div>
       <div class="todo-row" data-task="prep-parks-bulletin">
-        <label class="td-check"><input type="checkbox" aria-label="標記完成：查 Parks Canada 公告"></label>
+        <label class="td-check"><input type="checkbox" aria-label="標記完成：查 Parks Canada 公告"><span class="td-box" aria-hidden="true"></span></label>
         <div class="td-when">9/21<br><small>週一</small></div>
         <div class="td-body">
           <b>查一次 Parks Canada 公告</b>
@@ -926,7 +957,7 @@ footer{font-size:13.5px;line-height:1.8}
         </div>
       </div>
       <div class="todo-row" data-task="prep-offline-map">
-        <label class="td-check"><input type="checkbox" aria-label="標記完成：下載離線地圖與加到主畫面"></label>
+        <label class="td-check"><input type="checkbox" aria-label="標記完成：下載離線地圖與加到主畫面"><span class="td-box" aria-hidden="true"></span></label>
         <div class="td-when">9/23<br><small>週三</small></div>
         <div class="td-body">
           <b>下載 Google Maps 離線地圖 ＋ 把這份手冊加到主畫面</b>
@@ -934,7 +965,7 @@ footer{font-size:13.5px;line-height:1.8}
         </div>
       </div>
       <div class="todo-row" data-task="prep-discovery-pass">
-        <label class="td-check"><input type="checkbox" aria-label="標記完成：買 Discovery Pass 與加登記第二駕駛"></label>
+        <label class="td-check"><input type="checkbox" aria-label="標記完成：買 Discovery Pass 與加登記第二駕駛"><span class="td-box" aria-hidden="true"></span></label>
         <div class="td-when">9/25<br><small>週五・落地</small></div>
         <div class="td-body">
           <b>YYC 機場買 Discovery Pass 家庭年票 ＋ 取車時加登記第二駕駛人</b>
@@ -942,7 +973,7 @@ footer{font-size:13.5px;line-height:1.8}
         </div>
       </div>
       <div class="todo-row" data-task="prep-weather-swap">
-        <label class="td-check"><input type="checkbox" aria-label="標記完成：看三天預報決定是否對調"></label>
+        <label class="td-check"><input type="checkbox" aria-label="標記完成：看三天預報決定是否對調"><span class="td-box" aria-hidden="true"></span></label>
         <div class="td-when">10/01<br><small>週四・晚上</small></div>
         <div class="td-body">
           <b>看三天預報，決定 10/2 與 10/3 要不要對調</b>
