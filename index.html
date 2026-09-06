@@ -3321,16 +3321,34 @@ footer{font-size:13.5px;line-height:1.8}
   window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){ if(MODES[idx].k==='auto') paintMeta(); });
 
   var rail=document.getElementById('rail');
-  rail.addEventListener('click',function(e){
-    var b=e.target.closest('.tab'); if(!b) return;
+  var TABKEY='banff-tab';
+  function saveTab(pane){try{localStorage.setItem(TABKEY,pane);}catch(e){}}
+  function readTab(){try{return localStorage.getItem(TABKEY);}catch(e){return null;}}
+
+  function activate(b,animate){
+    if(!b) return;
+    var el=document.getElementById(b.dataset.pane);
+    if(!el) return;
     document.querySelectorAll('.tab').forEach(function(t){t.classList.remove('on')});
     document.querySelectorAll('.pane').forEach(function(p){p.classList.remove('on')});
     b.classList.add('on');
-    var el=document.getElementById(b.dataset.pane);
-    if(el) el.classList.add('on');
-    b.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'});
-    window.scrollTo({top:0,behavior:'smooth'});
+    el.classList.add('on');
+    b.scrollIntoView({block:'nearest',inline:'center',behavior:animate?'smooth':'auto'});
+    if(animate) window.scrollTo({top:0,behavior:'smooth'});
+  }
+
+  rail.addEventListener('click',function(e){
+    var b=e.target.closest('.tab'); if(!b) return;
+    activate(b,true);
+    saveTab(b.dataset.pane);
   });
+
+  // 還原上次看的分頁（含手機 PWA）
+  var last=readTab();
+  if(last){
+    var prev=rail.querySelector('.tab[data-pane="'+(window.CSS&&CSS.escape?CSS.escape(last):last)+'"]');
+    if(prev && !prev.classList.contains('on')) activate(prev,false);
+  }
 })();
 </script>
 
