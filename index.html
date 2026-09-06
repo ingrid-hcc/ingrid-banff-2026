@@ -414,11 +414,13 @@ footer .fnote{font-family:var(--font-mono);font-size:11px;letter-spacing:.05em;m
 /* 出發前待辦清單 */
 .todo{display:grid;gap:8px}
 .todo-row{
-  display:grid;grid-template-columns:76px 1fr;gap:14px;align-items:start;
+  display:grid;grid-template-columns:26px 66px 1fr;gap:12px;align-items:start;
   background:var(--card);border:1px solid var(--line);border-left:3px solid var(--spruce-2);
   border-radius:var(--radius);padding:12px 15px;box-shadow:var(--shadow);
 }
 .todo-row.urgent{border-left-color:var(--alert);background:linear-gradient(90deg,var(--alert-wash),var(--card) 42%)}
+.td-check{display:flex;align-items:center;justify-content:center;padding-top:1px;cursor:pointer;min-height:24px}
+.td-check input{width:19px;height:19px;margin:0;cursor:pointer;accent-color:var(--spruce, #2f6b4f);flex:none}
 .td-when{
   font-family:var(--font-mono);font-size:12px;font-weight:600;color:var(--spruce-2);
   line-height:1.4;text-align:center;padding-top:2px;
@@ -428,10 +430,14 @@ footer .fnote{font-family:var(--font-mono);font-size:11px;letter-spacing:.05em;m
 .td-body > b{display:block;font-family:var(--font-display);font-size:14px;line-height:1.45;margin-bottom:3px}
 .td-body > span{display:block;font-size:12.5px;color:var(--ink-2);line-height:1.7}
 .td-body > span b{color:var(--ink);font-weight:600}
+.todo-row.done{opacity:.5}
+.todo-row.done .td-body > b{text-decoration:line-through}
+.todo-row.done.urgent{background:var(--card)}
 @media (max-width:560px){
-  .todo-row{grid-template-columns:1fr;gap:6px}
-  .td-when{text-align:left;display:flex;gap:6px;align-items:baseline}
+  .todo-row{grid-template-columns:26px 1fr;gap:6px 12px}
+  .td-when{grid-column:2;text-align:left;display:flex;gap:6px;align-items:baseline}
   .td-when small{display:inline}
+  .td-body{grid-column:2}
 }
 
 /* 表格內的訂票連結 */
@@ -845,80 +851,99 @@ footer{font-size:13.5px;line-height:1.8}
   </div>
 
 <div class="sec">
-    <h3>✅ 出發前待辦 — 依截止日排序</h3>
+    <h3>✅ 出發前待辦 — 依截止日排序（可勾選，勾選狀態存在這台裝置）</h3>
     <div class="todo">
-      <div class="todo-row urgent">
-        <div class="td-when">本週<br><small>最急</small></div>
+      <div class="todo-row urgent" data-task="prep-passport">
+        <label class="td-check"><input type="checkbox" aria-label="標記完成：翻開兩本護照確認兩件事"></label>
+        <div class="td-when">9/08<br><small>週二</small></div>
         <div class="td-body">
           <b>翻開兩本護照確認兩件事</b>
           <span>①內頁有沒有印<b>身分證字號</b>（沒有就不能用 eTA，得辦訪客簽證，時間來不及）②是不是<b>晶片護照</b>（ESTA 強制要求）。這是唯一會讓整趟夭折的項目，先確認再辦其他。</span>
         </div>
       </div>
-      <div class="todo-row urgent">
-        <div class="td-when">本週<br><small>最急</small></div>
+      <div class="todo-row urgent" data-task="prep-visa">
+        <label class="td-check"><input type="checkbox" aria-label="標記完成：辦 ESTA 與 eTA"></label>
+        <div class="td-when">9/10<br><small>週四</small></div>
         <div class="td-body">
           <b>辦 美國 ESTA ＋ 加拿大 eTA（兩人各一份）</b>
           <span>ESTA US$40.27 · <a class="tlink" href="https://esta.cbp.dhs.gov" target="_blank" rel="noopener">esta.cbp.dhs.gov</a>（官方保留 72 小時審核）｜eTA CA$7 · <a class="tlink" href="https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/eta/apply.html" target="_blank" rel="noopener">canada.ca</a>。<b>沒有 ESTA 在桃園就登不了機。</b></span>
         </div>
       </div>
-      <div class="todo-row urgent">
-        <div class="td-when">本週<br><small>會賣完</small></div>
+      <div class="todo-row urgent" data-task="prep-icewalks">
+        <label class="td-check"><input type="checkbox" aria-label="標記完成：訂 IceWalks"></label>
+        <div class="td-when">9/10<br><small>週四</small></div>
         <div class="td-body">
           <b>訂 IceWalks Classic Half Day — 10/1（四）<u>09:45 班</u>・兩人</b>
           <span>≈CA$138／人。<a class="tlink" href="https://www.icewalks.com/tours/half-day-tours" target="_blank" rel="noopener">icewalks.com 訂票</a> 或電話 (780) 852-3803。<b>訂票時順便問四件事</b>：①下雪或能見度差會不會出團、取消是退錢還是折抵 ②24 小時前取消是否全額退 ③有沒有最低成團人數 ④10 月第一週是不是兩班都還在跑。訂完把確認信截圖存離線。</span>
         </div>
       </div>
-      <div class="todo-row urgent">
-        <div class="td-when">本週<br><small>會賣完</small></div>
+      <div class="todo-row urgent" data-task="prep-cruise">
+        <label class="td-check"><input type="checkbox" aria-label="標記完成：訂精靈島遊船"></label>
+        <div class="td-when">9/10<br><small>週四</small></div>
         <div class="td-body">
           <b>訂 精靈島遊船 Classic — 10/3（六）上午 09:30 或 10:00・兩人</b>
           <span>CA$107／人。<a class="tlink" href="https://www.banffjaspercollection.com/attractions/maligne-lake-cruise/tickets/" target="_blank" rel="noopener">Pursuit 訂票</a> 或電話 1.888.900.6272。<b>訂的時候順便問改期規定</b>——10/2 與 10/3 可能要依天氣對調。</span>
         </div>
       </div>
-      <div class="todo-row">
-        <div class="td-when">出發前<br><small>一週</small></div>
+      <div class="todo-row" data-task="prep-wilcox-call">
+        <label class="td-check"><input type="checkbox" aria-label="標記完成：打電話問冰原遊客中心 Wilcox Pass"></label>
+        <div class="td-when">9/17<br><small>週四</small></div>
         <div class="td-body">
           <b>打電話問冰原遊客中心：Wilcox Pass 步道口停車場 10 月還開嗎？</b>
           <span>Wilcox Campground <b>9/28 就關閉</b>，而步道口停車場就在營地入口旁，<b>沒有任何官方資料說明那條路會不會上鎖</b>。被關的話 10/1 下午就要改成 Skywalk。這通電話值得打。</span>
         </div>
       </div>
-      <div class="todo-row">
-        <div class="td-when">出發前<br><small>一週</small></div>
+      <div class="todo-row" data-task="prep-alamo">
+        <label class="td-check"><input type="checkbox" aria-label="標記完成：打電話給 Alamo YYC"></label>
+        <div class="td-when">9/17<br><small>週四</small></div>
         <div class="td-body">
           <b>打電話給 Alamo YYC 確認雪胎，並改取車時間</b>
           <span>訂單 <b>2126884712</b>。①確認雪胎需求已註記在檔案上（M+S 或 3PMSF）②把取車時間從 09:00 改成 <b>11:00</b>（班機 09:40 才落地，差太久有 no-show 風險，改期免費）。</span>
         </div>
       </div>
-      <div class="todo-row">
-        <div class="td-when">出發前<br><small>採買</small></div>
+      <div class="todo-row" data-task="prep-fx">
+        <label class="td-check"><input type="checkbox" aria-label="標記完成：線上結購加幣"></label>
+        <div class="td-when">9/19<br><small>週六</small></div>
+        <div class="td-body">
+          <b>臺灣銀行線上結購加拿大幣 CA$150</b>
+          <span>用 <a class="tlink" href="https://fctc.bot.com.tw/" target="_blank" rel="noopener">fctc.bot.com.tw</a>（臺灣銀行 Fx 線上結匯）下單，再到分行或桃園機場臺銀櫃檯領鈔。<b>領鈔要帶下單時的身分證與同一張扣款帳戶</b>；線上結匯每筆有金額與時間限制，下單後通常 <b>7 個營業日內</b> 要領完。現金主要留給兩間山中茶坊（只收現金）與零星小費。</span>
+        </div>
+      </div>
+      <div class="todo-row" data-task="prep-microspikes">
+        <label class="td-check"><input type="checkbox" aria-label="標記完成：買冰爪"></label>
+        <div class="td-when">9/20<br><small>週日</small></div>
         <div class="td-body">
           <b>迪卡儂買冰爪（microspikes）兩副</b>
           <span>Sentinel Pass、Wilcox Pass、Parker Ridge 這種 2,000 m 以上路段，10 月初結冰是常態。台灣買好帶去，當地不一定有現貨。</span>
         </div>
       </div>
-      <div class="todo-row">
-        <div class="td-when">出發前<br><small>三天</small></div>
+      <div class="todo-row" data-task="prep-parks-bulletin">
+        <label class="td-check"><input type="checkbox" aria-label="標記完成：查 Parks Canada 公告"></label>
+        <div class="td-when">9/21<br><small>週一</small></div>
         <div class="td-body">
           <b>查一次 Parks Canada 公告</b>
           <span><a class="tlink" href="https://parks.canada.ca/pn-np/ab/banff/bulletins" target="_blank" rel="noopener">Banff 公告</a>：①Larch Valley 有沒有轉成強制四人成團 ②強斯頓峽谷有沒有秋季維修封閉。<a class="tlink" href="https://parks.canada.ca/pn-np/ab/jasper/visit/ouvert-fermee-open-closed" target="_blank" rel="noopener">Jasper 開放清單</a>：確認瑪琳湖仍開放。</span>
         </div>
       </div>
-      <div class="todo-row">
-        <div class="td-when">出發前<br><small>Wi-Fi 下</small></div>
+      <div class="todo-row" data-task="prep-offline-map">
+        <label class="td-check"><input type="checkbox" aria-label="標記完成：下載離線地圖與加到主畫面"></label>
+        <div class="td-when">9/23<br><small>週三</small></div>
         <div class="td-body">
           <b>下載 Google Maps 離線地圖 ＋ 把這份手冊加到主畫面</b>
           <span>離線地圖範圍：<b>Calgary–Banff–Jasper 整條走廊</b>。冰原大道與瑪琳湖全線沒訊號，導航按鈕點得開但算不出路線。</span>
         </div>
       </div>
-      <div class="todo-row">
-        <div class="td-when">落地<br><small>當天</small></div>
+      <div class="todo-row" data-task="prep-discovery-pass">
+        <label class="td-check"><input type="checkbox" aria-label="標記完成：買 Discovery Pass 與加登記第二駕駛"></label>
+        <div class="td-when">9/25<br><small>週五・落地</small></div>
         <div class="td-body">
           <b>YYC 機場買 Discovery Pass 家庭年票 ＋ 取車時加登記第二駕駛人</b>
           <span>年票 CA$167.50（比日票省 CA$126.50），<b>機場就有賣，取車前先買最順</b>。取車時把函君加登記為 Additional Driver，未登記開車出事所有保險失效。</span>
         </div>
       </div>
-      <div class="todo-row">
-        <div class="td-when">10/1<br><small>晚上</small></div>
+      <div class="todo-row" data-task="prep-weather-swap">
+        <label class="td-check"><input type="checkbox" aria-label="標記完成：看三天預報決定是否對調"></label>
+        <div class="td-when">10/01<br><small>週四・晚上</small></div>
         <div class="td-body">
           <b>看三天預報，決定 10/2 與 10/3 要不要對調</b>
           <span>精靈島最看天氣，Day 8 的五湖谷陰天照樣好看。10/2 晴、10/3 陰 → 打電話把遊船改到 10/2，兩天內容整個換。</span>
@@ -3349,6 +3374,24 @@ footer{font-size:13.5px;line-height:1.8}
     var prev=rail.querySelector('.tab[data-pane="'+(window.CSS&&CSS.escape?CSS.escape(last):last)+'"]');
     if(prev && !prev.classList.contains('on')) activate(prev,false);
   }
+
+  // 出發前待辦：勾選狀態存在本機（同一台裝置，不需後端）
+  var DONEKEY='banff-prep-done';
+  function readDone(){try{return JSON.parse(localStorage.getItem(DONEKEY))||{};}catch(e){return {};}}
+  function writeDone(o){try{localStorage.setItem(DONEKEY,JSON.stringify(o));}catch(e){}}
+  var doneMap=readDone();
+  document.querySelectorAll('.todo-row[data-task]').forEach(function(row){
+    var id=row.getAttribute('data-task');
+    var box=row.querySelector('input[type="checkbox"]');
+    if(!box) return;
+    if(doneMap[id]){ box.checked=true; row.classList.add('done'); }
+    box.addEventListener('change',function(){
+      row.classList.toggle('done',box.checked);
+      var d=readDone();
+      if(box.checked) d[id]=1; else delete d[id];
+      writeDone(d);
+    });
+  });
 })();
 </script>
 

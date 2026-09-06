@@ -1,5 +1,5 @@
 /* 落葉松季自駕 — 離線快取 */
-const CACHE = 'banff-2026-c3d4e5f6a7';
+const CACHE = 'banff-2026-d4e5f6a7b8';
 const SHELL = ['./', './index.html', './manifest.webmanifest',
                './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 
