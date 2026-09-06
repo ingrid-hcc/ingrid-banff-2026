@@ -1,5 +1,5 @@
 /* 落葉松季自駕 — 離線快取 */
-const CACHE = 'banff-2026-b2c3d4e5f6';
+const CACHE = 'banff-2026-c3d4e5f6a7';
 const SHELL = ['./', './index.html', './manifest.webmanifest',
                './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 
@@ -26,15 +26,23 @@ self.addEventListener('fetch', e => {
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
 
-  // 頁面導覽：先給快取（離線可用），背景更新
+  // 頁面導覽：優先拿最新版（連線時一定是新的），逾時或離線才用快取
   if (req.mode === 'navigate') {
     e.respondWith(
-      caches.match('./index.html').then(hit => {
-        const net = fetch(req).then(res => {
+      new Promise(resolve => {
+        let settled = false;
+        const done = r => { if (!settled) { settled = true; resolve(r); } };
+        const timer = setTimeout(() => {
+          caches.match('./index.html').then(hit => { if (hit) done(hit); });
+        }, 3500);
+        fetch(req).then(res => {
+          clearTimeout(timer);
           caches.open(CACHE).then(c => c.put('./index.html', res.clone()));
-          return res;
-        }).catch(() => hit);
-        return hit || net;
+          done(res);
+        }).catch(() => {
+          clearTimeout(timer);
+          caches.match('./index.html').then(hit => done(hit || Response.error()));
+        });
       })
     );
     return;
