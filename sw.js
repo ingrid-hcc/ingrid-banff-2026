@@ -1,7 +1,12 @@
 /* 落葉松季自駕 — 離線快取 */
-const CACHE = 'banff-2026-c9d0e1f2a3';
+const CACHE = 'banff-2026-d0e1f2a3b4';
 const SHELL = ['./', './index.html', './manifest.webmanifest',
-               './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
+               './icon-192.png', './icon-512.png', './apple-touch-icon.png',
+               './assets/icewalks-confirmation.pdf',
+               './assets/icewalks-waiver-chang-yahsuan.pdf',
+               './assets/icewalks-waiver-chung-hanchun.pdf',
+               './assets/maligne-cruise-confirmation.pdf',
+               './assets/maligne-cruise-tickets.pdf'];
 
 self.addEventListener('install', e => {
   e.waitUntil(caches.open(CACHE)
@@ -25,6 +30,18 @@ self.addEventListener('fetch', e => {
   const req = e.request;
   if (req.method !== 'GET') return;
   const url = new URL(req.url);
+
+  // 票券／文件等靜態檔（含 PDF）：快取優先，離線一定打得開，
+  //   放在導覽判斷之前，避免離線點開 PDF 時被導回 index.html
+  if (url.origin === self.location.origin && url.pathname.includes('/assets/')) {
+    e.respondWith(
+      caches.match(req).then(hit => hit || fetch(req).then(res => {
+        if (res.ok) { const copy = res.clone(); caches.open(CACHE).then(c => c.put(req, copy)); }
+        return res;
+      }))
+    );
+    return;
+  }
 
   // 頁面導覽：優先拿最新版（連線時一定是新的），逾時或離線才用快取
   if (req.mode === 'navigate') {
