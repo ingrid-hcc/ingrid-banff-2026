@@ -1,5 +1,5 @@
 /* 落葉松季自駕 — 離線快取 */
-const CACHE = 'banff-2026-b4c5d6e7f8';
+const CACHE = 'banff-2026-f8a9b0c1d2';
 const SHELL = ['./', './index.html', './manifest.webmanifest',
                './icon-192.png', './icon-512.png', './apple-touch-icon.png',
                './assets/icewalks-confirmation.pdf',
