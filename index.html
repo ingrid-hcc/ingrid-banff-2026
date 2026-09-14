@@ -399,12 +399,25 @@ a{color:inherit}
 .packgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:13px}
 .packcard{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:15px 17px;box-shadow:var(--shadow)}
 .packcard h4{font-family:var(--font-display);font-weight:700;font-size:14px;color:var(--spruce);margin-bottom:10px;display:flex;align-items:center;gap:7px}
-.packcard ul{list-style:none;display:grid;gap:5px}
-.packcard li{font-size:13px;color:var(--ink-2);padding-left:22px;position:relative;line-height:1.6}
-.packcard li::before{content:'';position:absolute;left:0;top:5px;width:12px;height:12px;border:1.5px solid var(--line);border-radius:3px;background:var(--sunken)}
+.packcard ul{list-style:none;display:grid;gap:7px}
+.packcard li{color:var(--ink-2);line-height:1.6}
 .packcard li.key{color:var(--ink);font-weight:600}
-.packcard li.key::before{border-color:var(--larch);background:var(--larch-wash)}
-.packcard li small{display:block;font-size:11.5px;color:var(--ink-3);font-weight:400}
+
+/* 打包清單／不能忘的五樣：可勾選 checkbox，沿用「出發前待辦」同一套勾選視覺與 --check-* 色票 */
+#p-pack .callout ul li{padding-left:0}
+#p-pack .callout ul li::before{content:none}
+.pk-check{display:flex;align-items:flex-start;gap:8px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.pk-check input{position:absolute;width:1px;height:1px;opacity:0;margin:0;pointer-events:none}
+.pk-box{box-sizing:border-box;width:16px;height:16px;flex:none;margin-top:3px;border:1.5px solid var(--check-line);border-radius:4px;background:var(--card);transition:background-color .12s,border-color .12s}
+#p-pack li.key .pk-box{border-color:var(--larch);background:var(--larch-wash)}
+@media (hover:hover){.pk-check:hover .pk-box{border-color:var(--check-fill)}}
+.pk-check input:focus-visible + .pk-box{outline:2px solid var(--check-fill);outline-offset:2px}
+.pk-check input:checked + .pk-box,
+#p-pack li.key .pk-check input:checked + .pk-box{border-color:var(--check-fill);background:var(--check-fill) var(--check-mark) center/11px 11px no-repeat}
+.pk-text{flex:1;min-width:0}
+.pk-text small{display:block;color:var(--ink-3);font-weight:400}
+#p-pack li.pk-done .pk-text{opacity:.5;text-decoration:line-through}
+#p-pack li.pk-done .pk-text small{text-decoration:none}
 
 /* table */
 .tblwrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--card);box-shadow:var(--shadow)}
@@ -1116,13 +1129,13 @@ footer{font-size:13.5px;line-height:1.8}
   </div>
 
   <div class="callout">
-    <h4>不能忘的四樣（忘了會直接影響行程）</h4>
+    <h4>不能忘的五樣（忘了會直接影響行程，可勾選）</h4>
     <ul>
-      <li><b>冰爪／防滑鞋套（microspikes）×2</b> — Sentinel Pass、Wilcox Pass、Parker Ridge 這種 2,000m 以上的路段，10 月初結冰是常態。<b>已買（迪卡儂），打包時兩副都要放進行李</b></li>
-      <li><b>國際駕照 IDP ＋ 台灣駕照正本</b> — 少一樣租不到車</li>
-      <li><b>加拿大 eTA</b>（CA$7・canada.ca）<b>＋ 美國 ESTA</b>（<b>US$40.27</b>・esta.cbp.dhs.gov）— <b>兩個都要</b>。去程轉機 SFO、回程轉機 SEA，美國沒有國際轉機區，沒有 ESTA 在桃園就登不了機</li>
-      <li><b>兩本護照本人</b> — 已確認都是<b>晶片護照、內頁有身分證字號</b>（eTA／ESTA 前置條件 OK）。出門前再點一次兩本都在包裡</li>
-      <li><b>防水外套＋防水登山鞋</b> — 冰原上有融雪積水，一濕整天都毀了</li>
+      <li data-item="notforget-1"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：冰爪／防滑鞋套（microspikes）×2 — Sentinel Pass、Wilcox Pass、Parker Ridge 這種 2,000m 以上的路段，10 月初結冰是常態。已買（迪卡儂），打包時兩副都要放進行李"><span class="pk-box" aria-hidden="true"></span><span class="pk-text"><b>冰爪／防滑鞋套（microspikes）×2</b> — Sentinel Pass、Wilcox Pass、Parker Ridge 這種 2,000m 以上的路段，10 月初結冰是常態。<b>已買（迪卡儂），打包時兩副都要放進行李</b></span></label></li>
+      <li data-item="notforget-2"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：國際駕照 IDP ＋ 台灣駕照正本 — 少一樣租不到車"><span class="pk-box" aria-hidden="true"></span><span class="pk-text"><b>國際駕照 IDP ＋ 台灣駕照正本</b> — 少一樣租不到車</span></label></li>
+      <li data-item="notforget-3"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：加拿大 eTA（CA$7・canada.ca）＋ 美國 ESTA（US$40.27・esta.cbp.dhs.gov）— 兩個都要。去程轉機 SFO、回程轉機 SEA，美國沒有國際轉機區，沒有 ESTA 在桃園就登不了機"><span class="pk-box" aria-hidden="true"></span><span class="pk-text"><b>加拿大 eTA</b>（CA$7・canada.ca）<b>＋ 美國 ESTA</b>（<b>US$40.27</b>・esta.cbp.dhs.gov）— <b>兩個都要</b>。去程轉機 SFO、回程轉機 SEA，美國沒有國際轉機區，沒有 ESTA 在桃園就登不了機</span></label></li>
+      <li data-item="notforget-4"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：兩本護照本人 — 已確認都是晶片護照、內頁有身分證字號（eTA／ESTA 前置條件 OK）。出門前再點一次兩本都在包裡"><span class="pk-box" aria-hidden="true"></span><span class="pk-text"><b>兩本護照本人</b> — 已確認都是<b>晶片護照、內頁有身分證字號</b>（eTA／ESTA 前置條件 OK）。出門前再點一次兩本都在包裡</span></label></li>
+      <li data-item="notforget-5"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：防水外套＋防水登山鞋 — 冰原上有融雪積水，一濕整天都毀了"><span class="pk-box" aria-hidden="true"></span><span class="pk-text"><b>防水外套＋防水登山鞋</b> — 冰原上有融雪積水，一濕整天都毀了</span></label></li>
     </ul>
   </div>
 
@@ -1130,37 +1143,37 @@ footer{font-size:13.5px;line-height:1.8}
     <div class="packcard">
       <h4>🧥 衣物（洋蔥式三層）</h4>
       <ul>
-        <li class="key">防水防風外套（硬殼）<small>Gore-Tex 等級最保險</small></li>
-        <li class="key">羽絨／化纖中層外套<small>停下來拍照時就靠它</small></li>
-        <li>排汗底層上衣 ×3–4<small>羊毛或化纖，別穿棉</small></li>
-        <li>刷毛中層 ×1</li>
-        <li>登山長褲 ×2（其中一件防潑水）</li>
-        <li>保暖褲／發熱褲 ×1<small>高山步道與冰原上會用到</small></li>
-        <li>毛帽、脖圍、防風手套</li>
-        <li>厚羊毛襪 ×4－5<small>IG 筆記⑦：多帶一雙備用襪放背包</small></li>
-        <li>鎮上休閒服＋泡溫泉的泳衣</li>
+        <li class="key" data-item="clothing-1"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：防水防風外套（硬殼）"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">防水防風外套（硬殼）<small>Gore-Tex 等級最保險</small></span></label></li>
+        <li class="key" data-item="clothing-2"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：羽絨／化纖中層外套"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">羽絨／化纖中層外套<small>停下來拍照時就靠它</small></span></label></li>
+        <li data-item="clothing-3"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：排汗底層上衣 ×3–4"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">排汗底層上衣 ×3–4<small>羊毛或化纖，別穿棉</small></span></label></li>
+        <li data-item="clothing-4"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：刷毛中層 ×1"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">刷毛中層 ×1</span></label></li>
+        <li data-item="clothing-5"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：登山長褲 ×2（其中一件防潑水）"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">登山長褲 ×2（其中一件防潑水）</span></label></li>
+        <li data-item="clothing-6"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：保暖褲／發熱褲 ×1"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">保暖褲／發熱褲 ×1<small>高山步道與冰原上會用到</small></span></label></li>
+        <li data-item="clothing-7"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：毛帽、脖圍、防風手套"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">毛帽、脖圍、防風手套</span></label></li>
+        <li data-item="clothing-8"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：厚羊毛襪 ×4－5"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">厚羊毛襪 ×4－5<small>IG 筆記⑦：多帶一雙備用襪放背包</small></span></label></li>
+        <li data-item="clothing-9"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：鎮上休閒服＋泡溫泉的泳衣"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">鎮上休閒服＋泡溫泉的泳衣</span></label></li>
       </ul>
     </div>
 
     <div class="packcard">
       <h4>🥾 鞋與雪地裝備</h4>
       <ul>
-        <li class="key">防水中筒登山鞋<small>Day 3/5/7/11 都是碎石＋可能積雪</small></li>
-        <li class="key">冰爪／microspikes ×2 副<small>迪卡儂購入，重量輕、體積小</small></li>
-        <li>登山杖 ×2 對<small>Sentinel Pass 下坡救膝蓋</small></li>
-        <li>鞋套 gaiters（選配）</li>
-        <li>室內拖鞋<small>IG 筆記⑩：山區住宿都不提供</small></li>
-        <li>備用鞋墊 ／ 快乾毛巾</li>
+        <li class="key" data-item="shoes-1"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：防水中筒登山鞋"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">防水中筒登山鞋<small>Day 3/5/7/11 都是碎石＋可能積雪</small></span></label></li>
+        <li class="key" data-item="shoes-2"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：冰爪／microspikes ×2 副"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">冰爪／microspikes ×2 副<small>迪卡儂購入，重量輕、體積小</small></span></label></li>
+        <li data-item="shoes-3"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：登山杖 ×2 對"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">登山杖 ×2 對<small>Sentinel Pass 下坡救膝蓋</small></span></label></li>
+        <li data-item="shoes-4"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：鞋套 gaiters（選配）"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">鞋套 gaiters（選配）</span></label></li>
+        <li data-item="shoes-5"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：室內拖鞋"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">室內拖鞋<small>IG 筆記⑩：山區住宿都不提供</small></span></label></li>
+        <li data-item="shoes-6"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：備用鞋墊 ／ 快乾毛巾"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">備用鞋墊 ／ 快乾毛巾</span></label></li>
       </ul>
     </div>
 
     <div class="packcard">
       <h4>☀️ 防曬（IG 筆記⑧）</h4>
       <ul>
-        <li class="key">防曬乳 SPF50+ / PA++++<small>要補擦，別只擦一次</small></li>
-        <li class="key">太陽眼鏡<small>雪地與湖面反光很強，眼睛容易疲勞</small></li>
-        <li>帽子（有帽簷）<small>減少臉部與頸部曝曬</small></li>
-        <li>有防曬係數的護唇膏</li>
+        <li class="key" data-item="sun-1"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：防曬乳 SPF50+ / PA++++"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">防曬乳 SPF50+ / PA++++<small>要補擦，別只擦一次</small></span></label></li>
+        <li class="key" data-item="sun-2"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：太陽眼鏡"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">太陽眼鏡<small>雪地與湖面反光很強，眼睛容易疲勞</small></span></label></li>
+        <li data-item="sun-3"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：帽子（有帽簷）"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">帽子（有帽簷）<small>減少臉部與頸部曝曬</small></span></label></li>
+        <li data-item="sun-4"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：有防曬係數的護唇膏"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">有防曬係數的護唇膏</span></label></li>
       </ul>
       <p style="font-size:12.5px;color:var(--ink-3);margin-top:9px">冷不代表不會曬。洛磯山脈海拔高、空氣乾，加上雪面冰面湖面反射，實際曝曬比想像高得多。</p>
     </div>
@@ -1168,58 +1181,58 @@ footer{font-size:13.5px;line-height:1.8}
     <div class="packcard">
       <h4>💧 抗乾燥（IG 筆記⑨）</h4>
       <ul>
-        <li class="key">滋潤型乳霜<small>臉部＋身體各一，比乳液更有效</small></li>
-        <li class="key">護唇膏（隨身，勤補擦）</li>
-        <li>凡士林<small>鼻腔乾燥結痂流血時擦鼻孔內緣</small></li>
-        <li>人工淚液／乾眼凝膠<small>戴隱形眼鏡或乾眼症的人一定要帶</small></li>
-        <li>保濕面膜（住宿夜間用）</li>
+        <li class="key" data-item="moisture-1"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：滋潤型乳霜"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">滋潤型乳霜<small>臉部＋身體各一，比乳液更有效</small></span></label></li>
+        <li class="key" data-item="moisture-2"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：護唇膏（隨身，勤補擦）"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">護唇膏（隨身，勤補擦）</span></label></li>
+        <li data-item="moisture-3"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：凡士林"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">凡士林<small>鼻腔乾燥結痂流血時擦鼻孔內緣</small></span></label></li>
+        <li data-item="moisture-4"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：人工淚液／乾眼凝膠"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">人工淚液／乾眼凝膠<small>戴隱形眼鏡或乾眼症的人一定要帶</small></span></label></li>
+        <li data-item="moisture-5"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：保濕面膜（住宿夜間用）"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">保濕面膜（住宿夜間用）</span></label></li>
       </ul>
     </div>
 
     <div class="packcard">
       <h4>🏡 山區住宿自備（IG 筆記⑩）</h4>
       <ul>
-        <li class="key">快煮鍋／保溫瓶<small>山區餐廳選擇少、用餐時間受限，自己煮很方便</small></li>
-        <li class="key">個人盥洗用品<small>牙刷牙膏等一次性備品現在多數不提供</small></li>
-        <li>小瓶洗衣劑<small>遇到有自助洗衣設備就順手洗</small></li>
-        <li>習慣的吹風機<small>部分木屋吹風機很陽春，長髮特別有感</small></li>
-        <li>環保餐具／保鮮盒<small>Day 1 在大統華買的食材帶著走</small></li>
+        <li class="key" data-item="lodging-1"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：快煮鍋／保溫瓶"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">快煮鍋／保溫瓶<small>山區餐廳選擇少、用餐時間受限，自己煮很方便</small></span></label></li>
+        <li class="key" data-item="lodging-2"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：個人盥洗用品"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">個人盥洗用品<small>牙刷牙膏等一次性備品現在多數不提供</small></span></label></li>
+        <li data-item="lodging-3"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：小瓶洗衣劑"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">小瓶洗衣劑<small>遇到有自助洗衣設備就順手洗</small></span></label></li>
+        <li data-item="lodging-4"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：習慣的吹風機"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">習慣的吹風機<small>部分木屋吹風機很陽春，長髮特別有感</small></span></label></li>
+        <li data-item="lodging-5"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：環保餐具／保鮮盒"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">環保餐具／保鮮盒<small>Day 1 在大統華買的食材帶著走</small></span></label></li>
       </ul>
     </div>
 
     <div class="packcard">
       <h4>🚗 車上與 3C</h4>
       <ul>
-        <li class="key">手機車架 ＋ 車充（雙孔）</li>
-        <li class="key">離線地圖<small>Google Maps 下載 Calgary–Banff–Jasper 全區</small></li>
-        <li>行動電源 ×2（低溫掉電很快）</li>
-        <li>加拿大 eSIM／漫遊<small>山區沒訊號，別依賴</small></li>
-        <li>轉接頭（加拿大＝美規 A/B 型，110V）</li>
-        <li>頭燈 ×2<small>5:30 出發搶停車位、傍晚回程都用得到</small></li>
-        <li>保溫瓶＋行動糧<small>茶坊可能提早打烊</small></li>
-        <li>大垃圾袋<small>髒鞋濕衣分裝，別弄髒租來的車</small></li>
+        <li class="key" data-item="car-1"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：手機車架 ＋ 車充（雙孔）"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">手機車架 ＋ 車充（雙孔）</span></label></li>
+        <li class="key" data-item="car-2"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：離線地圖"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">離線地圖<small>Google Maps 下載 Calgary–Banff–Jasper 全區</small></span></label></li>
+        <li data-item="car-3"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：行動電源 ×2（低溫掉電很快）"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">行動電源 ×2（低溫掉電很快）</span></label></li>
+        <li data-item="car-4"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：加拿大 eSIM／漫遊"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">加拿大 eSIM／漫遊<small>山區沒訊號，別依賴</small></span></label></li>
+        <li data-item="car-5"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：轉接頭（加拿大＝美規 A/B 型，110V）"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">轉接頭（加拿大＝美規 A/B 型，110V）</span></label></li>
+        <li data-item="car-6"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：頭燈 ×2"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">頭燈 ×2<small>5:30 出發搶停車位、傍晚回程都用得到</small></span></label></li>
+        <li data-item="car-7"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：保溫瓶＋行動糧"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">保溫瓶＋行動糧<small>茶坊可能提早打烊</small></span></label></li>
+        <li data-item="car-8"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：大垃圾袋"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">大垃圾袋<small>髒鞋濕衣分裝，別弄髒租來的車</small></span></label></li>
       </ul>
     </div>
 
     <div class="packcard">
       <h4>💊 醫藥與證件</h4>
       <ul>
-        <li class="key">護照＋<b>加拿大 eTA</b>＋<b>美國 ESTA</b><small>兩個都要，去回程都轉機美國</small></li>
-        <li class="key">國際駕照 IDP ＋ 台灣駕照正本</li>
-        <li>旅平險／不便險保單（電子檔存手機）</li>
-        <li>常備藥：止痛、腸胃、感冒、暈車</li>
-        <li>OK 繃／水泡貼／肌貼</li>
-        <li>電子檔備份：護照、駕照、訂房、租車、班機（存 Google Drive 與離線）</li>
+        <li class="key" data-item="docs-1"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：護照＋加拿大 eTA＋美國 ESTA"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">護照＋<b>加拿大 eTA</b>＋<b>美國 ESTA</b><small>兩個都要，去回程都轉機美國</small></span></label></li>
+        <li class="key" data-item="docs-2"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：國際駕照 IDP ＋ 台灣駕照正本"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">國際駕照 IDP ＋ 台灣駕照正本</span></label></li>
+        <li data-item="docs-3"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：旅平險／不便險保單（電子檔存手機）"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">旅平險／不便險保單（電子檔存手機）</span></label></li>
+        <li data-item="docs-4"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：常備藥：止痛、腸胃、感冒、暈車"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">常備藥：止痛、腸胃、感冒、暈車</span></label></li>
+        <li data-item="docs-5"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：OK 繃／水泡貼／肌貼"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">OK 繃／水泡貼／肌貼</span></label></li>
+        <li data-item="docs-6"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：電子檔備份：護照、駕照、訂房、租車、班機（存 Google Drive 與離線）"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">電子檔備份：護照、駕照、訂房、租車、班機（存 Google Drive 與離線）</span></label></li>
       </ul>
     </div>
 
     <div class="packcard">
       <h4>🛒 落地後在當地買</h4>
       <ul>
-        <li class="key">熊噴霧 Bear Spray<small>不可托運也不可手提，一定要在當地買。Canmore / Banff 的 MEC、Atmosphere、Canadian Tire 都有，約 CAD 45–55；<b>離開時不能帶上飛機，送給下一位旅人或丟指定回收</b></small></li>
-        <li>飲用水（山泉水不要生飲）</li>
-        <li>行動糧、水果、即食料理<small>Day 1 在 Calgary 大統華 T&amp;T 一次買齊</small></li>
-        <li>擋風玻璃刮霜刮片<small>租車若沒附，Canadian Tire 幾塊錢</small></li>
+        <li class="key" data-item="local-1"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：熊噴霧 Bear Spray"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">熊噴霧 Bear Spray<small>不可托運也不可手提，一定要在當地買。Canmore / Banff 的 MEC、Atmosphere、Canadian Tire 都有，約 CAD 45–55；<b>離開時不能帶上飛機，送給下一位旅人或丟指定回收</b></small></span></label></li>
+        <li data-item="local-2"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：飲用水（山泉水不要生飲）"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">飲用水（山泉水不要生飲）</span></label></li>
+        <li data-item="local-3"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：行動糧、水果、即食料理"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">行動糧、水果、即食料理<small>Day 1 在 Calgary 大統華 T&amp;T 一次買齊</small></span></label></li>
+        <li data-item="local-4"><label class="pk-check"><input type="checkbox" aria-label="標記已打包：擋風玻璃刮霜刮片"><span class="pk-box" aria-hidden="true"></span><span class="pk-text">擋風玻璃刮霜刮片<small>租車若沒附，Canadian Tire 幾塊錢</small></span></label></li>
       </ul>
     </div>
   </div>
@@ -3430,6 +3443,24 @@ footer{font-size:13.5px;line-height:1.8}
       var d=readDone();
       if(box.checked) d[id]=1; else delete d[id];
       writeDone(d);
+    });
+  });
+
+  // 打包清單：跟出發前待辦同一套邏輯，但存在自己的 key，互不干擾
+  var PACKKEY='banff-pack-done';
+  function readPack(){try{return JSON.parse(localStorage.getItem(PACKKEY))||{};}catch(e){return {};}}
+  function writePack(o){try{localStorage.setItem(PACKKEY,JSON.stringify(o));}catch(e){}}
+  var packMap=readPack();
+  document.querySelectorAll('#p-pack li[data-item]').forEach(function(li){
+    var id=li.getAttribute('data-item');
+    var box=li.querySelector('input[type="checkbox"]');
+    if(!box) return;
+    if(packMap[id]){ box.checked=true; li.classList.add('pk-done'); }
+    box.addEventListener('change',function(){
+      li.classList.toggle('pk-done',box.checked);
+      var p=readPack();
+      if(box.checked) p[id]=1; else delete p[id];
+      writePack(p);
     });
   });
 })();
