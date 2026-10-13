@@ -174,6 +174,8 @@ const T = {
     pieA:"Ayson 的花費占比", capA:"包含共享項目的一半，以及一張機票。",
     others:"其他（占比低於 2%）",
     catTitle:"各類別總花費",
+    hotelTitle:"住宿明細（每晚分攤）", hotelCap:"每間住宿的每晚價格，以及兩人平均分攤後的金額。",
+    hotel:"住宿", dates:"日期", nightsCol:"晚數", perNight:"每晚總額", perNightPerson:"每晚每人", perPerson:"每人總額",
     cat:"類別", amt:"金額", pct:"占比", cnt:"筆數", total:"合計",
     perTitle:"Ingrid vs Ayson 個人花費",
     rShare:"共享應分擔", rPaid:"共享實際付出", rPers:"個人消費（自己付）", rFlight:"機票（各一張）", rTotal:"個人總支出",
@@ -196,6 +198,8 @@ const T = {
     pieA:"Ayson's share of spend", capA:"Includes half of shared items and one flight.",
     others:"Other (under 2% each)",
     catTitle:"Total spend by category",
+    hotelTitle:"Accommodation by night", hotelCap:"Price per night for each stay, and the amount each person pays when split evenly.",
+    hotel:"Stay", dates:"Dates", nightsCol:"Nights", perNight:"Per night", perNightPerson:"Per night each", perPerson:"Each person total",
     cat:"Category", amt:"Amount", pct:"Share", cnt:"Items", total:"Total",
     perTitle:"Ingrid vs Ayson, personal breakdown",
     rShare:"Shared share", rPaid:"Shared amount paid", rPers:"Personal (paid by self)", rFlight:"Flight (one each)", rTotal:"Total spend",
@@ -209,6 +213,14 @@ const T = {
     n5:"The 3,724 TWD currency exchange is counted as spend. Remove it if you only want actual purchases. Cat-sitting costs are now a separate category, 14,820 TWD in total, shown on their own in the pie charts and category table."
   }
 };
+
+// Each stay: total cost and number of nights (from the Splitwise hotel entries).
+const HOTELS = [
+  {name:{zh:"Canmore 住宿",en:"Canmore stay"}, dates:"9/25–9/30", nights:5, v:20662},
+  {name:{zh:"Sunwapta Lodge",en:"Sunwapta Lodge"}, dates:"9/30–10/1", nights:1, v:12571},
+  {name:{zh:"Jasper Chateau",en:"Jasper Chateau"}, dates:"10/1–10/4", nights:3, v:29582.36},
+  {name:{zh:"青年旅館（Hostel）",en:"Hostel"}, dates:"10/4–10/6", nights:2, v:7337}
+];
 
 const PALETTE = ["#2d5b4e","#c2703d","#4a6fa5","#8c5aa0","#d4a03a","#5f9d6e","#b04a5c","#3d9aa6","#7a6f5c","#6b7f3f","#a0527a","#5a6b8c"];
 const OTHER_COLOR = "#9aa5a2";
@@ -343,6 +355,22 @@ function render(){
       </table></div>
     </section>`;
 
+  const hotelNights = sum(HOTELS.map(h=>h.nights));
+  const hotelTotal = sum(HOTELS.map(h=>h.v));
+  const hotelRows = HOTELS.map(h=>`
+    <tr><td>${h.name[lang]}</td><td>${h.dates}</td><td class="r">${h.nights}</td><td class="r">${fmt(h.v)}</td>
+      <td class="r">${fmt(h.v/h.nights)}</td><td class="r">${fmt(h.v/h.nights/2)}</td><td class="r">${fmt(h.v/2)}</td></tr>`).join("");
+  const hotelSec = `
+    <section><h2>${t.hotelTitle}</h2><p class="caption">${t.hotelCap}</p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>${t.hotel}</th><th>${t.dates}</th><th class="r">${t.nightsCol}</th><th class="r">${t.amt}</th><th class="r">${t.perNight}</th><th class="r">${t.perNightPerson}</th><th class="r">${t.perPerson}</th></tr></thead>
+        <tbody>${hotelRows}
+          <tr class="total"><td>${t.total}</td><td></td><td class="r">${hotelNights}</td><td class="r">${fmt(hotelTotal)}</td>
+            <td class="r">${fmt(hotelTotal/hotelNights)}</td><td class="r">${fmt(hotelTotal/hotelNights/2)}</td><td class="r">${fmt(hotelTotal/2)}</td></tr>
+        </tbody>
+      </table></div>
+    </section>`;
+
   const detailSec = `<section><h2>${t.detailTitle}</h2>` + cats.map(k=>{
     const rows = ITEMS.filter(i=>i[2]===k.key).map(i=>`
       <tr>
@@ -362,7 +390,7 @@ function render(){
   const notes = `<section><h2>${t.notesTitle}</h2><ul class="notes">
     <li>${t.n1}</li><li>${t.n2}</li><li>${t.n3}</li><li>${t.n4}</li><li>${t.n5}</li></ul></section>`;
 
-  document.getElementById("app").innerHTML = cards + pieAllSec + pieISec + pieASec + catSec + perSec + detailSec + notes;
+  document.getElementById("app").innerHTML = cards + pieAllSec + pieISec + pieASec + hotelSec + catSec + perSec + detailSec + notes;
 }
 
 document.querySelector(".lang").addEventListener("click", e=>{
