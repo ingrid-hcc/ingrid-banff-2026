@@ -1,7 +1,7 @@
 <title>Canada Trip Expenses</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&display=swap">
 <style>
-/* Layout: one column report. Summary cards, then pie beside its legend, then tables. */
+/* Layout: one column report. Summary cards, ranked histograms, then tables. */
 :root{
   --bg:#f3f5f4; --surface:#ffffff; --ink:#18221f; --muted:#5b6a66; --line:#d8dfdc;
   --accent:#2d5b4e; --accent-soft:#e0ebe7; --shadow:0 1px 2px rgba(20,30,28,.06);
@@ -21,7 +21,8 @@ body{background:var(--bg);color:var(--ink);font-family:"Noto Sans TC",system-ui,
 .wrap{max-width:980px;margin:0 auto;padding-block:28px 48px;padding-inline:16px;box-sizing:border-box}
 *{box-sizing:border-box}
 h1{font-size:28px;margin:0;font-weight:700;text-wrap:balance}
-h2{font-size:18px;margin:0 0 14px;font-weight:700}
+h2{font-size:18px;margin:0 0 6px;font-weight:700}
+.caption{color:var(--muted);font-size:13px;margin:0 0 16px}
 .muted{color:var(--muted);font-size:13px}
 .num{font-variant-numeric:tabular-nums;white-space:nowrap}
 header{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:flex-end;justify-content:space-between;margin-bottom:22px}
@@ -36,14 +37,15 @@ header{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:flex-end;justify-co
 .card .sub{font-size:12px;color:var(--muted);margin-top:2px}
 .card.hi{border-color:var(--accent)}
 section{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px 18px;margin-bottom:18px;box-shadow:var(--shadow);min-width:0}
-.pie-row{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:24px;align-items:center}
-@media (max-width:640px){.pie-row{grid-template-columns:1fr}}
-.pie-row svg{width:100%;max-width:300px;height:auto;display:block;margin:0 auto}
-.legend{list-style:none;margin:0;padding:0;display:grid;gap:8px}
-.legend li{display:grid;grid-template-columns:14px minmax(0,1fr) auto auto;gap:10px;align-items:center;font-size:14px;min-width:0}
-.legend .sw{width:12px;height:12px;border-radius:3px}
-.legend .nm{overflow-wrap:anywhere}
-.legend .pc{color:var(--muted);font-variant-numeric:tabular-nums}
+.bar-row{display:grid;grid-template-columns:minmax(0,170px) minmax(0,1fr) auto;gap:12px;align-items:center;font-size:14px;margin-bottom:9px}
+.bar-label{overflow-wrap:anywhere}
+.bar-track{background:var(--accent-soft);border-radius:6px;height:14px;overflow:hidden;min-width:0}
+.bar-fill{height:100%;background:var(--accent);border-radius:6px;min-width:2px}
+.bar-val{font-variant-numeric:tabular-nums;white-space:nowrap}
+@media (max-width:640px){
+  .bar-row{grid-template-columns:minmax(0,1fr) auto}
+  .bar-track{grid-column:1 / -1;grid-row:2}
+}
 .table-wrap{overflow-x:auto}
 table{width:100%;border-collapse:collapse;font-size:14px}
 th,td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
@@ -168,46 +170,48 @@ const T = {
     sub:"2026/09/22 – 10/07 · 依 Splitwise 紀錄 · 金額單位 TWD",
     shared:"共享花費總額", ingrid:"Ingrid 總支出", ayson:"Ayson 總支出", settle:"結算",
     settleTxt:"Ingrid 付給 Ayson", each:"每人應分擔",
-    pieTitle:"各類別花費占比", catTitle:"各類別總花費",
+    histAll:"各類別花費（由高到低）",
+    histI:"Ingrid 的各類別花費（由高到低）", capI:"包含共享項目的一半、自己付的個人消費，以及一張機票。",
+    histA:"Ayson 的各類別花費（由高到低）", capA:"包含共享項目的一半，以及一張機票。",
+    catTitle:"各類別總花費",
     cat:"類別", amt:"金額", pct:"占比", cnt:"筆數", total:"合計",
     perTitle:"Ingrid vs Ayson 個人花費",
     rShare:"共享應分擔", rPaid:"共享實際付出", rPers:"個人消費（自己付）", rFlight:"機票（各一張）", rTotal:"個人總支出",
-    detailTitle:"消費細節", items:"筆", others:"其他（占比低於 2%）",
+    detailTitle:"消費細節", items:"筆",
     typeS:"共享", typeP:"個人", typeF:"機票", payI:"Ingrid 付", payA:"Ayson 付", flightNote:"每人一張",
     notesTitle:"說明",
     n1:"共享：Splitwise 均分的項目，兩人各承擔一半。",
     n2:"個人：0/0 的項目，由付款人自己承擔，不計入結算。包含 Ingrid 的 eSIM、毛帽、酒、紀念品等。",
     n3:"機票：兩張長榮機票各 33,775 元，各由一人承擔。",
     n4:"加幣已換算：依 2026/10/7 匯率 1 CAD ≈ 22.355 TWD（來源：fxfeed.io），Gift 36.59 CAD ≈ 817.98 TWD、咖啡 3.52 CAD ≈ 78.69 TWD，合計 896.67 TWD，列為 Ingrid 的個人消費。",
-    n5:"換加幣的 3,724 元被列為支出；若只想看實際消費，可以扣除。貓保母費用已獨立列為一類，共 14,820 元，可在圓餅圖與類別表中單獨查看。"
+    n5:"換加幣的 3,724 元被列為支出；若只想看實際消費，可以扣除。貓保母費用已獨立列為一類，共 14,820 元，可在長條圖與類別表中單獨查看。"
   },
   en:{
     title:"Canada Trip Expense Analysis",
     sub:"Sep 22 – Oct 7, 2026 · From Splitwise export · Amounts in TWD",
     shared:"Total shared spend", ingrid:"Ingrid's total spend", ayson:"Ayson's total spend", settle:"Settlement",
     settleTxt:"Ingrid pays Ayson", each:"Each person's share",
-    pieTitle:"Share of spend by category", catTitle:"Total spend by category",
+    histAll:"Spend by category (highest to lowest)",
+    histI:"Ingrid's spend by category (highest to lowest)", capI:"Includes half of shared items, her own personal purchases, and one flight.",
+    histA:"Ayson's spend by category (highest to lowest)", capA:"Includes half of shared items and one flight.",
+    catTitle:"Total spend by category",
     cat:"Category", amt:"Amount", pct:"Share", cnt:"Items", total:"Total",
     perTitle:"Ingrid vs Ayson, personal breakdown",
     rShare:"Shared share", rPaid:"Shared amount paid", rPers:"Personal (paid by self)", rFlight:"Flight (one each)", rTotal:"Total spend",
-    detailTitle:"Line items", items:"items", others:"Other (under 2% each)",
+    detailTitle:"Line items", items:"items",
     typeS:"Shared", typeP:"Personal", typeF:"Flight", payI:"Paid by Ingrid", payA:"Paid by Ayson", flightNote:"One each",
     notesTitle:"Notes",
     n1:"Shared: Splitwise split items, each person covers half.",
     n2:"Personal: 0/0 items, paid and covered by the person who paid. Not part of the settlement. Includes Ingrid's eSIM, hat, liquor, souvenirs.",
     n3:"Flights: two EVA Air tickets at 33,775 TWD each, one per person.",
     n4:"CAD converted at the Oct 7, 2026 rate of 1 CAD ≈ 22.355 TWD (source: fxfeed.io): Gift 36.59 CAD ≈ 817.98 TWD, coffee 3.52 CAD ≈ 78.69 TWD, 896.67 TWD in total, counted as Ingrid's personal spend.",
-    n5:"The 3,724 TWD currency exchange is counted as spend. Remove it if you only want actual purchases. Cat-sitting costs are now a separate category, 14,820 TWD in total, shown on their own in the pie chart and category table."
+    n5:"The 3,724 TWD currency exchange is counted as spend. Remove it if you only want actual purchases. Cat-sitting costs are now a separate category, 14,820 TWD in total, shown on their own in the bar charts and category table."
   }
 };
-
-const PALETTE = ["#2d5b4e","#c2703d","#4a6fa5","#8c5aa0","#d4a03a","#5f9d6e","#b04a5c","#3d9aa6","#7a6f5c","#6b7f3f","#a0527a","#5a6b8c"];
-const OTHER_COLOR = "#9aa5a2";
 
 let lang = "zh";
 const fmt = n => n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
 const sum = arr => arr.reduce((a,b)=>a+b,0);
-const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
 
 function compute(){
   const shared = ITEMS.filter(i=>i[4]==="S");
@@ -236,36 +240,31 @@ function catTotals(){
   return Object.values(m).sort((a,b)=>b.v-a.v);
 }
 
-function pie(cats, grand){
-  const main = cats.filter(c=>c.v/grand >= 0.02);
-  const rest = cats.filter(c=>c.v/grand < 0.02);
-  const slices = main.map((c,i)=>({label:CATS[c.key][lang], v:c.v, color:PALETTE[i % PALETTE.length]}));
-  if(rest.length){
-    slices.push({label:T[lang].others, v:sum(rest.map(c=>c.v)), color:OTHER_COLOR});
-  }
-  const cx=150, cy=150, r=140;
-  let angle = -Math.PI/2, paths = "";
-  slices.forEach(s=>{
-    const frac = s.v/grand;
-    const title = `<title>${esc(s.label)}: ${fmt(s.v)} (${(frac*100).toFixed(1)}%)</title>`;
-    if(frac > 0.9999){
-      paths += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${s.color}" stroke="var(--surface)" stroke-width="2">${title}</circle>`;
-      return;
-    }
-    const a2 = angle + frac*2*Math.PI;
-    const x1 = cx + r*Math.cos(angle), y1 = cy + r*Math.sin(angle);
-    const x2 = cx + r*Math.cos(a2), y2 = cy + r*Math.sin(a2);
-    const large = frac > 0.5 ? 1 : 0;
-    paths += `<path d="M${cx} ${cy} L${x1.toFixed(2)} ${y1.toFixed(2)} A${r} ${r} 0 ${large} 1 ${x2.toFixed(2)} ${y2.toFixed(2)} Z" fill="${s.color}" stroke="var(--surface)" stroke-width="2">${title}</path>`;
-    angle = a2;
+// Spend per category for one person.
+// Shared items and flights are split in half; personal items belong to the payer only.
+function personCats(who){
+  const m = {};
+  ITEMS.forEach(i=>{
+    let v = 0;
+    if(i[4]==="S" || i[4]==="F") v = i[3]/2;
+    else if(i[4]==="P" && who==="I") v = i[3];
+    if(v>0) m[i[2]] = (m[i[2]]||0) + v;
   });
-  const svg = `<svg viewBox="0 0 300 300" role="img" aria-label="${T[lang].pieTitle}">${paths}</svg>`;
-  const legend = slices.map(s=>`
-    <li><span class="sw" style="background:${s.color}"></span>
-      <span class="nm">${s.label}</span>
-      <span class="num">${fmt(s.v)}</span>
-      <span class="pc">${(s.v/grand*100).toFixed(1)}%</span></li>`).join("");
-  return `<div class="pie-row">${svg}<ul class="legend">${legend}</ul></div>`;
+  return Object.entries(m)
+    .map(([key,v])=>({label:CATS[key][lang], v}))
+    .sort((a,b)=>b.v-a.v);
+}
+
+// Horizontal histogram: rows sorted high to low, bar length relative to the largest row.
+function histogram(rows, total){
+  if(!rows.length) return "";
+  const max = rows[0].v;
+  return rows.map(r=>`
+    <div class="bar-row">
+      <span class="bar-label">${r.label}</span>
+      <div class="bar-track"><div class="bar-fill" style="width:${(r.v/max*100).toFixed(2)}%"></div></div>
+      <span class="bar-val">${fmt(r.v)} · ${(r.v/total*100).toFixed(1)}%</span>
+    </div>`).join("");
 }
 
 function render(){
@@ -287,7 +286,11 @@ function render(){
       <div class="card"><div class="label">${t.settle}</div><div class="value">${fmt(c.owe)}</div><div class="sub">${t.settleTxt}</div></div>
     </div>`;
 
-  const pieSec = `<section><h2>${t.pieTitle}</h2>${pie(cats, c.grand)}</section>`;
+  const allRows = cats.map(k=>({label:CATS[k.key][lang], v:k.v}));
+  const histAllSec = `<section><h2>${t.histAll}</h2>${histogram(allRows, c.grand)}</section>`;
+
+  const histISec = `<section><h2>${t.histI}</h2><p class="caption">${t.capI}</p>${histogram(personCats("I"), c.totalI)}</section>`;
+  const histASec = `<section><h2>${t.histA}</h2><p class="caption">${t.capA}</p>${histogram(personCats("A"), c.totalA)}</section>`;
 
   const catRows = cats.map(k=>`
     <tr><td>${CATS[k.key][lang]}</td><td class="r">${k.n}</td><td class="r">${fmt(k.v)}</td><td class="r">${(k.v/c.grand*100).toFixed(1)}%</td></tr>`).join("");
@@ -319,7 +322,7 @@ function render(){
     const rows = ITEMS.filter(i=>i[2]===k.key).map(i=>`
       <tr>
         <td>${i[0]}</td>
-        <td>${esc(i[1])}</td>
+        <td>${i[1]}</td>
         <td><span class="tag ${i[4]==="S"?"":"p"}">${typeName[i[4]]}</span></td>
         <td>${i[4]==="F" ? t.flightNote : (i[5]==="I" ? t.payI : t.payA)}</td>
         <td class="r">${fmt(i[3])}</td>
@@ -334,7 +337,7 @@ function render(){
   const notes = `<section><h2>${t.notesTitle}</h2><ul class="notes">
     <li>${t.n1}</li><li>${t.n2}</li><li>${t.n3}</li><li>${t.n4}</li><li>${t.n5}</li></ul></section>`;
 
-  document.getElementById("app").innerHTML = cards + pieSec + catSec + perSec + detailSec + notes;
+  document.getElementById("app").innerHTML = cards + histAllSec + histISec + histASec + catSec + perSec + detailSec + notes;
 }
 
 document.querySelector(".lang").addEventListener("click", e=>{
