@@ -1,0 +1,348 @@
+<title>Canada Trip Expenses</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&display=swap">
+<style>
+/* Layout: one column report. Summary cards, then pie beside its legend, then tables. */
+:root{
+  --bg:#f3f5f4; --surface:#ffffff; --ink:#18221f; --muted:#5b6a66; --line:#d8dfdc;
+  --accent:#2d5b4e; --accent-soft:#e0ebe7; --shadow:0 1px 2px rgba(20,30,28,.06);
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#111816; --surface:#19231f; --ink:#e4ece9; --muted:#97a7a2; --line:#2b3a35;
+    --accent:#86c7b2; --accent-soft:#1d312b; --shadow:none; color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#111816; --surface:#19231f; --ink:#e4ece9; --muted:#97a7a2; --line:#2b3a35;
+  --accent:#86c7b2; --accent-soft:#1d312b; --shadow:none; color-scheme:dark;
+}
+body{background:var(--bg);color:var(--ink);font-family:"Noto Sans TC",system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.6}
+.wrap{max-width:980px;margin:0 auto;padding-block:28px 48px;padding-inline:16px;box-sizing:border-box}
+*{box-sizing:border-box}
+h1{font-size:28px;margin:0;font-weight:700;text-wrap:balance}
+h2{font-size:18px;margin:0 0 14px;font-weight:700}
+.muted{color:var(--muted);font-size:13px}
+.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+header{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:flex-end;justify-content:space-between;margin-bottom:22px}
+.lang{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;background:var(--surface)}
+.lang button{font:inherit;font-size:14px;padding:6px 14px;border:0;background:transparent;color:var(--muted);cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--accent);color:var(--bg);font-weight:600}
+.lang button:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:22px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;box-shadow:var(--shadow);min-width:0}
+.card .label{font-size:13px;color:var(--muted)}
+.card .value{font-size:22px;font-weight:700;margin-top:4px;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}
+.card .sub{font-size:12px;color:var(--muted);margin-top:2px}
+.card.hi{border-color:var(--accent)}
+section{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px 18px;margin-bottom:18px;box-shadow:var(--shadow);min-width:0}
+.pie-row{display:grid;grid-template-columns:minmax(0,300px) minmax(0,1fr);gap:24px;align-items:center}
+@media (max-width:640px){.pie-row{grid-template-columns:1fr}}
+.pie-row svg{width:100%;max-width:300px;height:auto;display:block;margin:0 auto}
+.legend{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.legend li{display:grid;grid-template-columns:14px minmax(0,1fr) auto auto;gap:10px;align-items:center;font-size:14px;min-width:0}
+.legend .sw{width:12px;height:12px;border-radius:3px}
+.legend .nm{overflow-wrap:anywhere}
+.legend .pc{color:var(--muted);font-variant-numeric:tabular-nums}
+.table-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:9px 8px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{font-size:12px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.04em}
+td.r,th.r{text-align:right;font-variant-numeric:tabular-nums}
+tr.total td{font-weight:700;border-bottom:0}
+details{border-top:1px solid var(--line);padding:2px 0}
+details:first-of-type{border-top:0}
+summary{cursor:pointer;padding:12px 4px;display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;justify-content:space-between;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";color:var(--muted);font-size:18px;margin-left:8px}
+details[open] summary::after{content:"−"}
+summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+.sname{font-weight:600}
+.item-list{width:100%;border-collapse:collapse;font-size:13px;margin:0 0 12px}
+.item-list td{padding:7px 4px;border-top:1px solid var(--line)}
+.tag{display:inline-block;font-size:11px;padding:1px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.tag.p{background:transparent;border:1px solid var(--line);color:var(--muted)}
+.notes{font-size:13px;color:var(--muted);padding-left:18px;margin:0}
+.notes li{margin-bottom:6px}
+</style>
+
+<div class="wrap">
+  <header>
+    <div>
+      <h1 id="title"></h1>
+      <div class="muted" id="sub"></div>
+    </div>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-lang="zh" aria-pressed="true">中文</button>
+      <button type="button" data-lang="en" aria-pressed="false">English</button>
+    </div>
+  </header>
+
+  <div id="app"></div>
+</div>
+
+<script>
+const ITEMS = [
+  ["09-22","加拿大換幣","other",3724,"S","I"],
+  ["09-22","長榮機票","flight",33775,"F",null],
+  ["09-24","富邦旅平險","insurance",5512,"S","I"],
+  ["09-24","長榮機票","flight",33775,"F",null],
+  ["09-25","機場接送","transfer",1100,"S","A"],
+  ["09-25","機場早餐","dining",1685.85,"S","A"],
+  ["09-25","Canmore 住宿 (9/25–9/30)","hotel",20662,"S","I"],
+  ["09-25","租車","car",29720,"S","A"],
+  ["09-25","NOMAD eSIM","comms",890,"P","I"],
+  ["09-25","Supermarket 大","groceries",3648.96,"S","A"],
+  ["09-25","熊噴霧","other",1636.91,"S","A"],
+  ["09-26","班夫國家公園門票","general",3757.07,"S","A"],
+  ["09-26","毛帽子拖鞋","clothing",2010,"P","I"],
+  ["09-26","Parking","parking",282.62,"S","I"],
+  ["09-26","Umbrella","gifts",188.19,"P","I"],
+  ["09-26","Red Bull 4 瓶","general",244.27,"P","I"],
+  ["09-26","Lunch IGA","dining",707.90,"S","A"],
+  ["09-28","超市","groceries",1011.75,"S","A"],
+  ["09-28","Gas","gas",994.58,"S","A"],
+  ["09-29","Car park","car",392.45,"S","I"],
+  ["09-29","貓保母六天","catsit",6840,"S","I"],
+  ["09-29","溫泉","entertainment",885.92,"S","A"],
+  ["09-29","超市","groceries",1272.81,"S","A"],
+  ["09-29","Parking Lake Louise","parking",941.19,"S","I"],
+  ["09-30","Louise Lake coffee","dining",347.62,"S","A"],
+  ["09-30","Buff 圍巾","clothing",706.68,"P","I"],
+  ["09-30","超市","groceries",2756.47,"S","A"],
+  ["09-30","Gas Esso","gas",1065.49,"S","A"],
+  ["10-01","Sunwapta Lodge (9/30–10/1)","hotel",12571,"S","I"],
+  ["10-01","Icewalk 活動","sports",6271,"S","A"],
+  ["10-01","Lunch Icewalk","dining",800.79,"S","A"],
+  ["10-01","Lunch drink","dining",164.87,"S","I"],
+  ["10-02","Jasper Chateau (10/1–10/4)","hotel",29582.36,"S","A"],
+  ["10-02","Gas Jasper","gas",1006.04,"S","A"],
+  ["10-02","Cinnamon bun","groceries",390.89,"S","I"],
+  ["10-03","Supermarket Jasper","groceries",631.45,"S","A"],
+  ["10-03","Wine","liquor",625.20,"P","I"],
+  ["10-03","Beer","liquor",424.39,"P","I"],
+  ["10-04","Hostel (10/4–10/6)","hotel",7337,"S","I"],
+  ["10-04","瑪琳湖遊船","sports",5356,"S","A"],
+  ["10-04","貓保母 (10/1–10/7)","catsit",7980,"S","I"],
+  ["10-04","The View 鬆餅漢堡熱巧克力","dining",33.53,"S","A"],
+  ["10-05","Gas Esso","gas",1020.97,"S","A"],
+  ["10-05","Lunch Columbia Icefields","dining",1336.79,"S","A"],
+  ["10-05","KFC dinner","dining",852.31,"S","A"],
+  ["10-05","Parking Louise Lake","parking",935.06,"S","I"],
+  ["10-05","Breakfast","dining",344.86,"P","I"],
+  ["10-05","Fairmont Louise Chateau","dining",750.59,"P","I"],
+  ["10-05","紀念品","gifts",1033.37,"P","I"],
+  ["10-06","Breakfast Canmore","dining",1346.09,"S","A"],
+  ["10-06","Gift Costco","gifts",2065.85,"S","A"],
+  ["10-06","Gas Calgary","gas",630.90,"S","A"],
+  ["10-06","Thai food airport","dining",819.44,"S","A"],
+  ["10-07","Gift (CAD 36.59)","gifts",817.98,"P","I"],
+  ["10-07","Coffee Starbucks (CAD 3.52)","dining",78.69,"P","I"]
+];
+
+ITEMS.forEach(i=>{ if(i[2]==="groceries") i[2]="dining"; });
+
+const CATS = {
+  flight:{zh:"機票",en:"Flights"},
+  catsit:{zh:"貓保母",en:"Cat sitting"},
+  hotel:{zh:"住宿",en:"Accommodation"},
+  car:{zh:"租車",en:"Car rental"},
+  parking:{zh:"停車",en:"Parking"},
+  gas:{zh:"加油",en:"Fuel"},
+  dining:{zh:"食材與外食",en:"Food &amp; dining"},
+  sports:{zh:"活動",en:"Activities"},
+  entertainment:{zh:"娛樂與其他",en:"Entertainment &amp; other"},
+  general:{zh:"一般支出",en:"General"},
+  transfer:{zh:"機場接送",en:"Airport transfer"},
+  insurance:{zh:"保險",en:"Insurance"},
+  clothing:{zh:"服飾",en:"Clothing"},
+  gifts:{zh:"禮品",en:"Gifts"},
+  liquor:{zh:"酒類",en:"Liquor"},
+  comms:{zh:"通訊網路",en:"Phone &amp; internet"},
+  other:{zh:"生活雜支",en:"Miscellaneous"}
+};
+
+const T = {
+  zh:{
+    title:"加拿大旅遊花費分析",
+    sub:"2026/09/22 – 10/07 · 依 Splitwise 紀錄 · 金額單位 TWD",
+    shared:"共享花費總額", ingrid:"Ingrid 總支出", ayson:"Ayson 總支出", settle:"結算",
+    settleTxt:"Ingrid 付給 Ayson", each:"每人應分擔",
+    pieTitle:"各類別花費占比", catTitle:"各類別總花費",
+    cat:"類別", amt:"金額", pct:"占比", cnt:"筆數", total:"合計",
+    perTitle:"Ingrid vs Ayson 個人花費",
+    rShare:"共享應分擔", rPaid:"共享實際付出", rPers:"個人消費（自己付）", rFlight:"機票（各一張）", rTotal:"個人總支出",
+    detailTitle:"消費細節", items:"筆", others:"其他（占比低於 2%）",
+    typeS:"共享", typeP:"個人", typeF:"機票", payI:"Ingrid 付", payA:"Ayson 付", flightNote:"每人一張",
+    notesTitle:"說明",
+    n1:"共享：Splitwise 均分的項目，兩人各承擔一半。",
+    n2:"個人：0/0 的項目，由付款人自己承擔，不計入結算。包含 Ingrid 的 eSIM、毛帽、酒、紀念品等。",
+    n3:"機票：兩張長榮機票各 33,775 元，各由一人承擔。",
+    n4:"加幣已換算：依 2026/10/7 匯率 1 CAD ≈ 22.355 TWD（來源：fxfeed.io），Gift 36.59 CAD ≈ 817.98 TWD、咖啡 3.52 CAD ≈ 78.69 TWD，合計 896.67 TWD，列為 Ingrid 的個人消費。",
+    n5:"換加幣的 3,724 元被列為支出；若只想看實際消費，可以扣除。貓保母費用已獨立列為一類，共 14,820 元，可在圓餅圖與類別表中單獨查看。"
+  },
+  en:{
+    title:"Canada Trip Expense Analysis",
+    sub:"Sep 22 – Oct 7, 2026 · From Splitwise export · Amounts in TWD",
+    shared:"Total shared spend", ingrid:"Ingrid's total spend", ayson:"Ayson's total spend", settle:"Settlement",
+    settleTxt:"Ingrid pays Ayson", each:"Each person's share",
+    pieTitle:"Share of spend by category", catTitle:"Total spend by category",
+    cat:"Category", amt:"Amount", pct:"Share", cnt:"Items", total:"Total",
+    perTitle:"Ingrid vs Ayson, personal breakdown",
+    rShare:"Shared share", rPaid:"Shared amount paid", rPers:"Personal (paid by self)", rFlight:"Flight (one each)", rTotal:"Total spend",
+    detailTitle:"Line items", items:"items", others:"Other (under 2% each)",
+    typeS:"Shared", typeP:"Personal", typeF:"Flight", payI:"Paid by Ingrid", payA:"Paid by Ayson", flightNote:"One each",
+    notesTitle:"Notes",
+    n1:"Shared: Splitwise split items, each person covers half.",
+    n2:"Personal: 0/0 items, paid and covered by the person who paid. Not part of the settlement. Includes Ingrid's eSIM, hat, liquor, souvenirs.",
+    n3:"Flights: two EVA Air tickets at 33,775 TWD each, one per person.",
+    n4:"CAD converted at the Oct 7, 2026 rate of 1 CAD ≈ 22.355 TWD (source: fxfeed.io): Gift 36.59 CAD ≈ 817.98 TWD, coffee 3.52 CAD ≈ 78.69 TWD, 896.67 TWD in total, counted as Ingrid's personal spend.",
+    n5:"The 3,724 TWD currency exchange is counted as spend. Remove it if you only want actual purchases. Cat-sitting costs are now a separate category, 14,820 TWD in total, shown on their own in the pie chart and category table."
+  }
+};
+
+const PALETTE = ["#2d5b4e","#c2703d","#4a6fa5","#8c5aa0","#d4a03a","#5f9d6e","#b04a5c","#3d9aa6","#7a6f5c","#6b7f3f","#a0527a","#5a6b8c"];
+const OTHER_COLOR = "#9aa5a2";
+
+let lang = "zh";
+const fmt = n => n.toLocaleString("en-US",{minimumFractionDigits:2,maximumFractionDigits:2});
+const sum = arr => arr.reduce((a,b)=>a+b,0);
+const esc = s => String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");
+
+function compute(){
+  const shared = ITEMS.filter(i=>i[4]==="S");
+  const sharedTotal = sum(shared.map(i=>i[3]));
+  const share = sharedTotal/2;
+  const paidI = sum(shared.filter(i=>i[5]==="I").map(i=>i[3]));
+  const paidA = sum(shared.filter(i=>i[5]==="A").map(i=>i[3]));
+  const persI = sum(ITEMS.filter(i=>i[4]==="P").map(i=>i[3]));
+  const flightEach = sum(ITEMS.filter(i=>i[4]==="F").map(i=>i[3]))/2;
+  const grand = sum(ITEMS.map(i=>i[3]));
+  return {
+    sharedTotal, share, paidI, paidA, persI, flightEach,
+    totalI: share+persI+flightEach,
+    totalA: share+flightEach,
+    owe: paidA - share,
+    grand
+  };
+}
+
+function catTotals(){
+  const m = {};
+  ITEMS.forEach(i=>{
+    if(!m[i[2]]) m[i[2]] = {v:0,n:0,key:i[2]};
+    m[i[2]].v += i[3]; m[i[2]].n++;
+  });
+  return Object.values(m).sort((a,b)=>b.v-a.v);
+}
+
+function pie(cats, grand){
+  const main = cats.filter(c=>c.v/grand >= 0.02);
+  const rest = cats.filter(c=>c.v/grand < 0.02);
+  const slices = main.map((c,i)=>({label:CATS[c.key][lang], v:c.v, color:PALETTE[i % PALETTE.length]}));
+  if(rest.length){
+    slices.push({label:T[lang].others, v:sum(rest.map(c=>c.v)), color:OTHER_COLOR});
+  }
+  const cx=150, cy=150, r=140;
+  let angle = -Math.PI/2, paths = "";
+  slices.forEach(s=>{
+    const frac = s.v/grand;
+    const title = `<title>${esc(s.label)}: ${fmt(s.v)} (${(frac*100).toFixed(1)}%)</title>`;
+    if(frac > 0.9999){
+      paths += `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${s.color}" stroke="var(--surface)" stroke-width="2">${title}</circle>`;
+      return;
+    }
+    const a2 = angle + frac*2*Math.PI;
+    const x1 = cx + r*Math.cos(angle), y1 = cy + r*Math.sin(angle);
+    const x2 = cx + r*Math.cos(a2), y2 = cy + r*Math.sin(a2);
+    const large = frac > 0.5 ? 1 : 0;
+    paths += `<path d="M${cx} ${cy} L${x1.toFixed(2)} ${y1.toFixed(2)} A${r} ${r} 0 ${large} 1 ${x2.toFixed(2)} ${y2.toFixed(2)} Z" fill="${s.color}" stroke="var(--surface)" stroke-width="2">${title}</path>`;
+    angle = a2;
+  });
+  const svg = `<svg viewBox="0 0 300 300" role="img" aria-label="${T[lang].pieTitle}">${paths}</svg>`;
+  const legend = slices.map(s=>`
+    <li><span class="sw" style="background:${s.color}"></span>
+      <span class="nm">${s.label}</span>
+      <span class="num">${fmt(s.v)}</span>
+      <span class="pc">${(s.v/grand*100).toFixed(1)}%</span></li>`).join("");
+  return `<div class="pie-row">${svg}<ul class="legend">${legend}</ul></div>`;
+}
+
+function render(){
+  const t = T[lang];
+  document.documentElement.lang = lang === "zh" ? "zh-Hant" : "en";
+  document.getElementById("title").textContent = t.title;
+  document.getElementById("sub").textContent = t.sub;
+  document.querySelectorAll(".lang button").forEach(b=>b.setAttribute("aria-pressed", String(b.dataset.lang===lang)));
+
+  const c = compute();
+  const cats = catTotals();
+  const typeName = {S:t.typeS, P:t.typeP, F:t.typeF};
+
+  const cards = `
+    <div class="cards">
+      <div class="card"><div class="label">${t.shared}</div><div class="value">${fmt(c.sharedTotal)}</div><div class="sub">${t.each} ${fmt(c.share)}</div></div>
+      <div class="card hi"><div class="label">${t.ingrid}</div><div class="value">${fmt(c.totalI)}</div><div class="sub">TWD</div></div>
+      <div class="card hi"><div class="label">${t.ayson}</div><div class="value">${fmt(c.totalA)}</div><div class="sub">TWD</div></div>
+      <div class="card"><div class="label">${t.settle}</div><div class="value">${fmt(c.owe)}</div><div class="sub">${t.settleTxt}</div></div>
+    </div>`;
+
+  const pieSec = `<section><h2>${t.pieTitle}</h2>${pie(cats, c.grand)}</section>`;
+
+  const catRows = cats.map(k=>`
+    <tr><td>${CATS[k.key][lang]}</td><td class="r">${k.n}</td><td class="r">${fmt(k.v)}</td><td class="r">${(k.v/c.grand*100).toFixed(1)}%</td></tr>`).join("");
+  const catSec = `
+    <section><h2>${t.catTitle}</h2>
+      <div class="table-wrap"><table>
+        <thead><tr><th>${t.cat}</th><th class="r">${t.cnt}</th><th class="r">${t.amt}</th><th class="r">${t.pct}</th></tr></thead>
+        <tbody>${catRows}
+          <tr class="total"><td>${t.total}</td><td class="r">${ITEMS.length}</td><td class="r">${fmt(c.grand)}</td><td class="r">100%</td></tr>
+        </tbody>
+      </table></div>
+    </section>`;
+
+  const perSec = `
+    <section><h2>${t.perTitle}</h2>
+      <div class="table-wrap"><table>
+        <thead><tr><th>&nbsp;</th><th class="r">Ingrid</th><th class="r">Ayson</th></tr></thead>
+        <tbody>
+          <tr><td>${t.rShare}</td><td class="r">${fmt(c.share)}</td><td class="r">${fmt(c.share)}</td></tr>
+          <tr><td>${t.rPaid}</td><td class="r">${fmt(c.paidI)}</td><td class="r">${fmt(c.paidA)}</td></tr>
+          <tr><td>${t.rPers}</td><td class="r">${fmt(c.persI)}</td><td class="r">0.00</td></tr>
+          <tr><td>${t.rFlight}</td><td class="r">${fmt(c.flightEach)}</td><td class="r">${fmt(c.flightEach)}</td></tr>
+          <tr class="total"><td>${t.rTotal}</td><td class="r">${fmt(c.totalI)}</td><td class="r">${fmt(c.totalA)}</td></tr>
+        </tbody>
+      </table></div>
+    </section>`;
+
+  const detailSec = `<section><h2>${t.detailTitle}</h2>` + cats.map(k=>{
+    const rows = ITEMS.filter(i=>i[2]===k.key).map(i=>`
+      <tr>
+        <td>${i[0]}</td>
+        <td>${esc(i[1])}</td>
+        <td><span class="tag ${i[4]==="S"?"":"p"}">${typeName[i[4]]}</span></td>
+        <td>${i[4]==="F" ? t.flightNote : (i[5]==="I" ? t.payI : t.payA)}</td>
+        <td class="r">${fmt(i[3])}</td>
+      </tr>`).join("");
+    return `<details>
+      <summary><span class="sname">${CATS[k.key][lang]}</span>
+        <span class="muted">${k.n} ${t.items} · <span class="num">${fmt(k.v)}</span> TWD</span></summary>
+      <div class="table-wrap"><table class="item-list"><tbody>${rows}</tbody></table></div>
+    </details>`;
+  }).join("") + `</section>`;
+
+  const notes = `<section><h2>${t.notesTitle}</h2><ul class="notes">
+    <li>${t.n1}</li><li>${t.n2}</li><li>${t.n3}</li><li>${t.n4}</li><li>${t.n5}</li></ul></section>`;
+
+  document.getElementById("app").innerHTML = cards + pieSec + catSec + perSec + detailSec + notes;
+}
+
+document.querySelector(".lang").addEventListener("click", e=>{
+  const b = e.target.closest("button[data-lang]");
+  if(!b) return;
+  lang = b.dataset.lang;
+  render();
+});
+
+render();
+</script>
